@@ -6,6 +6,7 @@
 package Constants;
 
 /**
+ *
  * @author thienlan
  */
 public class Constant {
@@ -13,8 +14,8 @@ public class Constant {
     /**
      * connection with server
      */
-    public static String urlConnect = "https://meomeocf98.000webhostapp.com/flutter/index.php";
+    public static String urlConnect = "http://localhost:8090/bluecoffee/index.php";
     public static String keyNoneQuery = "executeNoneQuery";
     public static String keyQuery = "executeQuery";
-    public static String defaultpass = "abc"; //mật khẩu mặc định cho việc reset pass
+    public static String defaultpass="abc"; //mật khẩu mặc định cho việc reset pass
 }

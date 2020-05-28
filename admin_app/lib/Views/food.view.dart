@@ -255,17 +255,17 @@ class _FoodScreenState extends State<FoodScreen> {
                 _deleteFood(food);
               },
             ),
-            new IconButton(
-              color: Colors.redAccent,
-              icon: new Icon(
-                Icons.info,
-                color: Colors.blueAccent,
-                size: 19.0,
-              ),
-              onPressed: () {
-                _pushDetailsFoodScreen(food);
-              },
-            ),
+            // new IconButton(
+            //   color: Colors.redAccent,
+            //   icon: new Icon(
+            //     Icons.info,
+            //     color: Colors.blueAccent,
+            //     size: 19.0,
+            //   ),
+            //   onPressed: () {
+            //     _pushDetailsFoodScreen(food);
+            //   },
+            // ),
           ],
         ),
       )

@@ -1,8 +1,8 @@
 <?php
-$servername = "";
-$username = "";
+$servername = "localhost";
+$username = "root";
 $password = "";
-$dbname = "";
+$dbname = "storepattern";
 
 if(isset($_POST['executeNoneQuery']) && !empty($_POST['executeNoneQuery']))
     executeNoneQuery($_POST['executeNoneQuery']);
