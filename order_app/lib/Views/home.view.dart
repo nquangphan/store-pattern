@@ -33,56 +33,32 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(5.0),
-      child: FutureBuilder<List<home.Table>>(
-        future: futureTables,
-        builder: (context, snapshot) {
-          if (snapshot.hasError) print(snapshot.error);
-          if (snapshot.hasData) {
-            return new ListView.builder(
-                itemExtent: 100.0,
-                itemCount: (snapshot.data.length / 3).ceil(),
-                itemBuilder: (context, index) => _buildTableRow(context, index, snapshot.data));
-          }
-          return Center(child: CircularProgressIndicator());
-        },
+    return Scaffold(
+      body: Container(
+        width: MediaQuery.of(context).size.width,
+        margin: EdgeInsets.all(5.0),
+        child: FutureBuilder<List<home.Table>>(
+          future: futureTables,
+          builder: (context, snapshot) {
+            if (snapshot.hasError) print(snapshot.error);
+            if (snapshot.hasData) {
+              // return new ListView.builder(
+              // itemExtent: 100.0,
+              // itemCount: (snapshot.data.length / 3).ceil(),
+              // itemBuilder: (context, index) => _buildTableRow(context, index, snapshot.data));
+              return Wrap(
+                alignment: WrapAlignment.spaceEvenly,
+                runSpacing: 20,
+                children: List<Widget>.generate(snapshot.data.length, (index) {
+                  return _buildTable(context, snapshot.data[index]);
+                }),
+              );
+            }
+            return Center(child: CircularProgressIndicator());
+          },
+        ),
       ),
     );
-  }
-
-  Widget _buildTableRow(BuildContext context, int index, List<home.Table> tables) {
-    List<home.Table> indexes = [];
-
-    int end = (index + 1) * 3;
-    if (end > tables.length - 1) end = tables.length;
-    int begin = index * 3;
-
-    for (int i = begin; i < end; i++) {
-      indexes.add(tables[i]);
-    }
-
-    return new Container(
-      child: new Row(children: _generateRow(context, indexes)),
-    );
-  }
-
-  List<Widget> _generateRow(BuildContext context, List<home.Table> indexes) {
-    List<Widget> items = [];
-
-    for (int i = 0; i < indexes.length; i++) {
-      Expanded expanded = new Expanded(
-        child: _buildTable(context, indexes[i]),
-      );
-      items.add(expanded);
-    }
-
-    for (int i = 0; i < 3 - indexes.length; i++) {
-      Expanded expanded = new Expanded(child: new Container());
-      items.add(expanded);
-    }
-
-    return items;
   }
 
   Widget _buildTable(BuildContext context, home.Table table) {
@@ -99,24 +75,29 @@ class _HomeScreenState extends State<HomeScreen> {
           child: new Card(
             color: theme.primaryColor,
             child: new Row(
+              mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: new Icon(
                     table.status == 1 ? Icons.people : Icons.people_outline,
                     size: 20.0,
-                    color: table.status == 1 ? Colors.redAccent : Colors.redAccent,
+                    color:
+                        table.status == 1 ? Colors.redAccent : Colors.redAccent,
                   ),
                 ),
                 // new Expanded(child: new Container()),
                 Flexible(
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 30.0, bottom: 30.0, right: 8.0),
+                    padding: const EdgeInsets.only(
+                        top: 30.0, bottom: 30.0, right: 16.0),
                     child: new Text(
                       table.name,
                       overflow: TextOverflow.ellipsis,
-                      style:
-                          const TextStyle(color: theme.fontColorLight, fontFamily: 'Dosis', fontSize: 20.0),
+                      style: const TextStyle(
+                          color: theme.fontColorLight,
+                          fontFamily: 'Dosis',
+                          fontSize: 20.0),
                     ),
                   ),
                 )
@@ -133,7 +114,8 @@ class _HomeScreenState extends State<HomeScreen> {
           appBar: new AppBar(
             title: new Text(
               'Menu • ' + _selectedTable.name,
-              style: new TextStyle(color: theme.accentColor, fontFamily: 'Dosis'),
+              style:
+                  new TextStyle(color: theme.accentColor, fontFamily: 'Dosis'),
               overflow: TextOverflow.ellipsis,
             ),
             iconTheme: new IconThemeData(color: theme.accentColor),
@@ -160,7 +142,8 @@ class _HomeScreenState extends State<HomeScreen> {
           appBar: new AppBar(
             title: new Text(
               'Cart • ' + _selectedTable.name,
-              style: new TextStyle(color: theme.accentColor, fontFamily: 'Dosis'),
+              style:
+                  new TextStyle(color: theme.accentColor, fontFamily: 'Dosis'),
             ),
             iconTheme: new IconThemeData(color: theme.accentColor),
             centerTitle: true,
@@ -174,7 +157,8 @@ class _HomeScreenState extends State<HomeScreen> {
               )
             ],
           ),
-          body: new CartScreen(table: table, menuContext: context, account: widget.account),
+          body: new CartScreen(
+              table: table, menuContext: context, account: widget.account),
         );
       }),
     );
@@ -186,7 +170,10 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (BuildContext context) {
           return AlertDialog(
             title: new Text('Confirm', style: theme.titleStyle),
-            content: new Text('Do you want to send bill of table ' + table.name + ' for kitchen?',
+            content: new Text(
+                'Do you want to send bill of table ' +
+                    table.name +
+                    ' for kitchen?',
                 style: theme.contentStyle),
             actions: <Widget>[
               new FlatButton(
@@ -194,23 +181,28 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: () async {
                   Navigator.of(context).pop();
                   cartController.Controller.instance.isSend = false;
-                  if (await cartController.Controller.instance.hasBillOfTable(table.id)) {
+                  if (await cartController.Controller.instance
+                      .hasBillOfTable(table.id)) {
                     // exists bill
-                    int idBill = await cartController.Controller.instance.getIdBillByTable(table.id);
+                    int idBill = await cartController.Controller.instance
+                        .getIdBillByTable(table.id);
                     if (await cartController.Controller.instance.updateBill(
                         idBill,
                         table.id,
                         table.dateCheckIn,
-                        DateTime.parse(new DateFormat('yyyy-MM-dd HH:mm:ss.SSS').format(DateTime.now())),
+                        DateTime.parse(new DateFormat('yyyy-MM-dd HH:mm:ss.SSS')
+                            .format(DateTime.now())),
                         0,
                         table.getTotalPrice(),
                         0,
                         widget.account.username)) {
                       for (var food in table.foods) {
-                        if (await cartController.Controller.instance.hasBillDetailOfBill(idBill, food.id)) {
+                        if (await cartController.Controller.instance
+                            .hasBillDetailOfBill(idBill, food.id)) {
                           // exists billdetail
                           if (await cartController.Controller.instance
-                                  .updateBillDetail(idBill, food.id, food.quantity) ==
+                                  .updateBillDetail(
+                                      idBill, food.id, food.quantity) ==
                               false) {
                             errorDialog(
                                 this.context,
@@ -222,7 +214,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         } else {
                           // not exists billdetail
                           if (await cartController.Controller.instance
-                                  .insertBillDetail(idBill, food.id, food.quantity) ==
+                                  .insertBillDetail(
+                                      idBill, food.id, food.quantity) ==
                               false) {
                             errorDialog(
                                 this.context,
@@ -235,37 +228,55 @@ class _HomeScreenState extends State<HomeScreen> {
                       }
                       cartController.Controller.instance.isSend = true;
                       successDialog(
-                          this.context, 'Send bill of table ' + table.name + ' for kitchen successed.');
+                          this.context,
+                          'Send bill of table ' +
+                              table.name +
+                              ' for kitchen successed.');
                     } else
-                      errorDialog(this.context,
-                          'Send bill of table ' + table.name + ' for kitchen failed.\nPlease try again!');
+                      errorDialog(
+                          this.context,
+                          'Send bill of table ' +
+                              table.name +
+                              ' for kitchen failed.\nPlease try again!');
                   } else {
                     // not exists bill
                     if (await cartController.Controller.instance.insertBill(
                         table.id,
                         table.dateCheckIn,
-                        DateTime.parse(new DateFormat('yyyy-MM-dd HH:mm:ss.SSS').format(DateTime.now())),
+                        DateTime.parse(new DateFormat('yyyy-MM-dd HH:mm:ss.SSS')
+                            .format(DateTime.now())),
                         0,
                         table.getTotalPrice(),
                         0,
                         widget.account.username)) {
-                      int idBill = await cartController.Controller.instance.getIdBillMax();
+                      int idBill = await cartController.Controller.instance
+                          .getIdBillMax();
 
                       for (var food in table.foods) {
                         if (await cartController.Controller.instance
-                                .insertBillDetail(idBill, food.id, food.quantity) ==
+                                .insertBillDetail(
+                                    idBill, food.id, food.quantity) ==
                             false) {
-                          errorDialog(this.context,
-                              'Send bill of table ' + table.name + ' for kitchen failed.\nPlease try again!');
+                          errorDialog(
+                              this.context,
+                              'Send bill of table ' +
+                                  table.name +
+                                  ' for kitchen failed.\nPlease try again!');
                           return;
                         }
                       }
                       cartController.Controller.instance.isSend = true;
                       successDialog(
-                          this.context, 'Send bill of table ' + table.name + ' for kitchen successed.');
+                          this.context,
+                          'Send bill of table ' +
+                              table.name +
+                              ' for kitchen successed.');
                     } else
-                      errorDialog(this.context,
-                          'Send bill of table ' + table.name + ' for kitchen failed.\nPlease try again!');
+                      errorDialog(
+                          this.context,
+                          'Send bill of table ' +
+                              table.name +
+                              ' for kitchen failed.\nPlease try again!');
                   }
                 },
               ),
