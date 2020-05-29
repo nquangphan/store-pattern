@@ -15,8 +15,9 @@ class MenuScreen extends StatefulWidget {
 }
 
 class _MenuScreenState extends State<MenuScreen> {
-  Future<List<menu.FoodCategory>> futureCategories = Controller.instance.foodCategories;
-  Future<List<menu.Food>> futureFoods = Controller.instance.foods;
+  Future<List<menu.FoodCategory>> futureCategories =
+      Controller.instance.foodCategories;
+  Future<List<menu.Food>> futureFoods;
 
   String _currentCategory;
   String _selectedCategory;
@@ -26,7 +27,13 @@ class _MenuScreenState extends State<MenuScreen> {
   @override
   void initState() {
     _currentCategory = 'All';
+    futureFoods = Controller.instance.getListFoodByTable(widget.table);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
@@ -39,7 +46,6 @@ class _MenuScreenState extends State<MenuScreen> {
             future: futureFoods,
             builder: (context, snapshot) {
               if (snapshot.hasError) print(snapshot.error);
-
               return snapshot.hasData
                   ? _buildListFoods(context, snapshot.data)
                   : Center(child: CircularProgressIndicator());
@@ -109,7 +115,8 @@ class _MenuScreenState extends State<MenuScreen> {
               new Text(
                 food.name,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(color: fontColor, fontFamily: 'Dosis', fontSize: 20.0),
+                style: const TextStyle(
+                    color: fontColor, fontFamily: 'Dosis', fontSize: 20.0),
               ),
               new Expanded(
                 child: new Container(),
@@ -146,10 +153,12 @@ class _MenuScreenState extends State<MenuScreen> {
                         },
                       ),
                       new Container(
-                          decoration:
-                              new BoxDecoration(borderRadius: BorderRadius.circular(20.0), color: fontColor),
+                          decoration: new BoxDecoration(
+                              borderRadius: BorderRadius.circular(20.0),
+                              color: fontColor),
                           child: Padding(
-                            padding: const EdgeInsets.only(top: 1.0, bottom: 1.0, left: 4.0, right: 4.0),
+                            padding: const EdgeInsets.only(
+                                top: 1.0, bottom: 1.0, left: 4.0, right: 4.0),
                             child: new Text(
                               food.quantity.toString(),
                               style: new TextStyle(
@@ -180,7 +189,10 @@ class _MenuScreenState extends State<MenuScreen> {
               new Text(
                 '\$' + food.price.toString(),
                 style: const TextStyle(
-                    color: fontColor, fontFamily: 'Dosis', fontSize: 14.0, fontWeight: FontWeight.bold),
+                    color: fontColor,
+                    fontFamily: 'Dosis',
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.bold),
               ),
             ],
           ),
@@ -188,7 +200,8 @@ class _MenuScreenState extends State<MenuScreen> {
   }
 
   Widget _buildFilterFood(BuildContext context) {
-    const TextStyle _itemStyle = TextStyle(color: fontColor, fontFamily: 'Dosis', fontSize: 16.0);
+    const TextStyle _itemStyle =
+        TextStyle(color: fontColor, fontFamily: 'Dosis', fontSize: 16.0);
     return new Container(
       decoration: new BoxDecoration(
           borderRadius: BorderRadius.circular(5.0),
@@ -206,7 +219,8 @@ class _MenuScreenState extends State<MenuScreen> {
                         controller: _textController,
                         onChanged: (keyword) {
                           setState(() {
-                            futureFoods = Controller.instance.searchFoods(_selectedCategory, keyword);
+                            futureFoods = Controller.instance
+                                .searchFoods(_selectedCategory, keyword);
                           });
                         },
                         onSubmitted: null,
@@ -236,7 +250,8 @@ class _MenuScreenState extends State<MenuScreen> {
     );
   }
 
-  Widget _buildFoodCategories(List<menu.FoodCategory> foodCategories, TextStyle _itemStyle) {
+  Widget _buildFoodCategories(
+      List<menu.FoodCategory> foodCategories, TextStyle _itemStyle) {
     List<DropdownMenuItem> items = [
       new DropdownMenuItem(
         value: 'All',

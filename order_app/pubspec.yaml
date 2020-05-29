@@ -27,6 +27,7 @@ dependencies:
   path_provider: ^0.4.1
   image_picker: ^0.4.10
   test: 
+  rxdart: ^0.22.6
 
 dev_dependencies:
   flutter_test:

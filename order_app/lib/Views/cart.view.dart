@@ -297,7 +297,7 @@ class _CartScreenState extends State<CartScreen> {
 
                   home.Table table = new home.Table(widget.table);
 
-                  if (Controller.instance.isSend) {
+                  if (table.status == 1) {
                     // exists bill
                     Navigator.of(cartContext).pop();
                     Navigator.of(widget.menuContext).pop();

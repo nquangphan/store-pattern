@@ -22,13 +22,20 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Future<List<home.Table>> futureTables;
   home.Table _selectedTable;
 
   @override
   void initState() {
-    futureTables = Controller.instance.tables;
     super.initState();
+    Controller.instance.getTables();
+    Controller.instance.startBackgroundTask();
+  }
+
+  @override
+  void dispose() {
+    Controller.instance.stopBackgroundTask();
+    Controller.instance.closeStream();
+    super.dispose();
   }
 
   @override
@@ -37,26 +44,22 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Container(
         width: MediaQuery.of(context).size.width,
         margin: EdgeInsets.all(5.0),
-        child: FutureBuilder<List<home.Table>>(
-          future: futureTables,
-          builder: (context, snapshot) {
-            if (snapshot.hasError) print(snapshot.error);
-            if (snapshot.hasData) {
-              // return new ListView.builder(
-              // itemExtent: 100.0,
-              // itemCount: (snapshot.data.length / 3).ceil(),
-              // itemBuilder: (context, index) => _buildTableRow(context, index, snapshot.data));
-              return Wrap(
-                alignment: WrapAlignment.spaceEvenly,
-                runSpacing: 20,
-                children: List<Widget>.generate(snapshot.data.length, (index) {
-                  return _buildTable(context, snapshot.data[index]);
-                }),
-              );
-            }
-            return Center(child: CircularProgressIndicator());
-          },
-        ),
+        child: StreamBuilder<List<home.Table>>(
+            stream: Controller.instance.tableListStream,
+            builder: (context, snapshot) {
+              if (snapshot.hasData && snapshot.data != null) {
+                return Wrap(
+                  alignment: WrapAlignment.spaceEvenly,
+                  runSpacing: 20,
+                  children:
+                      List<Widget>.generate(snapshot.data.length, (index) {
+                    return _buildTable(context, snapshot.data[index]);
+                  }),
+                );
+              } else {
+                return Center(child: CircularProgressIndicator());
+              }
+            }),
       ),
     );
   }
@@ -73,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: EdgeInsets.zero,
           margin: EdgeInsets.zero,
           child: new Card(
-            color: theme.primaryColor,
+            color: table.status == 1 ? Colors.green : theme.primaryColor,
             child: new Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[

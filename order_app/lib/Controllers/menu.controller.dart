@@ -1,6 +1,11 @@
 import 'dart:typed_data';
 
+import 'package:rxdart/rxdart.dart';
+import './../Models/home.model.dart' as home;
+import './../Models/history.model.dart' as historyModel;
 import './../Models/menu.model.dart';
+import 'package:order_app/Models/menu.model.dart' as MenuModel;
+import 'package:order_app/Models/cart.model.dart' as CartModel;
 
 class Controller {
   static Controller _instance;
@@ -15,7 +20,8 @@ class Controller {
   // Future<List<Food>> _foods;
 
   Future<List<FoodCategory>> get foodCategories {
-    if (_foodCategories == null) _foodCategories = Model.instance.foodCategories;
+    if (_foodCategories == null)
+      _foodCategories = Model.instance.foodCategories;
     return _foodCategories;
   }
 
@@ -25,7 +31,7 @@ class Controller {
   // }
 
   Future<List<Food>> filterFoods(String category) async {
-    List<Food> _foods = await foods;
+    List<Food> _foods = await foods();
     int idCategory = await getIdCategory(category);
     if (idCategory == -1) return _foods;
     return _foods.where((_food) => _food.idFoodCategory == idCategory).toList();
@@ -39,18 +45,21 @@ class Controller {
     return -1;
   }
 
-  Future<List<Food>> searchFoods(String selectedCategory, String keyword) async {
+  Future<List<Food>> searchFoods(
+      String selectedCategory, String keyword) async {
     List<Food> _foods = await filterFoods(selectedCategory);
     if (keyword.trim() == '') return _foods;
     return _foods
-        .where((_food) => _food.name.toLowerCase().indexOf(keyword.trim().toLowerCase()) != -1)
+        .where((_food) =>
+            _food.name.toLowerCase().indexOf(keyword.trim().toLowerCase()) !=
+            -1)
         .toList();
   }
 
   Future<List<Food>> _foods;
   Future<Map<int, Uint8List>> _images;
 
-  Future<List<Food>> get foods {
+  Future<List<Food>> foods() {
     if (_foods == null) {
       _images = _syncMySqlWithFile();
       _foods = _combineFoodsImages(_images, Model.instance.foods);
@@ -66,14 +75,16 @@ class Controller {
 
   void _combine(Food food, Uint8List image) => food.image = image;
 
-  Future<void> _saveFile(int id, Uint8List image) async => Model.instance.saveImage(id, image);
+  Future<void> _saveFile(int id, Uint8List image) async =>
+      Model.instance.saveImage(id, image);
 
   Future<void> _deleteFile(int id) async => Model.instance.delete(id);
 
   //Future<List<FoodCategory>> get foodCategories => Model.instance.foodCategories;
 
   Future<List<Food>> _combineFoodsImages(
-      Future<Map<int, Uint8List>> futureImages, Future<List<Food>> futureFoods) async {
+      Future<Map<int, Uint8List>> futureImages,
+      Future<List<Food>> futureFoods) async {
     Map<int, Uint8List> images = await futureImages;
     List<Food> foods = await futureFoods;
     for (int i = 0; i < foods.length; ++i) {
@@ -102,5 +113,20 @@ class Controller {
 
     /// delete Image don't exists in database
     return images;
+  }
+
+  Future<int> getIdBillByTable(int idTable) {
+    return CartModel.Model.instance.getIdBillByTable(idTable);
+  }
+
+  Future<List<Food>> getListFoodByTable(home.Table table) async {
+    List<Food> listFoods = await foods();
+    if (table.status == 1) {
+      int idBill = await Controller.instance.getIdBillByTable(table.id);
+      table.foods.clear();
+      table.foods.addAll(await _combineFoodsImages(
+          _images, historyModel.Model.instance.getBillDetailByBill(idBill)));
+    }
+    return listFoods;
   }
 }
