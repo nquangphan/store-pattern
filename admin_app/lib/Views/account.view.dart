@@ -238,17 +238,17 @@ class _AccountScreenState extends State<AccountScreen> {
                 _resetAccount(acc.username);
               },
             ),
-            new IconButton(
-              color: Colors.redAccent,
-              icon: new Icon(
-                Icons.info,
-                color: Colors.blueAccent,
-                size: 19.0,
-              ),
-              onPressed: () {
-                _pushDetailsAccountScreen(acc);
-              },
-            ),
+            // new IconButton(
+            //   color: Colors.redAccent,
+            //   icon: new Icon(
+            //     Icons.info,
+            //     color: Colors.blueAccent,
+            //     size: 19.0,
+            //   ),
+            //   onPressed: () {
+            //     _pushDetailsAccountScreen(acc);
+            //   },
+            // ),
           ],
         ),
       )

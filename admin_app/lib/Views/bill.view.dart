@@ -31,7 +31,8 @@ class _BillScreenState extends State<BillScreen> {
 
   @override
   Widget build(BuildContext context) {
-    const TextStyle _itemStyle = TextStyle(color: theme.fontColor, fontFamily: 'Dosis', fontSize: 16.0);
+    const TextStyle _itemStyle =
+        TextStyle(color: theme.fontColor, fontFamily: 'Dosis', fontSize: 16.0);
 
     Widget controls = new Container(
       decoration: new BoxDecoration(
@@ -49,8 +50,10 @@ class _BillScreenState extends State<BillScreen> {
                   controller: _keywordController,
                   onChanged: (keyword) {
                     setState(() {
-                      bills = Controller.instance
-                          .searchFoods(keyword, formatDate.parse(txbDayStart), formatDate.parse(txbDayEnd));
+                      bills = Controller.instance.searchFoods(
+                          keyword,
+                          formatDate.parse(txbDayStart),
+                          formatDate.parse(txbDayEnd));
                     });
                   },
                   onSubmitted: null,
@@ -125,7 +128,8 @@ class _BillScreenState extends State<BillScreen> {
             children: <Widget>[
               new Table(
                   defaultColumnWidth: FlexColumnWidth(2.0),
-                  columnWidths: MediaQuery.of(context).orientation == Orientation.landscape
+                  columnWidths: MediaQuery.of(context).orientation ==
+                          Orientation.landscape
                       ? {
                           0: FlexColumnWidth(0.5),
                           1: FlexColumnWidth(1.0),
@@ -144,7 +148,8 @@ class _BillScreenState extends State<BillScreen> {
                           3: FlexColumnWidth(1.0),
                           4: FlexColumnWidth(1.0),
                         },
-                  border: TableBorder.all(width: 1.0, color: theme.fontColorLight),
+                  border:
+                      TableBorder.all(width: 1.0, color: theme.fontColorLight),
                   children: _buildListRow(foods)),
             ],
           )),
@@ -264,8 +269,10 @@ class _BillScreenState extends State<BillScreen> {
   TableRow _buildTableData(Bill bill) {
     List<TableCell> tableCell = [
       new TableCell(
+        verticalAlignment: TableCellVerticalAlignment.middle,
         child: new Row(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             new Text(
               bill.id.toString(),
@@ -275,8 +282,10 @@ class _BillScreenState extends State<BillScreen> {
         ),
       ),
       new TableCell(
+        verticalAlignment: TableCellVerticalAlignment.middle,
         child: new Row(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             new Text(
               bill.nameTable,
@@ -287,8 +296,10 @@ class _BillScreenState extends State<BillScreen> {
         ),
       ),
       new TableCell(
+        verticalAlignment: TableCellVerticalAlignment.middle,
         child: new Row(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             new Text(
               format.format(bill.dateCheckOut),
@@ -299,8 +310,10 @@ class _BillScreenState extends State<BillScreen> {
         ),
       ),
       new TableCell(
+        verticalAlignment: TableCellVerticalAlignment.middle,
         child: new Row(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             new Text(
               '\$${bill.totalPrice}',
@@ -311,15 +324,20 @@ class _BillScreenState extends State<BillScreen> {
         ),
       ),
       new TableCell(
-        child: new Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-          new Text(
-            '${bill.status}',
-            style: theme.contentTable,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ]),
+        verticalAlignment: TableCellVerticalAlignment.middle,
+        child: new Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              new Text(
+                '${bill.status}',
+                style: theme.contentTable,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ]),
       ),
       new TableCell(
+        verticalAlignment: TableCellVerticalAlignment.middle,
         child: new Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -351,6 +369,7 @@ class _BillScreenState extends State<BillScreen> {
       )
     ];
     var checkin = new TableCell(
+      verticalAlignment: TableCellVerticalAlignment.middle,
       child: new Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -363,6 +382,7 @@ class _BillScreenState extends State<BillScreen> {
       ),
     );
     var discount = new TableCell(
+      verticalAlignment: TableCellVerticalAlignment.middle,
       child: new Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -376,6 +396,7 @@ class _BillScreenState extends State<BillScreen> {
     );
 
     var staff = new TableCell(
+      verticalAlignment: TableCellVerticalAlignment.middle,
       child: new Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -410,11 +431,12 @@ class _BillScreenState extends State<BillScreen> {
         firstDate: formatDate.parse(txbDayStart),
         lastDate: DateTime.now(),
       );
-      if (pickedEnd != null) setState(() => txbDayEnd = formatDate.format(pickedEnd));
+      if (pickedEnd != null)
+        setState(() => txbDayEnd = formatDate.format(pickedEnd));
     }
     setState(() {
-      bills = Controller.instance
-          .searchFoods(_keywordController.text, formatDate.parse(txbDayStart), formatDate.parse(txbDayEnd));
+      bills = Controller.instance.searchFoods(_keywordController.text,
+          formatDate.parse(txbDayStart), formatDate.parse(txbDayEnd));
     });
   }
 
@@ -424,7 +446,8 @@ class _BillScreenState extends State<BillScreen> {
         builder: (BuildContext context) {
           return AlertDialog(
             title: new Text('Confirm', style: theme.titleStyle),
-            content: new Text('Do you want to delete this bill: ${bill.id}?', style: theme.contentStyle),
+            content: new Text('Do you want to delete this bill: ${bill.id}?',
+                style: theme.contentStyle),
             actions: <Widget>[
               new FlatButton(
                   child: new Text('Ok', style: theme.okButtonStyle),
@@ -434,13 +457,18 @@ class _BillScreenState extends State<BillScreen> {
                     if (await Controller.instance.deleteBill(bill.id)) {
                       Controller.instance.deleteLocal(bill.id);
                       setState(() {
-                        bills = Controller.instance.searchFoods(_keywordController.text,
-                            formatDate.parse(txbDayStart), formatDate.parse(txbDayEnd));
+                        bills = Controller.instance.searchFoods(
+                            _keywordController.text,
+                            formatDate.parse(txbDayStart),
+                            formatDate.parse(txbDayEnd));
                       });
-                      successDialog(this.context, 'Delete this bill: ${bill.id} success!');
+                      successDialog(this.context,
+                          'Delete this bill: ${bill.id} success!');
                     } else
                       errorDialog(
-                          this.context, 'Delete this bill: ${bill.id} failed.' + '\nPlease try again!');
+                          this.context,
+                          'Delete this bill: ${bill.id} failed.' +
+                              '\nPlease try again!');
                   }),
               new FlatButton(
                 child: new Text('Cancel', style: theme.cancelButtonStyle),
@@ -460,7 +488,8 @@ class _BillScreenState extends State<BillScreen> {
             appBar: new AppBar(
               title: new Text(
                 'Bill Detail',
-                style: new TextStyle(color: theme.accentColor, fontFamily: 'Dosis'),
+                style: new TextStyle(
+                    color: theme.accentColor, fontFamily: 'Dosis'),
               ),
               iconTheme: new IconThemeData(color: theme.accentColor),
               centerTitle: true,
