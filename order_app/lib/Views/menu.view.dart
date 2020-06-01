@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import './../Constants/theme.dart';
 import './../Controllers/menu.controller.dart';
@@ -22,7 +23,7 @@ class _MenuScreenState extends State<MenuScreen> {
   String _currentCategory;
   String _selectedCategory;
 
-  TextEditingController _textController = new TextEditingController();
+  TextEditingController _textController = TextEditingController();
 
   @override
   void initState() {
@@ -60,10 +61,10 @@ class _MenuScreenState extends State<MenuScreen> {
     List<menu.Food> foods = widget.table.combineFoods(_foods);
 
     return Expanded(
-      child: new Container(
+      child: Container(
         width: double.infinity,
         margin: EdgeInsets.all(5.0),
-        child: new ListView.builder(
+        child: ListView.builder(
             itemExtent: 175.0,
             itemCount: (foods.length / 2).ceil(),
             itemBuilder: (_, index) => _buildFoodRow(context, index, foods)),
@@ -82,8 +83,8 @@ class _MenuScreenState extends State<MenuScreen> {
       indexes.add(foods[i]);
     }
 
-    return new Container(
-      child: new Row(children: _generateRow(context, indexes)),
+    return Container(
+      child: Row(children: _generateRow(context, indexes)),
     );
   }
 
@@ -91,13 +92,13 @@ class _MenuScreenState extends State<MenuScreen> {
     List<Widget> items = [];
 
     for (int i = 0; i < indexes.length; i++) {
-      Expanded expanded = new Expanded(child: _buildFood(context, indexes[i]));
+      Expanded expanded = Expanded(child: _buildFood(context, indexes[i]));
 
       items.add(expanded);
     }
 
     for (int i = 0; i < 2 - indexes.length; i++) {
-      Expanded expanded = new Expanded(child: new Container());
+      Expanded expanded = Expanded(child: Container());
       items.add(expanded);
     }
 
@@ -105,75 +106,46 @@ class _MenuScreenState extends State<MenuScreen> {
   }
 
   Widget _buildFood(BuildContext context, menu.Food food) {
-    return new Container(
+    return Container(
         padding: EdgeInsets.zero,
         margin: EdgeInsets.zero,
-        child: new Card(
+        child: Card(
           color: primaryColor,
-          child: new Column(
+          child: Column(
             children: <Widget>[
-              new Text(
+              Text(
                 food.name,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                     color: fontColor, fontFamily: 'Dosis', fontSize: 20.0),
               ),
-              new Expanded(
-                child: new Container(),
+              Expanded(
+                child: Container(),
               ),
-              new Row(
+              Row(
                 children: <Widget>[
-                  new Expanded(child: new Container()),
+                  Expanded(child: Container()),
                   food.image.isEmpty
-                      ? new Image.asset(
+                      ? Image.asset(
                           'assets/images/food.png',
-                          width: 122.0,
-                          height: 122.0,
+                          width: 100.0,
+                          height: 100.0,
                           fit: BoxFit.fill,
                         )
-                      : new Image.memory(
+                      : Image.memory(
                           food.image,
-                          width: 122.0,
-                          height: 122.0,
+                          width: 100.0,
+                          height: 100.0,
                           fit: BoxFit.fill,
                         ),
-                  new Column(
+                  Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      new IconButton(
-                        icon: new Icon(
-                          Icons.remove,
-                          size: 16.0,
-                          color: fontColorLight,
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            widget.table.subFood(food);
-                          });
-                        },
-                      ),
-                      new Container(
-                          decoration: new BoxDecoration(
-                              borderRadius: BorderRadius.circular(20.0),
-                              color: fontColor),
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                top: 1.0, bottom: 1.0, left: 4.0, right: 4.0),
-                            child: new Text(
-                              food.quantity.toString(),
-                              style: new TextStyle(
-                                color: Colors.white,
-                                fontFamily: 'Dosis',
-                                fontSize: 16.0,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          )),
-                      new IconButton(
-                        icon: new Icon(
-                          Icons.add,
-                          size: 16.0,
-                          color: fontColorLight,
+                      IconButton(
+                        icon: Icon(
+                          Icons.add_circle_outline,
+                          size: 20.0,
+                          color: Colors.green,
                         ),
                         onPressed: () {
                           setState(() {
@@ -181,13 +153,41 @@ class _MenuScreenState extends State<MenuScreen> {
                           });
                         },
                       ),
+                      Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20.0),
+                              color:  food.quantity > 0 ?Colors.blue : Colors.grey),
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                top: 1.0, bottom: 1.0, left: 4.0, right: 4.0),
+                            child: Text(
+                              food.quantity.toString(),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'Dosis',
+                                fontSize: 16.0,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          )),
+                      IconButton(
+                        icon: Icon(
+                          Icons.remove_circle_outline,
+                          size: 20.0,
+                          color: Colors.red,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            widget.table.subFood(food);
+                          });
+                        },
+                      ),
                     ],
                   ),
-                  new Expanded(child: new Container())
                 ],
               ),
-              new Text(
-                '\$' + food.price.toString(),
+              Text(
+                NumberFormat("#,###").format(food.price) + ' vnđ',
                 style: const TextStyle(
                     color: fontColor,
                     fontFamily: 'Dosis',
@@ -202,20 +202,20 @@ class _MenuScreenState extends State<MenuScreen> {
   Widget _buildFilterFood(BuildContext context) {
     const TextStyle _itemStyle =
         TextStyle(color: fontColor, fontFamily: 'Dosis', fontSize: 16.0);
-    return new Container(
-      decoration: new BoxDecoration(
+    return Container(
+      decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5.0),
           border: Border.all(color: fontColorLight.withOpacity(0.2))),
       margin: EdgeInsets.only(top: 10.0, bottom: 2.0, left: 7.0, right: 7.0),
       padding: EdgeInsets.only(left: 10.0, right: 10.0),
-      child: new Row(
+      child: Row(
         children: <Widget>[
           Expanded(
             flex: 1,
-            child: new Row(
+            child: Row(
               children: <Widget>[
-                new Flexible(
-                    child: new TextField(
+                Flexible(
+                    child: TextField(
                         controller: _textController,
                         onChanged: (keyword) {
                           setState(() {
@@ -226,7 +226,7 @@ class _MenuScreenState extends State<MenuScreen> {
                         onSubmitted: null,
                         style: _itemStyle,
                         decoration: InputDecoration.collapsed(
-                          hintText: 'Enter your food...',
+                          hintText: 'Tìm kiếm...',
                           hintStyle: _itemStyle,
                         ))),
               ],
@@ -253,9 +253,9 @@ class _MenuScreenState extends State<MenuScreen> {
   Widget _buildFoodCategories(
       List<menu.FoodCategory> foodCategories, TextStyle _itemStyle) {
     List<DropdownMenuItem> items = [
-      new DropdownMenuItem(
+      DropdownMenuItem(
         value: 'All',
-        child: new Text(
+        child: Text(
           'All',
           style: _itemStyle,
         ),
@@ -263,9 +263,9 @@ class _MenuScreenState extends State<MenuScreen> {
     ];
 
     for (int i = 0; i < foodCategories.length; i++) {
-      DropdownMenuItem item = new DropdownMenuItem(
+      DropdownMenuItem item = DropdownMenuItem(
         value: foodCategories[i].name,
-        child: new Text(
+        child: Text(
           foodCategories[i].name,
           style: _itemStyle,
         ),
@@ -274,7 +274,7 @@ class _MenuScreenState extends State<MenuScreen> {
       items.add(item);
     }
 
-    return new DropdownButton(
+    return DropdownButton(
         value: _currentCategory,
         items: items,
         onChanged: (selectedCategory) {

@@ -4,7 +4,7 @@ import './../Models/home.model.dart';
 import 'dart:async';
 
 class Controller {
-  final BehaviorSubject<List<Table>> _tableListController =
+  BehaviorSubject<List<Table>> _tableListController =
       BehaviorSubject<List<Table>>.seeded(null);
 
   Stream<List<Table>> get tableListStream => _tableListController.stream;
@@ -42,6 +42,9 @@ class Controller {
     if (_tables == null) {
       Model.instance.tables.then((value) {
         _tables = value;
+        if(_tableListController.isClosed){
+          _tableListController = BehaviorSubject<List<Table>>.seeded(null);
+        }
         _tableListController.sink.add(_tables);
       });
     }

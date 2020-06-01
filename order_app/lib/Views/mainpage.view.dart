@@ -17,7 +17,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _screenNumber = 0;
-  String _screenName = 'HOME';
+  String _screenName = 'Danh sách bàn';
   Account account;
 
   Drawer _buildDrawer(BuildContext context) {
@@ -70,7 +70,7 @@ class _MainPageState extends State<MainPage> {
             onTap: () {
               setState(() {
                 this._screenNumber = 0;
-                this._screenName = 'HOME';
+                this._screenName = 'Danh sách bàn';
               });
               Navigator.pop(context);
             },
@@ -82,14 +82,14 @@ class _MainPageState extends State<MainPage> {
               size: 19.0,
             ),
             title: new Text(
-              'History',
+              'Lịch sử',
               style: new TextStyle(
                   fontFamily: 'Dosis', color: fontColor, fontSize: 16.0),
             ),
             onTap: () {
               setState(() {
                 this._screenNumber = 1;
-                this._screenName = 'HISTORY';
+                this._screenName = 'Lịch sử';
               });
               Navigator.pop(context);
             },
@@ -101,7 +101,7 @@ class _MainPageState extends State<MainPage> {
               size: 19.0,
             ),
             title: new Text(
-              'My Profile',
+              'Tài khoản',
               style: new TextStyle(
                   fontFamily: 'Dosis', color: fontColor, fontSize: 16.0),
             ),
@@ -120,7 +120,7 @@ class _MainPageState extends State<MainPage> {
               size: 19.0,
             ),
             title: new Text(
-              'Logout',
+              'Đăng xuất',
               style: new TextStyle(
                   fontFamily: 'Dosis', color: fontColor, fontSize: 16.0),
             ),
@@ -139,14 +139,14 @@ class _MainPageState extends State<MainPage> {
               size: 19.0,
             ),
             title: new Text(
-              'Settings',
+              'Cài đặt',
               style: new TextStyle(
                   fontFamily: 'Dosis', color: fontColor, fontSize: 16.0),
             ),
             onTap: () {
               setState(() {
                 this._screenNumber = 3;
-                this._screenName = 'SETTINGS';
+                this._screenName = 'Cài đặt';
               });
               Navigator.pop(context);
             },
@@ -158,14 +158,14 @@ class _MainPageState extends State<MainPage> {
               size: 19.0,
             ),
             title: new Text(
-              'About',
+              'Thông tin',
               style: new TextStyle(
                   fontFamily: 'Dosis', color: fontColor, fontSize: 16.0),
             ),
             onTap: () {
               setState(() {
                 this._screenNumber = 4;
-                this._screenName = 'ABOUT';
+                this._screenName = 'Thông tin';
               });
               Navigator.pop(context);
             },

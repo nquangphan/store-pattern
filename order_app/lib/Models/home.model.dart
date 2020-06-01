@@ -14,7 +14,8 @@ class Model {
   Future<List<Table>> get tables => getTables();
 
   static Future<List<Table>> getTables() async {
-    Future<List> futureTables = MySqlConnection.instance.executeQuery(queries.GET_TABLES);
+    Future<List> futureTables =
+        MySqlConnection.instance.executeQuery(queries.GET_TABLES);
     return parse(futureTables);
   }
 
@@ -127,7 +128,7 @@ class Table {
   void deleteFood(menu.Food food) {
     int index = findIndexFood(food);
     if (index != -1) {
-      foods.remove(foods[index]);
+      foods[index].quantity = 0;
     }
 
     if (foods.length == 0) {

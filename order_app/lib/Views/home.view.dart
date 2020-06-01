@@ -144,7 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
         return new Scaffold(
           appBar: new AppBar(
             title: new Text(
-              'Cart • ' + _selectedTable.name,
+              'Bàn • ' + _selectedTable.name,
               style:
                   new TextStyle(color: theme.accentColor, fontFamily: 'Dosis'),
             ),
@@ -172,11 +172,9 @@ class _HomeScreenState extends State<HomeScreen> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: new Text('Confirm', style: theme.titleStyle),
+            title: new Text('Xác nhận', style: theme.titleStyle),
             content: new Text(
-                'Do you want to send bill of table ' +
-                    table.name +
-                    ' for kitchen?',
+                'Bạn chắc chắn muốn gửi ' + table.name + ' tới pha chế?',
                 style: theme.contentStyle),
             actions: <Widget>[
               new FlatButton(
@@ -209,9 +207,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               false) {
                             errorDialog(
                                 this.context,
-                                'Send bill of table ' +
+                                'Gửi ' +
                                     table.name +
-                                    ' for kitchen failed.\nPlease try again!');
+                                    ' tới pha chế không thành công.\nVui lòng thử lại!');
                             return;
                           }
                         } else {
@@ -222,25 +220,22 @@ class _HomeScreenState extends State<HomeScreen> {
                               false) {
                             errorDialog(
                                 this.context,
-                                'Send bill of table ' +
+                                'Gửi ' +
                                     table.name +
-                                    ' for kitchen failed.\nPlease try again!');
+                                    ' tới pha chế thất bại.\nVui lòng thử lại!');
                             return;
                           }
                         }
                       }
                       cartController.Controller.instance.isSend = true;
-                      successDialog(
-                          this.context,
-                          'Send bill of table ' +
-                              table.name +
-                              ' for kitchen successed.');
+                      successDialog(this.context,
+                          'Gửi ' + table.name + ' tới pha chế thành công.');
                     } else
                       errorDialog(
                           this.context,
-                          'Send bill of table ' +
+                          'Gửi ' +
                               table.name +
-                              ' for kitchen failed.\nPlease try again!');
+                              ' tới pha chế không thành công.\nVui lòng thử lại!');
                   } else {
                     // not exists bill
                     if (await cartController.Controller.instance.insertBill(
@@ -262,24 +257,21 @@ class _HomeScreenState extends State<HomeScreen> {
                             false) {
                           errorDialog(
                               this.context,
-                              'Send bill of table ' +
+                              'Gửi ' +
                                   table.name +
-                                  ' for kitchen failed.\nPlease try again!');
+                                  ' tới pha chế không thành công.\nLàm ơn thử lại!');
                           return;
                         }
                       }
                       cartController.Controller.instance.isSend = true;
-                      successDialog(
-                          this.context,
-                          'Send bill of table ' +
-                              table.name +
-                              ' for kitchen successed.');
+                      successDialog(this.context,
+                          'Gửi ' + table.name + ' tới pha chế thành công.');
                     } else
                       errorDialog(
                           this.context,
-                          'Send bill of table ' +
+                          'Gửi ' +
                               table.name +
-                              ' for kitchen failed.\nPlease try again!');
+                              ' tới pha chế không thành công.\nLàm ơn thử lại!');
                   }
                 },
               ),
