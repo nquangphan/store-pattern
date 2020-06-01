@@ -9,7 +9,6 @@ import './../Controllers/history.controller.dart' as historyController;
 import './../Models/home.model.dart' as home;
 import './../Models/login.model.dart';
 import './../Models/menu.model.dart' as menu;
-import './../Controllers/menu.controller.dart' as menuController;
 
 class CartScreen extends StatefulWidget {
   CartScreen({key, this.table, this.menuContext, this.account})
@@ -27,14 +26,13 @@ class _CartScreenState extends State<CartScreen> {
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
   double _discount;
   TextEditingController _textController = TextEditingController();
-  Future<List<menu.Food>> futureFoods;
+
   @override
   void initState() {
     _discount = 0.0;
 
     super.initState();
-    futureFoods =
-        menuController.Controller.instance.getListFoodByTable(widget.table);
+
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     var android = AndroidInitializationSettings('app_icon');
     var ios = IOSInitializationSettings();
@@ -44,22 +42,14 @@ class _CartScreenState extends State<CartScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<menu.Food>>(
-        future: futureFoods,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return Container(
-              child: Column(
-                children: <Widget>[
-                  Expanded(child: _buildListFoods(context)),
-                  _buildControls(context),
-                ],
-              ),
-            );
-          } else {
-            return Center(child: CircularProgressIndicator());
-          }
-        });
+    return Container(
+      child: Column(
+        children: <Widget>[
+          Expanded(child: _buildListFoods(context)),
+          _buildControls(context),
+        ],
+      ),
+    );
   }
 
   Widget _buildListFoods(BuildContext context) {
@@ -129,7 +119,7 @@ class _CartScreenState extends State<CartScreen> {
                   Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20.0),
-                          color: food.quantity > 0 ? Colors.blue : Colors.grey),
+                          color: food.quantity > 0 ?Colors.blue : Colors.grey),
                       child: Padding(
                         padding: const EdgeInsets.only(
                             top: 1.0, bottom: 1.0, left: 4.0, right: 4.0),
