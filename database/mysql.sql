@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2020 at 10:49 AM
+-- Generation Time: Jun 01, 2020 at 01:01 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -798,7 +798,23 @@ CREATE TABLE IF NOT EXISTS `bill` (
   PRIMARY KEY (`ID`),
   KEY `IDTable` (`IDTable`),
   KEY `Username` (`Username`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `bill`
+--
+
+INSERT INTO `bill` (`ID`, `IDTable`, `DateCheckIn`, `DateCheckOut`, `Discount`, `TotalPrice`, `Status`, `Username`) VALUES
+(13, 8, '2020-06-01 17:07:32', '2020-06-01 17:07:38', 0, 0, 1, 'test'),
+(14, 10, '2020-06-01 17:10:13', '2020-06-01 17:10:19', 0, 0, 1, 'test'),
+(15, 1, '2020-06-01 17:15:06', '2020-06-01 17:15:27', 0, 0, 1, 'test'),
+(16, 6, '2020-06-01 17:23:00', '2020-06-01 17:23:32', 0, 0, 1, 'test'),
+(17, 7, '2020-06-01 17:34:01', '2020-06-01 17:34:03', 0, 54000, 0, 'test'),
+(18, 10, '2020-06-01 17:34:44', '2020-06-01 17:54:53', 0, 111000, 1, 'test'),
+(19, 8, '2020-06-01 17:36:30', '2020-06-01 17:36:34', 0, 0, 1, 'test'),
+(20, 8, '2020-06-01 17:51:41', '2020-06-01 17:51:42', 0, 27000, 0, 'test'),
+(21, 11, '2020-06-01 17:49:30', '2020-06-01 17:51:50', 0, 57000, 1, 'test'),
+(22, 12, '2020-06-01 17:51:31', '2020-06-01 17:51:33', 0, 54000, 0, 'test');
 
 --
 -- Triggers `bill`
@@ -854,6 +870,30 @@ CREATE TABLE IF NOT EXISTS `billinfo` (
   KEY `IDBill` (`IDBill`),
   KEY `IDFood` (`IDFood`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `billinfo`
+--
+
+INSERT INTO `billinfo` (`IDBill`, `IDFood`, `Quantity`) VALUES
+(13, 0, 3),
+(13, 1, 2),
+(14, 0, 3),
+(14, 1, 2),
+(15, 1, 2),
+(15, 0, 2),
+(16, 0, 1),
+(17, 0, 2),
+(17, 1, 2),
+(18, 1, 3),
+(18, 0, 6),
+(19, 0, 1),
+(20, 1, 1),
+(21, 1, 1),
+(21, 0, 4),
+(22, 0, 2),
+(22, 1, 2),
+(20, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -941,9 +981,9 @@ CREATE TABLE IF NOT EXISTS `report` (
 --
 
 INSERT INTO `report` (`ID`, `_Date`, `TotalPrice`) VALUES
-(1, '2020-05-28', 135000),
-(2, '2020-05-29', 392000),
-(3, '2020-06-01', 64000);
+(1, '2020-05-28', 0),
+(2, '2020-05-29', 0),
+(3, '2020-06-01', 168000);
 
 -- --------------------------------------------------------
 
@@ -970,14 +1010,14 @@ INSERT INTO `table` (`ID`, `Name`, `Status`) VALUES
 (4, 'Table 4', -1),
 (5, 'Table 5', -1),
 (6, 'Table 6', -1),
-(7, 'Table 7', -1),
-(8, 'Table 8', -1),
+(7, 'Table 7', 1),
+(8, 'Table 8', 1),
 (9, 'Table 9', -1),
 (10, 'Table 10', -1),
 (11, 'Table 11', -1),
-(12, 'Table 12', -1),
+(12, 'Table 12', 1),
 (13, 'Table 14', -1),
-(14, 'Table 15', 1),
+(14, 'Table 15', -1),
 (15, 'Table 17', -1);
 COMMIT;
 

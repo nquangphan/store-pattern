@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intl/intl.dart';
+import 'package:order_app/Views/menu.view.dart';
 
 import './../Constants/dialog.dart';
 import './../Constants/theme.dart' as theme;
@@ -9,14 +10,17 @@ import './../Controllers/history.controller.dart' as historyController;
 import './../Models/home.model.dart' as home;
 import './../Models/login.model.dart';
 import './../Models/menu.model.dart' as menu;
+import './../Controllers/menu.controller.dart' as menuController;
 
 class CartScreen extends StatefulWidget {
-  CartScreen({key, this.table, this.menuContext, this.account})
+  CartScreen(
+      {key, this.table, this.homeContext, this.account, this.sendBillToKitchen})
       : super(key: key);
 
   final Account account;
   final home.Table table;
-  final BuildContext menuContext;
+  final BuildContext homeContext;
+  final Function(home.Table) sendBillToKitchen;
 
   @override
   _CartScreenState createState() => _CartScreenState();
@@ -26,13 +30,16 @@ class _CartScreenState extends State<CartScreen> {
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
   double _discount;
   TextEditingController _textController = TextEditingController();
-
+  Future<List<menu.Food>> futureFoods;
   @override
   void initState() {
     _discount = 0.0;
 
     super.initState();
-
+    if (widget.table.status == 1) {
+      futureFoods =
+          menuController.Controller.instance.getListFoodByTable(widget.table);
+    }
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     var android = AndroidInitializationSettings('app_icon');
     var ios = IOSInitializationSettings();
@@ -42,14 +49,94 @@ class _CartScreenState extends State<CartScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: <Widget>[
-          Expanded(child: _buildListFoods(context)),
-          _buildControls(context),
+    return Scaffold(
+      floatingActionButton: new FloatingActionButton(
+        onPressed: () {
+          _pushMenuScreen(widget.table);
+        },
+        child: new Icon(Icons.add_shopping_cart),
+        tooltip: 'Add To Cart',
+        backgroundColor: theme.fontColor,
+      ),
+      appBar: new AppBar(
+        title: new Text(
+          'Bàn • ' + widget.table.name,
+          style: new TextStyle(color: theme.accentColor, fontFamily: 'Dosis'),
+        ),
+        iconTheme: new IconThemeData(color: theme.accentColor),
+        centerTitle: true,
+        actions: <Widget>[
+          new IconButton(
+            icon: new Icon(Icons.send),
+            color: theme.accentColor,
+            onPressed: () {
+              widget.sendBillToKitchen(widget.table);
+            },
+          )
         ],
       ),
+      body: widget.table.status == 1
+          ? FutureBuilder<List<menu.Food>>(
+              future: futureFoods,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done &&
+                    snapshot.hasData) {
+                  return Container(
+                    child: Column(
+                      children: <Widget>[
+                        Expanded(child: _buildListFoods(context)),
+                        _buildControls(context),
+                      ],
+                    ),
+                  );
+                } else {
+                  return Center(child: CircularProgressIndicator());
+                }
+              })
+          : Container(
+              child: Column(
+                children: <Widget>[
+                  Expanded(child: _buildListFoods(context)),
+                  _buildControls(context),
+                ],
+              ),
+            ),
     );
+  }
+
+  void _pushMenuScreen(home.Table table) {
+    Navigator.of(context).push(
+      new MaterialPageRoute(builder: (context) {
+        return new Scaffold(
+          floatingActionButton: new FloatingActionButton(
+            onPressed: () {
+              widget.sendBillToKitchen(table);
+            },
+            child: new Icon(Icons.save),
+            tooltip: 'Add To Cart',
+            backgroundColor: Colors.green,
+          ),
+          appBar: new AppBar(
+            title: new Text(
+              'Menu • ' + table.name,
+              style:
+                  new TextStyle(color: theme.accentColor, fontFamily: 'Dosis'),
+              overflow: TextOverflow.ellipsis,
+            ),
+            iconTheme: new IconThemeData(color: theme.accentColor),
+            centerTitle: true,
+          ),
+          body: new MenuScreen(table: table),
+        );
+      }),
+    ).then((value) {
+      setState(() {
+        if (widget.table.status == 1) {
+          futureFoods = menuController.Controller.instance
+              .getListFoodByTable(widget.table);
+        }
+      });
+    });
   }
 
   Widget _buildListFoods(BuildContext context) {
@@ -119,7 +206,7 @@ class _CartScreenState extends State<CartScreen> {
                   Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20.0),
-                          color: food.quantity > 0 ?Colors.blue : Colors.grey),
+                          color: food.quantity > 0 ? Colors.blue : Colors.grey),
                       child: Padding(
                         padding: const EdgeInsets.only(
                             top: 1.0, bottom: 1.0, left: 4.0, right: 4.0),
@@ -290,7 +377,6 @@ class _CartScreenState extends State<CartScreen> {
                 child: Text('Ok', style: theme.okButtonStyle),
                 onPressed: () {
                   Navigator.of(context).pop();
-                  Navigator.of(cartContext).pop();
                 },
               )
             ],
@@ -318,7 +404,6 @@ class _CartScreenState extends State<CartScreen> {
                   if (table.status == 1) {
                     // exists bill
                     Navigator.of(cartContext).pop();
-                    Navigator.of(widget.menuContext).pop();
                     int idBill =
                         await Controller.instance.getIdBillByTable(table.id);
                     if (await Controller.instance.updateBill(

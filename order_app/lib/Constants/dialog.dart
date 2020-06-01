@@ -8,7 +8,7 @@ void errorDialog(BuildContext context, String message) {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: new Text('Error', style: theme.errorTitleStyle),
+            title: new Text('Lỗi', style: theme.errorTitleStyle),
             content: new Text(message, style: theme.contentStyle),
             actions: <Widget>[
               new FlatButton(
@@ -28,7 +28,7 @@ void successDialog(BuildContext context, String message) {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: new Text('Notification', style: theme.titleStyle),
+            title: new Text('Thông báo', style: theme.titleStyle),
             content: new Text(message, style: theme.contentStyle),
             actions: <Widget>[
               new FlatButton(

@@ -156,7 +156,9 @@ class _MenuScreenState extends State<MenuScreen> {
                       Container(
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20.0),
-                              color:  food.quantity > 0 ?Colors.blue : Colors.grey),
+                              color: food.quantity > 0
+                                  ? Colors.blue
+                                  : Colors.grey),
                           child: Padding(
                             padding: const EdgeInsets.only(
                                 top: 1.0, bottom: 1.0, left: 4.0, right: 4.0),

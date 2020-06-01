@@ -70,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
         setState(() {
           _selectedTable = table;
         });
-        _pushMenuScreen(table);
+        _pushCartScreen(table, context);
       },
       child: new Container(
           padding: EdgeInsets.zero,
@@ -110,61 +110,63 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void _pushMenuScreen(home.Table table) {
+  void _pushCartScreen(home.Table table, BuildContext menuContext) {
     Navigator.of(context).push(
       new MaterialPageRoute(builder: (context) {
         return new Scaffold(
-          appBar: new AppBar(
-            title: new Text(
-              'Menu • ' + _selectedTable.name,
-              style:
-                  new TextStyle(color: theme.accentColor, fontFamily: 'Dosis'),
-              overflow: TextOverflow.ellipsis,
-            ),
-            iconTheme: new IconThemeData(color: theme.accentColor),
-            centerTitle: true,
-          ),
-          body: new MenuScreen(table: table),
-          floatingActionButton: new FloatingActionButton(
-            onPressed: () {
-              _pushCartScreen(table, context);
-            },
-            child: new Icon(Icons.add_shopping_cart),
-            tooltip: 'Add To Cart',
-            backgroundColor: theme.fontColor,
+          body: new CartScreen(
+            table: table,
+            homeContext: context,
+            account: widget.account,
+            sendBillToKitchen: _sendBillToKitchen,
           ),
         );
       }),
     );
   }
 
-  void _pushCartScreen(home.Table table, BuildContext menuContext) {
-    Navigator.of(context).push(
-      new MaterialPageRoute(builder: (context) {
-        return new Scaffold(
-          appBar: new AppBar(
-            title: new Text(
-              'Bàn • ' + _selectedTable.name,
-              style:
-                  new TextStyle(color: theme.accentColor, fontFamily: 'Dosis'),
-            ),
-            iconTheme: new IconThemeData(color: theme.accentColor),
-            centerTitle: true,
+  _sendSuccess(String tablename) {
+    String message = 'Gửi ' + tablename + ' tới pha chế thành công.';
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: new Text('Thông báo', style: theme.titleStyle),
+            content: new Text(message, style: theme.contentStyle),
             actions: <Widget>[
-              new IconButton(
-                icon: new Icon(Icons.send),
-                color: theme.accentColor,
-                onPressed: () {
-                  _sendBillToKitchen(table);
+              new FlatButton(
+                child: new Text('Ok', style: theme.okButtonStyle),
+                onPressed: () async {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
                 },
               )
             ],
-          ),
-          body: new CartScreen(
-              table: table, menuContext: context, account: widget.account),
-        );
-      }),
-    );
+          );
+        });
+  }
+
+  _sendFailed(String tableName) {
+    String message = 'Gửi ' +
+        tableName +
+        ' tới pha chế không thành công.\nVui lòng thử lại!';
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: new Text('Lỗi', style: theme.errorTitleStyle),
+            content: new Text(message, style: theme.contentStyle),
+            actions: <Widget>[
+              new FlatButton(
+                child: new Text('Ok', style: theme.okButtonStyle),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
   }
 
   void _sendBillToKitchen(home.Table table) {
@@ -205,11 +207,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   .updateBillDetail(
                                       idBill, food.id, food.quantity) ==
                               false) {
-                            errorDialog(
-                                this.context,
-                                'Gửi ' +
-                                    table.name +
-                                    ' tới pha chế không thành công.\nVui lòng thử lại!');
+                            _sendFailed(table.name);
                             return;
                           }
                         } else {
@@ -218,24 +216,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                   .insertBillDetail(
                                       idBill, food.id, food.quantity) ==
                               false) {
-                            errorDialog(
-                                this.context,
-                                'Gửi ' +
-                                    table.name +
-                                    ' tới pha chế thất bại.\nVui lòng thử lại!');
+                            _sendFailed(table.name);
                             return;
                           }
                         }
                       }
                       cartController.Controller.instance.isSend = true;
-                      successDialog(this.context,
-                          'Gửi ' + table.name + ' tới pha chế thành công.');
+                      _sendSuccess(table.name);
                     } else
-                      errorDialog(
-                          this.context,
-                          'Gửi ' +
-                              table.name +
-                              ' tới pha chế không thành công.\nVui lòng thử lại!');
+                      _sendFailed(table.name);
                   } else {
                     // not exists bill
                     if (await cartController.Controller.instance.insertBill(
@@ -255,23 +244,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                 .insertBillDetail(
                                     idBill, food.id, food.quantity) ==
                             false) {
-                          errorDialog(
-                              this.context,
-                              'Gửi ' +
-                                  table.name +
-                                  ' tới pha chế không thành công.\nLàm ơn thử lại!');
+                          _sendFailed(table.name);
                           return;
                         }
                       }
                       cartController.Controller.instance.isSend = true;
-                      successDialog(this.context,
-                          'Gửi ' + table.name + ' tới pha chế thành công.');
+                      _sendSuccess(table.name);
                     } else
-                      errorDialog(
-                          this.context,
-                          'Gửi ' +
-                              table.name +
-                              ' tới pha chế không thành công.\nLàm ơn thử lại!');
+                      _sendFailed(table.name);
                   }
                 },
               ),
