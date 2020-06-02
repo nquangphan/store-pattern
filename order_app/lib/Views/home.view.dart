@@ -41,25 +41,28 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        margin: EdgeInsets.all(5.0),
-        child: StreamBuilder<List<home.Table>>(
-            stream: Controller.instance.tableListStream,
-            builder: (context, snapshot) {
-              if (snapshot.hasData && snapshot.data != null) {
-                return Wrap(
-                  alignment: WrapAlignment.spaceEvenly,
-                  runSpacing: 20,
-                  children:
-                      List<Widget>.generate(snapshot.data.length, (index) {
-                    return _buildTable(context, snapshot.data[index]);
-                  }),
-                );
-              } else {
-                return Center(child: CircularProgressIndicator());
-              }
-            }),
+      body: SingleChildScrollView(
+              child: Container(
+          width: MediaQuery.of(context).size.width,
+          margin: EdgeInsets.all(5.0),
+          child: StreamBuilder<List<home.Table>>(
+              stream: Controller.instance.tableListStream,
+              builder: (context, snapshot) {
+                if (snapshot.hasData && snapshot.data != null) {
+                  return Wrap(
+                    alignment: WrapAlignment.spaceEvenly,
+                    runSpacing: 20,
+                    spacing: 8,
+                    children:
+                        List<Widget>.generate(snapshot.data.length, (index) {
+                      return _buildTable(context, snapshot.data[index]);
+                    }),
+                  );
+                } else {
+                  return Center(child: CircularProgressIndicator());
+                }
+              }),
+        ),
       ),
     );
   }
