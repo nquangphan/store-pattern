@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-              child: Container(
+        child: Container(
           width: MediaQuery.of(context).size.width,
           margin: EdgeInsets.all(5.0),
           child: StreamBuilder<List<home.Table>>(
@@ -98,11 +98,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: const EdgeInsets.only(
                         top: 30.0, bottom: 30.0, right: 16.0),
                     child: new Text(
-                      table.name,
+                      'Bàn ' + table.name,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                           color: theme.fontColorLight,
-                          fontFamily: 'Dosis',
+                          fontFamily: 'Arial',
                           fontSize: 20.0),
                     ),
                   ),
@@ -259,7 +259,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
               new FlatButton(
-                child: new Text('Cancel', style: theme.cancelButtonStyle),
+                child: new Text('Hủy', style: theme.cancelButtonStyle),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },

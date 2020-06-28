@@ -7,9 +7,9 @@ import './home.view.dart';
 import './profile.view.dart';
 
 class MainPage extends StatefulWidget {
-  MainPage({key, this.context, this.account}) : super(key: key);
+  MainPage({key, this.mcontext, this.account}) : super(key: key);
 
-  final BuildContext context;
+  final BuildContext mcontext;
   final Account account;
 
   _MainPageState createState() => _MainPageState();
@@ -49,7 +49,7 @@ class _MainPageState extends State<MainPage> {
                       overflow: TextOverflow.ellipsis,
                       style: new TextStyle(
                           color: accentColor,
-                          fontFamily: 'Dosis',
+                          fontFamily: 'Arial',
                           fontSize: 20.0),
                     ),
                   ],
@@ -65,7 +65,7 @@ class _MainPageState extends State<MainPage> {
             title: new Text(
               'Home',
               style: new TextStyle(
-                  fontFamily: 'Dosis', color: fontColor, fontSize: 16.0),
+                  fontFamily: 'Arial', color: fontColor, fontSize: 16.0),
             ),
             onTap: () {
               setState(() {
@@ -84,7 +84,7 @@ class _MainPageState extends State<MainPage> {
             title: new Text(
               'Lịch sử',
               style: new TextStyle(
-                  fontFamily: 'Dosis', color: fontColor, fontSize: 16.0),
+                  fontFamily: 'Arial', color: fontColor, fontSize: 16.0),
             ),
             onTap: () {
               setState(() {
@@ -103,12 +103,12 @@ class _MainPageState extends State<MainPage> {
             title: new Text(
               'Tài khoản',
               style: new TextStyle(
-                  fontFamily: 'Dosis', color: fontColor, fontSize: 16.0),
+                  fontFamily: 'Arial', color: fontColor, fontSize: 16.0),
             ),
             onTap: () {
               setState(() {
                 this._screenNumber = 2;
-                this._screenName = 'MY PROFILE';
+                this._screenName = 'Thông tin của tôi';
               });
               Navigator.pop(context);
             },
@@ -122,11 +122,11 @@ class _MainPageState extends State<MainPage> {
             title: new Text(
               'Đăng xuất',
               style: new TextStyle(
-                  fontFamily: 'Dosis', color: fontColor, fontSize: 16.0),
+                  fontFamily: 'Arial', color: fontColor, fontSize: 16.0),
             ),
             onTap: () {
               Navigator.pop(context);
-              Navigator.pop(widget.context);
+              Navigator.pop(widget.mcontext);
             },
           ),
           new Divider(
@@ -141,7 +141,7 @@ class _MainPageState extends State<MainPage> {
             title: new Text(
               'Cài đặt',
               style: new TextStyle(
-                  fontFamily: 'Dosis', color: fontColor, fontSize: 16.0),
+                  fontFamily: 'Arial', color: fontColor, fontSize: 16.0),
             ),
             onTap: () {
               setState(() {
@@ -160,7 +160,7 @@ class _MainPageState extends State<MainPage> {
             title: new Text(
               'Thông tin',
               style: new TextStyle(
-                  fontFamily: 'Dosis', color: fontColor, fontSize: 16.0),
+                  fontFamily: 'Arial', color: fontColor, fontSize: 16.0),
             ),
             onTap: () {
               setState(() {
@@ -205,7 +205,7 @@ class _MainPageState extends State<MainPage> {
                     title: new Text(
                       _screenName,
                       style: new TextStyle(
-                          color: accentColor, fontFamily: 'Dosis'),
+                          color: accentColor, fontFamily: 'Arial'),
                     ),
                     iconTheme: new IconThemeData(color: accentColor),
                     centerTitle: true,

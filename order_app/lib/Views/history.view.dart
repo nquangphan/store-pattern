@@ -63,7 +63,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
               new Text(
                 bill.table.name,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(color: theme.accentColor, fontFamily: 'Dosis', fontSize: 20.0),
+                style: const TextStyle(color: theme.accentColor, fontFamily: 'Arial', fontSize: 20.0),
               ),
               new Expanded(child: new Container()),
               new Text(
@@ -73,7 +73,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                     color: theme.fontColorLight,
-                    fontFamily: 'Dosis',
+                    fontFamily: 'Arial',
                     fontSize: 13.0,
                     fontWeight: FontWeight.w600),
               ),
@@ -83,17 +83,17 @@ class _HistoryScreenState extends State<HistoryScreen> {
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                     color: theme.fontColorLight,
-                    fontFamily: 'Dosis',
+                    fontFamily: 'Arial',
                     fontSize: 14.0,
                     fontWeight: FontWeight.w600),
               ),
               new Expanded(child: new Container()),
               new Text(
-                '\$' + (bill.totalPrice * (1 - bill.discount / 100)).toStringAsFixed(2),
+                NumberFormat("#,###").format((bill.totalPrice * (1 - bill.discount / 100))) + ' vnđ',
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                     color: Colors.redAccent,
-                    fontFamily: 'Dosis',
+                    fontFamily: 'Arial',
                     fontSize: 14.0,
                     fontWeight: FontWeight.w500),
               ),
@@ -103,7 +103,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                 child: new Text('Detail',
                     style: const TextStyle(
                         color: theme.fontColor,
-                        fontFamily: 'Dosis',
+                        fontFamily: 'Arial',
                         fontSize: 15.0,
                         fontWeight: FontWeight.w500)),
                 onPressed: () {
@@ -122,8 +122,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
         return new Scaffold(
           appBar: new AppBar(
             title: new Text(
-              'Invoice Details',
-              style: new TextStyle(color: theme.accentColor, fontFamily: 'Dosis'),
+              'Thông tin hóa đơn',
+              style: new TextStyle(color: theme.accentColor, fontFamily: 'Arial'),
             ),
             iconTheme: new IconThemeData(color: theme.accentColor),
             centerTitle: true,
@@ -154,9 +154,9 @@ class _HistoryScreenState extends State<HistoryScreen> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: new Text('Confirm', style: theme.titleStyle),
+            title: new Text('Xác nhận', style: theme.titleStyle),
             content: new Text(
-                'Do you want to delete invoice #' + bill.id.toString() + ' • ' + bill.table.name + '?',
+                'Bạn có muốn xóa hóa đơn #' + bill.id.toString() + ' • ' + bill.table.name + '?',
                 style: theme.contentStyle),
             actions: <Widget>[
               new FlatButton(
@@ -176,15 +176,15 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   } else
                     errorDialog(
                         this.context,
-                        'Delete the invoice #' +
+                        'Xóa hóa đơn #' +
                             bill.id.toString() +
                             ' • ' +
                             bill.table.name +
-                            '.\nPlease try again!');
+                            'thất bại.\nVui lòng thử lại!');
                 },
               ),
               new FlatButton(
-                child: new Text('Cancel', style: theme.cancelButtonStyle),
+                child: new Text('Hủy', style: theme.cancelButtonStyle),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
@@ -203,8 +203,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
         new NotificationDetails(androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
     await flutterLocalNotificationsPlugin.show(
         0,
-        'Notification',
-        'Delete the invoice #' + bill.id.toString() + ' • ' + bill.table.name + ' successfully!!!',
+        'Thông báo',
+        'Xóa hóa đơn #' + bill.id.toString() + ' • ' + bill.table.name + ' thành công!!!',
         platformChannelSpecifics,
         payload: 'item x');
   }

@@ -61,7 +61,7 @@ class _CartScreenState extends State<CartScreen> {
       appBar: new AppBar(
         title: new Text(
           'Bàn • ' + widget.table.name,
-          style: new TextStyle(color: theme.accentColor, fontFamily: 'Dosis'),
+          style: new TextStyle(color: theme.accentColor, fontFamily: 'Arial'),
         ),
         iconTheme: new IconThemeData(color: theme.accentColor),
         centerTitle: true,
@@ -120,7 +120,7 @@ class _CartScreenState extends State<CartScreen> {
             title: new Text(
               'Menu • ' + table.name,
               style:
-                  new TextStyle(color: theme.accentColor, fontFamily: 'Dosis'),
+                  new TextStyle(color: theme.accentColor, fontFamily: 'Arial'),
               overflow: TextOverflow.ellipsis,
             ),
             iconTheme: new IconThemeData(color: theme.accentColor),
@@ -175,14 +175,14 @@ class _CartScreenState extends State<CartScreen> {
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                           color: theme.fontColor,
-                          fontFamily: 'Dosis',
+                          fontFamily: 'Arial',
                           fontSize: 20.0),
                     ),
                     Text(
                       NumberFormat("#,###").format(food.price) + ' vnđ',
                       style: const TextStyle(
                           color: theme.fontColor,
-                          fontFamily: 'Dosis',
+                          fontFamily: 'Arial',
                           fontSize: 14.0,
                           fontWeight: FontWeight.bold),
                     ),
@@ -213,7 +213,7 @@ class _CartScreenState extends State<CartScreen> {
                         child: Text(food.quantity.toString(),
                             style: TextStyle(
                               color: Colors.white,
-                              fontFamily: 'Dosis',
+                              fontFamily: 'Arial',
                               fontSize: 16.0,
                             ),
                             textAlign: TextAlign.center),
@@ -252,13 +252,13 @@ class _CartScreenState extends State<CartScreen> {
   Widget _buildControls(BuildContext context) {
     TextStyle _itemStyle = TextStyle(
         color: theme.fontColor,
-        fontFamily: 'Dosis',
+        fontFamily: 'Arial',
         fontSize: 16.0,
         fontWeight: FontWeight.w500);
 
     TextStyle _itemStyle2 = TextStyle(
         color: Colors.redAccent,
-        fontFamily: 'Dosis',
+        fontFamily: 'Arial',
         fontSize: 16.0,
         fontWeight: FontWeight.w500);
 
@@ -365,12 +365,12 @@ class _CartScreenState extends State<CartScreen> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('Error', style: theme.errorTitleStyle),
+            title: Text('Lỗi', style: theme.errorTitleStyle),
             content: Text(
-                'Can\'t be checkout for ' +
+                'Không thể thanh toán bàn ' +
                     widget.table.name +
                     '!' +
-                    '\nPlease select foods!',
+                    '\nPhải chọn đồ uống mới được thanh toán.',
                 style: theme.contentStyle),
             actions: <Widget>[
               FlatButton(
@@ -389,9 +389,9 @@ class _CartScreenState extends State<CartScreen> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('Confirm', style: theme.titleStyle),
+            title: Text('Xác nhận', style: theme.titleStyle),
             content: Text(
-                'Do you want to be checkout for ' + widget.table.name + '?',
+                'Bạn có muốn thanh toán bàn ' + widget.table.name + '?',
                 style: theme.contentStyle),
             actions: <Widget>[
               FlatButton(
@@ -424,22 +424,24 @@ class _CartScreenState extends State<CartScreen> {
                           _discount,
                           table.getTotalPrice(),
                           widget.account);
-                      widget.table.status = -1;
-                      widget.table.foods.clear();
+                      Controller.instance
+                          .findPrinterAndPrintTicket(widget.table);
+                      // widget.table.status = -1;
+                      // widget.table.foods.clear();
                       _showNotification();
                     } else
                       errorDialog(
                           this.context,
-                          'Checkout failed at ' +
+                          'Thanh toán thất bại bàn ' +
                               table.name +
-                              '.\nPlease try again!');
+                              '.\nVui lòng thử lại!');
                   } else
                     errorDialog(this.context,
-                        'Please send the bill to the kitchen before making payment!');
+                        'Phải gửi order tới pha chế trước khi thanh toán!');
                 },
               ),
               FlatButton(
-                child: Text('Cancel', style: theme.cancelButtonStyle),
+                child: Text('Hủy', style: theme.cancelButtonStyle),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
@@ -458,8 +460,8 @@ class _CartScreenState extends State<CartScreen> {
         androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
     await flutterLocalNotificationsPlugin.show(
         0,
-        'Notification',
-        'Successful checkout at ' + widget.table.name + '!!!',
+        'Thông báo',
+        'Thanh toán thành công bàn ' + widget.table.name + '!!!',
         platformChannelSpecifics,
         payload: 'item x');
   }

@@ -58,7 +58,7 @@ public class KitchenView {
     }
 
     public void initComponent() {
-        jf = new JFrame("Store Pattern \u2022 Kitchen App");
+        jf = new JFrame("Blue Coffee App pha chế");
         jf.setSize(new Dimension(1600, 800));
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jf.setLocationRelativeTo(null);
@@ -100,7 +100,7 @@ public class KitchenView {
         URL imgURL = getClass().getResource("../image/logo.png");
         brandImage.setIcon(new ImageIcon(imgURL));
 
-        JLabel brandText = new JLabel("Store Pattern - The prototype for management applications");
+        JLabel brandText = new JLabel("Blue coffee - App pha chế");
         brandText.setForeground(new Color(0, 107, 68));
         brandText.setBackground(new Color(228, 249, 245));
         brandText.setFont(new Font("SansSerif", Font.PLAIN, 20));
@@ -117,7 +117,7 @@ public class KitchenView {
 
         dashboard.setBackground(new Color(209, 228, 252));
 
-        dashboardTitle = new JLabel("Refesh");
+        dashboardTitle = new JLabel("Làm mới");
         dashboardTitle.setForeground(new Color(41, 55, 72));
         dashboardTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -149,7 +149,7 @@ public class KitchenView {
 
         help.setBackground(new Color(209, 228, 252));
 
-        helpTitle = new JLabel("Help");
+        helpTitle = new JLabel("Trợ giúp");
         helpTitle.setForeground(new Color(41, 55, 72));
         helpTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -205,12 +205,12 @@ public class KitchenView {
         lefttop.setBackground(new Color(209, 228, 252));
         lefttop.setLayout(new BoxLayout(lefttop, BoxLayout.Y_AXIS));
 
-        waiting = new JLabel("WAITING");
+        waiting = new JLabel("Xin chờ");
         waiting.setForeground(new Color(0, 107, 68));
         waiting.setFont(new java.awt.Font(waiting.getFont().toString(), Font.BOLD, 25));
         waiting.setAlignmentX(Component.CENTER_ALIGNMENT);
         //Table
-        String[] title = new String[]{"ID", "Table", "CheckIn", "Username", ""};
+        String[] title = new String[]{"ID", "Bàn số", "Thời gian", "Người order", ""};
         DefaultTableModel model = new DefaultTableModel(null, title) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -265,7 +265,7 @@ public class KitchenView {
         leftbottom.setBackground(new Color(209, 228, 252));
         leftbottom.setLayout(new BoxLayout(leftbottom, BoxLayout.Y_AXIS));
 
-        done = new JLabel("DONE");
+        done = new JLabel("XONG");
         done.setForeground(new Color(0, 107, 68));
         done.setFont(new java.awt.Font(done.getFont().toString(), Font.BOLD, 25));
         done.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -332,11 +332,11 @@ public class KitchenView {
         righttop.setBackground(new Color(209, 228, 252));
         righttop.setLayout(new BoxLayout(righttop, BoxLayout.Y_AXIS));
 
-        detailfood = new JLabel("DETAIL OF");
+        detailfood = new JLabel("Chi tiết");
         detailfood.setFont(new java.awt.Font(detailfood.getFont().toString(), Font.BOLD, 25));
         detailfood.setForeground(new Color(0, 107, 68));
         detailfood.setAlignmentX(Component.CENTER_ALIGNMENT);
-        String[] title2 = new String[]{"Name", "Quantity", "Done", ""};
+        String[] title2 = new String[]{"Tên", "Số lượng", "Xong", ""};
         DefaultTableModel model3 = new DefaultTableModel(null, title2) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -412,11 +412,11 @@ public class KitchenView {
         rightbottom.setBackground(new Color(209, 228, 252));
         rightbottom.setLayout(new BoxLayout(rightbottom, BoxLayout.Y_AXIS));
 
-        combinefood = new JLabel("COMBINED FOOD");
+        combinefood = new JLabel("Tổng hợp");
         combinefood.setForeground(new Color(0, 107, 68));
         combinefood.setFont(new java.awt.Font(combinefood.getFont().toString(), Font.BOLD, 25));
         combinefood.setAlignmentX(Component.CENTER_ALIGNMENT);
-        String[] title3 = new String[]{"Name", "Quantity", "Action", ""};
+        String[] title3 = new String[]{"Tên", "Số lượng", "Hành động", ""};
         DefaultTableModel model4 = new DefaultTableModel(null, title3) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -506,12 +506,12 @@ public class KitchenView {
         auto.setMaximumSize(new Dimension(300, 50));
         auto.setBackground(new Color(228, 249, 245));
 
-        JLabel timeTitle = new JLabel("Refresh After");
+        JLabel timeTitle = new JLabel("Làm mới sau");
         timeTitle.setForeground(new Color(41, 55, 72));
         timeTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         timeText = new JTextField();
-        timeText.setText("30");
+        timeText.setText("5");
         timeText.setMaximumSize(new Dimension(100, 40));
 
         //numeric
@@ -525,10 +525,20 @@ public class KitchenView {
                 }
             }
         });
-        check = new JRadioButton("Auto");
+        check = new JRadioButton("Tự động làm mới");
+        check.setSelected(true);
+        if (check.isSelected() == true) {
+            setForeColor();
+            timeText.setEditable(false);
+            dashboardTitle.setForeground(new Color(228, 249, 245));
+            Auto();
+        } else {
+            timeText.setEditable(true);
+            setForeColor();
+            timer.cancel();
+        }
         //check.setMaximumSize(new Dimension(40, 40
         check.setBackground(new Color(228, 249, 245));
-
         auto.add(timeTitle);
         auto.add(Box.createRigidArea(new Dimension(5, 0)));
         auto.add(timeText);

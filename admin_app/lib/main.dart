@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:order_app/Views/splash_screen.dart';
 
 import './Constants/theme.dart';
-import './Views/login.view.dart';
 
 void main() => runApp(new MyApp());
 
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         accentColor: accentColor,
       ),
       debugShowCheckedModeBanner: false,
-      home: new LoginScreen(),
+      home: new SplashScreen(),
     );
   }
 }

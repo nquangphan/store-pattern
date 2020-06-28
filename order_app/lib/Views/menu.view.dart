@@ -117,7 +117,7 @@ class _MenuScreenState extends State<MenuScreen> {
                 food.name,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
-                    color: fontColor, fontFamily: 'Dosis', fontSize: 20.0),
+                    color: fontColor, fontFamily: 'Arial', fontSize: 20.0),
               ),
               Expanded(
                 child: Container(),
@@ -166,7 +166,7 @@ class _MenuScreenState extends State<MenuScreen> {
                               food.quantity.toString(),
                               style: TextStyle(
                                 color: Colors.white,
-                                fontFamily: 'Dosis',
+                                fontFamily: 'Arial',
                                 fontSize: 16.0,
                               ),
                               textAlign: TextAlign.center,
@@ -192,7 +192,7 @@ class _MenuScreenState extends State<MenuScreen> {
                 NumberFormat("#,###").format(food.price) + ' vnđ',
                 style: const TextStyle(
                     color: fontColor,
-                    fontFamily: 'Dosis',
+                    fontFamily: 'Arial',
                     fontSize: 14.0,
                     fontWeight: FontWeight.bold),
               ),
@@ -203,7 +203,7 @@ class _MenuScreenState extends State<MenuScreen> {
 
   Widget _buildFilterFood(BuildContext context) {
     const TextStyle _itemStyle =
-        TextStyle(color: fontColor, fontFamily: 'Dosis', fontSize: 16.0);
+        TextStyle(color: fontColor, fontFamily: 'Arial', fontSize: 16.0);
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5.0),

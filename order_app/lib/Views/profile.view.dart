@@ -62,10 +62,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     TextStyle _itemStyle = new TextStyle(
-        color: theme.fontColor, fontFamily: 'Dosis', fontSize: 16.0, fontWeight: FontWeight.w500);
+        color: theme.fontColor, fontFamily: 'Arial', fontSize: 16.0, fontWeight: FontWeight.w500);
 
     TextStyle _itemStyle2 = new TextStyle(
-        color: theme.accentColor, fontFamily: 'Dosis', fontSize: 18.0, fontWeight: FontWeight.w500);
+        color: theme.accentColor, fontFamily: 'Arial', fontSize: 18.0, fontWeight: FontWeight.w500);
 
     Widget avatar = new Column(
       children: <Widget>[
@@ -162,7 +162,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         new Text(
           'Sex:  ',
           style: new TextStyle(
-              color: theme.accentColor, fontFamily: 'Dosis', fontSize: 13.0, fontWeight: FontWeight.w500),
+              color: theme.accentColor, fontFamily: 'Arial', fontSize: 13.0, fontWeight: FontWeight.w500),
         ),
         _buildSex(_itemStyle),
       ],

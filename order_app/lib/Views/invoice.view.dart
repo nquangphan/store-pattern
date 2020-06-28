@@ -39,7 +39,7 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                   widget.bill.table.name,
                   style: new TextStyle(
                     color: theme.fontColor,
-                    fontFamily: 'Dosis',
+                    fontFamily: 'Arial',
                     fontSize: 15.0,
                     fontWeight: FontWeight.w500,
                   ),
@@ -56,7 +56,7 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                     'ID# ' + widget.bill.id.toString() + '       ',
                     style: new TextStyle(
                         color: theme.fontColor,
-                        fontFamily: 'Dosis',
+                        fontFamily: 'Arial',
                         fontSize: 13.0,
                         fontWeight: FontWeight.w500),
                   ),
@@ -64,7 +64,7 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                     widget.bill.account.displayName,
                     style: new TextStyle(
                         color: theme.accentColor,
-                        fontFamily: 'Dosis',
+                        fontFamily: 'Arial',
                         fontSize: 13.0,
                         fontWeight: FontWeight.w600),
                   )
@@ -73,7 +73,7 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
               new Text(
                 new DateFormat('yyyy-MM-dd HH:mm:ss').format(widget.bill.dateCheckOut),
                 style: new TextStyle(
-                    color: theme.fontColor, fontFamily: 'Dosis', fontSize: 15.0, fontWeight: FontWeight.w500),
+                    color: theme.fontColor, fontFamily: 'Arial', fontSize: 15.0, fontWeight: FontWeight.w500),
               )
             ],
           ),
@@ -110,14 +110,14 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
               new Text(
                 food.name,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(color: theme.accentColor, fontFamily: 'Dosis', fontSize: 18.0),
+                style: const TextStyle(color: theme.accentColor, fontFamily: 'Arial', fontSize: 18.0),
               ),
               new Expanded(child: new Container()),
               new Text(
                 '\$' + food.price.toString(),
                 style: const TextStyle(
                     color: theme.fontColorLight,
-                    fontFamily: 'Dosis',
+                    fontFamily: 'Arial',
                     fontSize: 14.0,
                     fontWeight: FontWeight.w600),
               ),
@@ -126,7 +126,7 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                 food.quantity.toString(),
                 style: const TextStyle(
                     color: theme.fontColorLight,
-                    fontFamily: 'Dosis',
+                    fontFamily: 'Arial',
                     fontSize: 15.0,
                     fontWeight: FontWeight.w500),
               ),
@@ -135,7 +135,7 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                 '\$' + (food.quantity * food.price).toString(),
                 style: const TextStyle(
                     color: Colors.redAccent,
-                    fontFamily: 'Dosis',
+                    fontFamily: 'Arial',
                     fontSize: 14.0,
                     fontWeight: FontWeight.w500),
               ),
@@ -147,10 +147,10 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
 
   Widget _buildFooter() {
     TextStyle _itemStyle = new TextStyle(
-        color: theme.fontColor, fontFamily: 'Dosis', fontSize: 16.0, fontWeight: FontWeight.w500);
+        color: theme.fontColor, fontFamily: 'Arial', fontSize: 16.0, fontWeight: FontWeight.w500);
 
     TextStyle _itemStyle2 = new TextStyle(
-        color: Colors.redAccent, fontFamily: 'Dosis', fontSize: 16.0, fontWeight: FontWeight.w500);
+        color: Colors.redAccent, fontFamily: 'Arial', fontSize: 16.0, fontWeight: FontWeight.w500);
 
     return new Container(
       decoration: new BoxDecoration(
@@ -164,7 +164,7 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
           new Row(
             children: <Widget>[
               new Text(
-                'Subtotal: ',
+                'Tạm tính: ',
                 style: _itemStyle,
               ),
               new Expanded(child: Container()),
@@ -178,7 +178,7 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
           new Row(
             children: <Widget>[
               new Text(
-                'Discount: ',
+                'Giảm giá: ',
                 style: _itemStyle,
               ),
               new Expanded(child: Container()),
@@ -192,12 +192,12 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
           new Row(
             children: <Widget>[
               new Text(
-                'Total: ',
+                'Tổng tiền: ',
                 style: _itemStyle,
               ),
               new Expanded(child: Container()),
               new Text(
-                '\$' + (widget.bill.totalPrice * (1 - widget.bill.discount / 100)).toStringAsFixed(2),
+                NumberFormat("#,###").format((widget.bill.totalPrice * (1 - widget.bill.discount / 100))) + ' vnđ',
                 style: _itemStyle2,
               )
             ],

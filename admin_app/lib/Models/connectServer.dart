@@ -7,7 +7,7 @@ import './../Constants/evn.dart';
 
 class MySqlConnection {
   static MySqlConnection _instance;
-
+  String serverURL;
   static MySqlConnection get instance {
     if (_instance == null) _instance = new MySqlConnection();
     return _instance;
@@ -19,7 +19,7 @@ class MySqlConnection {
     }
 
     http.Response response = await http.post(
-      URL_EXECUTE,
+      serverURL,
       body: {ID_EXECUTENONEQUERY: query},
     );
 
@@ -34,7 +34,7 @@ class MySqlConnection {
     }
 
     http.Response response = await http.post(
-      URL_EXECUTE,
+      serverURL,
       body: {ID_EXECUTEQUERY: query},
     );
     if (response.statusCode == 200) return json.decode(response.body);

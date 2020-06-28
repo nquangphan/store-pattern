@@ -20,14 +20,14 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     TextStyle _itemStyle = new TextStyle(
-        color: theme.fontColor, fontFamily: 'Dosis', fontSize: 16.0, fontWeight: FontWeight.w500);
+        color: theme.fontColor, fontFamily: 'Arial', fontSize: 16.0, fontWeight: FontWeight.w500);
 
     TextStyle _itemStyle2 = new TextStyle(
-        color: theme.fontColorLight, fontFamily: 'Dosis', fontSize: 16.0, fontWeight: FontWeight.w500);
+        color: theme.fontColorLight, fontFamily: 'Arial', fontSize: 16.0, fontWeight: FontWeight.w500);
 
     TextStyle _itemStyle3 = new TextStyle(
       color: theme.accentColor,
-      fontFamily: 'Dosis',
+      fontFamily: 'Arial',
       fontSize: 28.0,
       fontWeight: FontWeight.w400,
     );
@@ -57,7 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
         _username = value;
       },
       decoration: InputDecoration(
-        hintText: 'Username',
+        hintText: 'Tên đăng nhập',
         hintStyle: _itemStyle2,
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
@@ -72,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
         _password = value;
       },
       decoration: InputDecoration(
-        hintText: 'Password',
+        hintText: 'Mật khẩu',
         hintStyle: _itemStyle2,
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
@@ -85,12 +85,12 @@ class _LoginScreenState extends State<LoginScreen> {
         child: new RaisedButton(
           color: Colors.redAccent,
           child: new Text(
-            'Login',
+            'Đăng nhập',
             style: _itemStyle,
           ),
           onPressed: () async {
             if (_password == '' || _username == '') {
-              _notification('Error', 'Invalid user name or password. Please try again.');
+              _notification('Lỗi', 'Tên đăng nhập hoặc mật khẩu không đúng. Vui lòng thử lại.');
               return;
             }
             setState(() {
@@ -100,14 +100,14 @@ class _LoginScreenState extends State<LoginScreen> {
               Navigator.of(context).push(
                 new MaterialPageRoute(builder: (context) {
                   return new MainPage(
-                    context: context,
+                    mcontext: context,
                     account: Controller.instance.account,
                   );
                 }),
               );
               _clear();
             } else {
-              _notification('Error', 'Username or Password is incorrect!');
+              _notification('Lỗi', 'Tên đăng nhập hoặc mật khẩu không đúng!');
               _clear();
             }
             setState(() {
@@ -120,7 +120,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     final forgotLabel = FlatButton(
       child: Text(
-        'Forgot password?',
+        'Quên mật khẩu?',
         style: _itemStyle,
       ),
       onPressed: () {},
@@ -145,7 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: new Container(),
                   ),
                   new Text(
-                    'Logining...',
+                    'Đăng nhập...',
                     style: theme.contentStyle,
                   ),
                   new Expanded(

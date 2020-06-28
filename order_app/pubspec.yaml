@@ -20,18 +20,21 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   http: 
-  flutter_local_notifications: ^1.4.3
+  flutter_local_notifications: ^1.4.4+1
   timeago: ^2.0.9
   intl: ^0.15.7
   dbcrypt: ^1.0.0
   path_provider: ^0.4.1
-  image_picker: ^0.4.10
+  image_picker: ^0.6.7+2
   test: 
   rxdart: ^0.22.6
+  get_ip: ^0.4.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  json_serializable: ^3.3.0
+  build_runner: any
 
 
 # For information on the generic Dart part of this file, see the
@@ -50,6 +53,7 @@ flutter:
       - assets/images/logo.png
       - assets/images/food.png
       - assets/images/account.png
+      - assets/images/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
 

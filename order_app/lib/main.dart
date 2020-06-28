@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:order_app/Views/splash_screen.dart';
 
 import './Constants/theme.dart';
 import 'Views/mainpage.view.dart';
@@ -17,9 +18,9 @@ class MyApp extends StatelessWidget {
         accentColor: accentColor,
       ),
       debugShowCheckedModeBanner: false,
-      home:   MainPage(
-                    context: context,
-                  ),
+      home: SplashScreen(
+        mContext: context,
+      ),
     );
   }
 }

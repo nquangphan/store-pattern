@@ -107,7 +107,7 @@ public class BillController {
             });
             if (structBills.size() == 0) {
                 detail.setRowCount(0);
-                view.detailfood.setText("Detail of");
+                view.detailfood.setText("Chi tiết");
             } else {
                 final int idselect = idSelected1 >= 0 ? idSelected1 : idSelected2;
                 StructBill bill = structBills.stream().filter(item -> item.getBill().id == idselect).findFirst().orElse(null);
@@ -215,7 +215,7 @@ public class BillController {
     }
 
     public void addViewDetail(StructBill structBill) {
-        view.detailfood.setText("Detail of " + structBill.getIDBill());
+        view.detailfood.setText("Chi tiết " + structBill.getIDBill());
         detail.setRowCount(0);
         structBill.getBillsInfo().forEach(item -> detail.addRow(new Object[]{
                 item.name, item.quantityNow, item.getDone(), item
