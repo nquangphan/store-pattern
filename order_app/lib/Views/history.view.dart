@@ -17,7 +17,7 @@ class HistoryScreen extends StatefulWidget {
 }
 
 class _HistoryScreenState extends State<HistoryScreen> {
-  Future<List<history.BillPlus>> bills = Controller.instance.bills;
+  Future<List<history.BillPlus>> bills = HistoryController.instance.bills;
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 
   @override
@@ -144,7 +144,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
       }),
     ).then((value) {
       setState(() {
-        bills = Controller.instance.bills;
+        bills = HistoryController.instance.bills;
       });
     });
   }
@@ -164,10 +164,10 @@ class _HistoryScreenState extends State<HistoryScreen> {
                 onPressed: () async {
                   /* Pop screens */
                   Navigator.of(context).pop();
-                  Controller.instance.removeBill(bill.id);
+                  HistoryController.instance.removeBill(bill.id);
                   Navigator.of(invoiceContext).pop();
 
-                  if (await Controller.instance.deleteBill(bill.id)) {
+                  if (await HistoryController.instance.deleteBill(bill.id)) {
                     bills.then((values) {
                       values.remove(bill);
                     });

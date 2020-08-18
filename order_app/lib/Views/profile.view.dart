@@ -4,17 +4,18 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:user_repository/user_repository.dart';
 
 import './../Constants/dialog.dart';
 import './../Constants/theme.dart' as theme;
-import './../Controllers/login.controller.dart' as loginController;
+import './../Controllers/login.controller.dart' ;
 import './../Controllers/profile.controller.dart';
-import './../Models/login.model.dart' as login;
+import './../Models/login.model.dart' ;
 
 class ProfileScreen extends StatefulWidget {
   ProfileScreen({key, this.account}) : super(key: key);
 
-  final login.Account account;
+  final Account account;
 
   _ProfileScreenState createState() => _ProfileScreenState();
 }
@@ -39,7 +40,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   void initState() {
-    login.Account account = widget.account;
+    Account account = widget.account;
 
     _usernameController.text = account.username;
     _displayNameController.text = account.displayName;
@@ -98,18 +99,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
             style: _itemStyle,
           ),
           onPressed: () async {
-            var image = await Controller.instance.getImage();
+            var image = await ProfileController.instance.getImage();
             setState(() {
               _image = image;
             });
             if (_image != null) {
-              if (await Controller.instance
+              if (await ProfileController.instance
                   .updateAvatar(widget.account.username, base64Encode(_image.readAsBytesSync()))) {
                 successDialog(context, 'Upload avatar successfully!');
 
                 setState(() {
                   widget.account.image = _image.readAsBytesSync();
-                  loginController.Controller.instance.account.image = _image.readAsBytesSync();
+                  LoginController.instance.account.image = _image.readAsBytesSync();
                 });
               } else
                 errorDialog(context, 'Upload avatar failed!');
@@ -238,7 +239,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             style: _itemStyle,
           ),
           onPressed: () {
-            if (Controller.instance.equalPass(widget.account.password, _oldPassController.text))
+            if (ProfileController.instance.equalPass(widget.account.password, _oldPassController.text))
               _changePass();
             else {
               _oldPassController.clear();
@@ -311,7 +312,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   /* Pop screens */
                   Navigator.of(context).pop();
 
-                  if (await Controller.instance.updateInfo(
+                  if (await ProfileController.instance.updateInfo(
                       widget.account.username,
                       _displayNameController.text,
                       _sex == 'Male' ? 1 : (_sex == 'Female' ? 0 : -1),
@@ -321,7 +322,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       _phoneController.text)) {
                     successDialog(this.context, 'Change information success!');
 
-                    login.Account account = widget.account;
+                    Account account = widget.account;
                     account.displayName = _displayNameController.text;
                     account.sex = _sex == 'Male' ? 1 : (_sex == 'Female' ? 0 : -1);
                     account.birthday = DateTime.parse(_birthDayController.text);
@@ -365,10 +366,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                   if (_newPassConfirmController.text == _newPassController.text) {
                     // Check updatePassword
-                    if (await Controller.instance
+                    if (await ProfileController.instance
                         .updatePassword(widget.account.username, _newPassController.text)) {
-                      login.Account account = widget.account;
-                      account.password = Controller.instance.toHashPass(_newPassController.text);
+                      Account account = widget.account;
+                      account.password = ProfileController.instance.toHashPass(_newPassController.text);
                       successDialog(this.context, 'Change password success!');
                     } else
                       errorDialog(this.context, 'Change password failed.' + '\nPlease try again!');

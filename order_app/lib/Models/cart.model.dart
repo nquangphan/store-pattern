@@ -1,11 +1,11 @@
 import './../Constants/queries.dart' as queries;
 import './connectServer.dart';
 
-class Model {
-  static Model _instance;
+class CartModel {
+  static CartModel _instance;
 
-  static Model get instance {
-    if (_instance == null) _instance = new Model();
+  static CartModel get instance {
+    if (_instance == null) _instance = new CartModel();
     return _instance;
   }
 

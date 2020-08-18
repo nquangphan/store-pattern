@@ -11,7 +11,7 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Dimension.height = MediaQuery.of(context).size.height;
     Dimension.width = MediaQuery.of(context).size.width;
-    Controller.instance.getServerIp(onLoadSuccess: () {
+    HomeController.instance.getServerIp(onLoadSuccess: () {
       Navigator.of(context).push(
         new MaterialPageRoute(builder: (context) {
           return MainPage(
