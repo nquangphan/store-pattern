@@ -1,12 +1,12 @@
 BILL : 1
 Table: Table 1
-Date Checkin: 2020-06-27 23:39:40
-Date Checkout: 2020-06-27 23:39:47
+Date Checkin: 2020-08-22 11:02:20
+Date Checkout: 2020-08-22 11:02:24
 Staff: test
 Discount: 0.0
 =========================================================
 Bill Detail:
-Cà phê đen đá: 1
-Cà phê sữa đá: 1
+test 1: 2
+ttghh: 2
 =========================================================
 Total Price: 24000.0

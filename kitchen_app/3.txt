@@ -1,11 +1,11 @@
 BILL : 3
-Table: Table 2
-Date Checkin: 2020-06-27 23:40:48
-Date Checkout: 2020-06-27 23:40:54
+Table: Table 8
+Date Checkin: 2020-08-22 11:03:22
+Date Checkout: 2020-08-22 11:03:24
 Staff: test
 Discount: 0.0
 =========================================================
 Bill Detail:
-Cà phê sữa nóng: 4
+test 3: 2
 =========================================================
-Total Price: 40000.0
+Total Price: 32000.0

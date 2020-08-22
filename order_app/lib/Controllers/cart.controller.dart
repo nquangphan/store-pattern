@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:get_ip/get_ip.dart';
+import 'package:order_app/Models/connectServer.dart';
 import 'package:order_app/Models/drink_model.dart';
 import 'package:order_app/Models/home.model.dart' as HomeModel;
 import 'package:order_app/Models/order_item.dart';
@@ -70,31 +71,33 @@ class Controller {
   }
 
   void findPrinterAndPrintTicket(HomeModel.Table table) {
-    var DESTINATION_ADDRESS = InternetAddress("255.255.255.255");
-    String ipAddress = '';
-    GetIp.ipAddress.then((value) {
-      ipAddress = value;
-      RawDatagramSocket.bind(InternetAddress.anyIPv4, 2003)
-          .then((RawDatagramSocket udpSocket) {
-        udpSocket.broadcastEnabled = true;
-        udpSocket.listen((e) {
-          Datagram dg = udpSocket.receive();
-          if (dg != null) {
-            String s = new String.fromCharCodes(dg.data);
-            if (s == ipAddress) {
-              String serverIP = dg.address.address;
-              print("received $s");
-              print('Ip address: ' + dg.address.address);
-             
-              printTicket(serverIP, 2004, getTableForPrinter(table));
-              udpSocket.close();
-            }
-          }
-        });
-        List<int> data = utf8.encode('TEST');
-        udpSocket.send(data, DESTINATION_ADDRESS, 2003);
-      });
-    });
+    printTicket(
+        MySqlConnection.instance.serverIP, 2004, getTableForPrinter(table));
+    // var DESTINATION_ADDRESS = InternetAddress("255.255.255.255");
+    // String ipAddress = '';
+    // GetIp.ipAddress.then((value) {
+    //   ipAddress = value;
+    //   RawDatagramSocket.bind(InternetAddress.anyIPv4, 2003)
+    //       .then((RawDatagramSocket udpSocket) {
+    //     udpSocket.broadcastEnabled = true;
+    //     udpSocket.listen((e) {
+    //       Datagram dg = udpSocket.receive();
+    //       if (dg != null) {
+    //         String s = new String.fromCharCodes(dg.data);
+    //         if (s == ipAddress) {
+    //           String serverIP = dg.address.address;
+    //           print("received $s");
+    //           print('Ip address: ' + dg.address.address);
+
+    //           printTicket(MySqlConnection.instance.serverIP, 2004, getTableForPrinter(table));
+    //           udpSocket.close();
+    //         }
+    //       }
+    //     });
+    //     List<int> data = utf8.encode('TEST');
+    //     udpSocket.send(data, DESTINATION_ADDRESS, 2003);
+    //   });
+    // });
   }
 
   TableModel getTableForPrinter(HomeModel.Table table) {

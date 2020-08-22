@@ -81,8 +81,9 @@ class Controller {
               print("received $s");
               print('Ip address: ' + dg.address.address);
               // printTicket(serverIP, 2004);
+              MySqlConnection.instance.serverIP = serverIP;
               MySqlConnection.instance.serverURL =
-                  'http://' +serverIP + ':8090/bluecoffee/index.php';
+                  'http://' + serverIP + ':8090/bluecoffee/index.php';
               _isLoading.sink.add(false);
               onLoadSuccess();
               udpSocket.close();

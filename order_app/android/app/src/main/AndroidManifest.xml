@@ -16,8 +16,8 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="order_app"
-        android:icon="@mipmap/ic_launcher">
+        android:label="Blue Coffee Order"
+        android:icon="@mipmap/ic_launcher_bluecoffee">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

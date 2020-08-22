@@ -8,6 +8,7 @@ import './../Constants/evn.dart';
 class MySqlConnection {
   static MySqlConnection _instance;
   String serverURL;
+  String serverIP;
   static MySqlConnection get instance {
     if (_instance == null) _instance = new MySqlConnection();
     return _instance;
@@ -56,7 +57,8 @@ class MySqlConnection {
     int i = 0;
     list.forEach((String element) {
       if (element.contains('@')) {
-        if ((parameter[i] is String || parameter[i] is DateTime) && parameter.length > i)
+        if ((parameter[i] is String || parameter[i] is DateTime) &&
+            parameter.length > i)
           query += "\'" + parameter[i++].toString() + "\'";
         else
           query += parameter[i++].toString();

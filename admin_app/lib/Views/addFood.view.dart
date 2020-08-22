@@ -14,7 +14,8 @@ class AddFoodScreen extends StatefulWidget {
 }
 
 class _AddFoodScreenState extends State<AddFoodScreen> {
-  Future<List<cate.Category>> categories = cateController.Controller.instance.categories;
+  Future<List<cate.Category>> categories =
+      cateController.Controller.instance.categories;
 
   TextEditingController _idController = new TextEditingController();
   TextEditingController _nameController = new TextEditingController();
@@ -33,10 +34,16 @@ class _AddFoodScreenState extends State<AddFoodScreen> {
   @override
   Widget build(BuildContext context) {
     TextStyle _itemStyle = new TextStyle(
-        color: theme.fontColor, fontFamily: 'Dosis', fontSize: 16.0, fontWeight: FontWeight.w500);
+        color: theme.fontColor,
+        fontFamily: 'Dosis',
+        fontSize: 16.0,
+        fontWeight: FontWeight.w500);
 
     TextStyle _itemStyle2 = new TextStyle(
-        color: theme.accentColor, fontFamily: 'Dosis', fontSize: 18.0, fontWeight: FontWeight.w500);
+        color: theme.accentColor,
+        fontFamily: 'Dosis',
+        fontSize: 18.0,
+        fontWeight: FontWeight.w500);
 
     Widget avatar = new Column(
       children: <Widget>[
@@ -76,13 +83,15 @@ class _AddFoodScreenState extends State<AddFoodScreen> {
       enabled: false,
       controller: _idController,
       style: _itemStyle,
-      decoration: new InputDecoration(labelText: 'Auto-ID:*', labelStyle: _itemStyle2),
+      decoration:
+          new InputDecoration(labelText: 'Auto-ID:*', labelStyle: _itemStyle2),
     );
 
     Widget name = new TextField(
       controller: _nameController,
       style: _itemStyle,
-      decoration: new InputDecoration(labelText: 'Name:', labelStyle: _itemStyle2),
+      decoration:
+          new InputDecoration(labelText: 'Name:', labelStyle: _itemStyle2),
     );
 
     Widget category = new Row(
@@ -90,13 +99,19 @@ class _AddFoodScreenState extends State<AddFoodScreen> {
         new Text(
           'Category:  ',
           style: new TextStyle(
-              color: theme.accentColor, fontFamily: 'Dosis', fontSize: 13.0, fontWeight: FontWeight.w500),
+              color: theme.accentColor,
+              fontFamily: 'Dosis',
+              fontSize: 13.0,
+              fontWeight: FontWeight.w500),
         ),
         FutureBuilder<List<cate.Category>>(
           future: categories,
           builder: (context, snapshot) {
             if (snapshot.hasError) print(snapshot.error);
-            if (snapshot.hasData) {
+            if (snapshot.hasData &&
+                snapshot.data != null &&
+                snapshot.data.length > 0) {
+              _category = snapshot.data[0];
               return _buildCategory(_itemStyle, snapshot.data);
             }
             return Center(child: CircularProgressIndicator());
@@ -109,7 +124,8 @@ class _AddFoodScreenState extends State<AddFoodScreen> {
       controller: _priceController,
       keyboardType: TextInputType.number,
       style: _itemStyle,
-      decoration: new InputDecoration(labelText: 'Price:', labelStyle: _itemStyle2),
+      decoration:
+          new InputDecoration(labelText: 'Price:', labelStyle: _itemStyle2),
     );
 
     Widget addFood = Container(
@@ -133,7 +149,8 @@ class _AddFoodScreenState extends State<AddFoodScreen> {
       padding: const EdgeInsets.all(10.0),
       child: new ListView(
         shrinkWrap: true,
-        padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 10.0, bottom: 10.0),
+        padding:
+            EdgeInsets.only(left: 15.0, right: 15.0, top: 10.0, bottom: 10.0),
         scrollDirection: Axis.vertical,
         children: <Widget>[
           avatar,
@@ -183,7 +200,8 @@ class _AddFoodScreenState extends State<AddFoodScreen> {
         builder: (BuildContext context) {
           return AlertDialog(
             title: new Text('Confirm', style: theme.titleStyle),
-            content: new Text('Do you want to create new food?', style: theme.contentStyle),
+            content: new Text('Do you want to create new food?',
+                style: theme.contentStyle),
             actions: <Widget>[
               new FlatButton(
                 child: new Text('Ok', style: theme.okButtonStyle),
@@ -197,14 +215,18 @@ class _AddFoodScreenState extends State<AddFoodScreen> {
                         _nameController.text.trim(),
                         double.parse(_priceController.text.trim()),
                         _category.id,
-                        _image != null ? base64Encode(_image.readAsBytesSync()) : '')) {
+                        _image != null
+                            ? base64Encode(_image.readAsBytesSync())
+                            : '')) {
                       // reload foods
                       foodController.Controller.instance.insertFoodToLocal(
                           _nameController.text.trim(),
                           _category.id,
                           _category.name,
                           double.parse(_priceController.text.trim()),
-                          _image != null ? base64Encode(_image.readAsBytesSync()) : '');
+                          _image != null
+                              ? base64Encode(_image.readAsBytesSync())
+                              : '');
 
                       successDialog(this.context, 'Create food success!');
                       // clear data widget
@@ -214,10 +236,12 @@ class _AddFoodScreenState extends State<AddFoodScreen> {
                         _image = null;
                       });
                     } else
-                      errorDialog(this.context, 'Create new food failed.' + '\nPlease try again!');
+                      errorDialog(this.context,
+                          'Create new food failed.' + '\nPlease try again!');
                     return;
                   }
-                  errorDialog(this.context, 'Invalid infomations.' + '\nPlease try again!');
+                  errorDialog(this.context,
+                      'Invalid infomations.' + '\nPlease try again!');
                 },
               ),
               new FlatButton(

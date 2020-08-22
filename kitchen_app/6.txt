@@ -1,11 +1,14 @@
 BILL : 6
-Table: Table 8
-Date Checkin: 2020-06-27 23:51:15
-Date Checkout: 2020-06-27 23:52:55
+Table: 32
+Date Checkin: 2020-08-22 14:52:14
+Date Checkout: 2020-08-22 14:52:19
 Staff: test
 Discount: 0.0
 =========================================================
 Bill Detail:
-Cà phê sữa nóng: 4
+Dr.Thanh chai: 2
+Cocacola: 2
+mì tôm (trứng): 2
+Mirinda soda kem : 1
 =========================================================
-Total Price: 40000.0
+Total Price: 92000.0

@@ -18,7 +18,8 @@ class _AccountScreenState extends State<AccountScreen> {
 
   @override
   Widget build(BuildContext context) {
-    const TextStyle _itemStyle = TextStyle(color: theme.fontColor, fontFamily: 'Dosis', fontSize: 16.0);
+    const TextStyle _itemStyle =
+        TextStyle(color: theme.fontColor, fontFamily: 'Dosis', fontSize: 16.0);
 
     Widget controls = new Container(
       decoration: new BoxDecoration(
@@ -57,7 +58,8 @@ class _AccountScreenState extends State<AccountScreen> {
                   controller: _keywordController,
                   onChanged: (text) {
                     setState(() {
-                      accs = Controller.instance.searchAccs(_keywordController.text);
+                      accs = Controller.instance
+                          .searchAccs(_keywordController.text);
                     });
                   },
                   onSubmitted: null,
@@ -99,8 +101,12 @@ class _AccountScreenState extends State<AccountScreen> {
             children: <Widget>[
               new Table(
                   defaultColumnWidth: FlexColumnWidth(2.0),
-                  columnWidths: {1: FlexColumnWidth(2.5), 3: FlexColumnWidth(3.5)},
-                  border: TableBorder.all(width: 1.0, color: theme.fontColorLight),
+                  columnWidths: {
+                    1: FlexColumnWidth(2),
+                    2: FlexColumnWidth(4),
+                  },
+                  border:
+                      TableBorder.all(width: 1.0, color: theme.fontColorLight),
                   children: _buildListRow(accs)),
             ],
           )),
@@ -124,6 +130,8 @@ class _AccountScreenState extends State<AccountScreen> {
             new Text(
               'Username',
               style: theme.headTable,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
             ),
           ],
         ),
@@ -135,21 +143,25 @@ class _AccountScreenState extends State<AccountScreen> {
             new Text(
               'Display Name',
               style: theme.headTable,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
             ),
           ],
         ),
       ),
-      new TableCell(
-        child: new Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            new Text(
-              'Account Type',
-              style: theme.headTable,
-            ),
-          ],
-        ),
-      ),
+      // new TableCell(
+      //   child: new Row(
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     children: <Widget>[
+      //       new Text(
+      //         'Account Type',
+      //         style: theme.headTable,
+      //         overflow: TextOverflow.ellipsis,
+      //         maxLines: 2,
+      //       ),
+      //     ],
+      //   ),
+      // ),
       new TableCell(
         child: new Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -189,18 +201,18 @@ class _AccountScreenState extends State<AccountScreen> {
           ],
         ),
       ),
-      new TableCell(
-        child: new Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            new Text(
-              acc.accountType ?? '',
-              style: theme.contentTable,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ],
-        ),
-      ),
+      // new TableCell(
+      //   child: new Row(
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     children: <Widget>[
+      //       new Text(
+      //         acc.accountType ?? '',
+      //         style: theme.contentTable,
+      //         overflow: TextOverflow.ellipsis,
+      //       ),
+      //     ],
+      //   ),
+      // ),
       new TableCell(
         child: new Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -261,8 +273,9 @@ class _AccountScreenState extends State<AccountScreen> {
         builder: (BuildContext context) {
           return AlertDialog(
             title: new Text('Confirm', style: theme.titleStyle),
-            content:
-                new Text('Do you want to delete this account: ' + username + '?', style: theme.contentStyle),
+            content: new Text(
+                'Do you want to delete this account: ' + username + '?',
+                style: theme.contentStyle),
             actions: <Widget>[
               new FlatButton(
                   child: new Text('Ok', style: theme.okButtonStyle),
@@ -275,10 +288,15 @@ class _AccountScreenState extends State<AccountScreen> {
                         setState(() {
                           accs = Controller.instance.listAccount;
                         });
-                        successDialog(this.context, 'Delete this account: ' + username + ' success!');
+                        successDialog(this.context,
+                            'Delete this account: ' + username + ' success!');
                       } else
-                        errorDialog(this.context,
-                            'Delete this account: ' + username + ' failed.' + '\nPlease try again!');
+                        errorDialog(
+                            this.context,
+                            'Delete this account: ' +
+                                username +
+                                ' failed.' +
+                                '\nPlease try again!');
                     } else
                       errorDialog(
                           this.context,
@@ -305,19 +323,26 @@ class _AccountScreenState extends State<AccountScreen> {
         builder: (BuildContext context) {
           return AlertDialog(
             title: new Text('Confirm', style: theme.titleStyle),
-            content:
-                new Text('Do you want to reset this account: ' + username + '?', style: theme.contentStyle),
+            content: new Text(
+                'Do you want to reset this account: ' + username + '?',
+                style: theme.contentStyle),
             actions: <Widget>[
               new FlatButton(
                   child: new Text('Ok', style: theme.okButtonStyle),
                   onPressed: () async {
                     /* Pop screens */
                     Navigator.of(context).pop();
-                    if (await Controller.instance.resetAcc(username, username)) {
-                      successDialog(this.context, 'Reset this account: ' + username + ' success!');
+                    if (await Controller.instance
+                        .resetAcc(username, username)) {
+                      successDialog(this.context,
+                          'Reset this account: ' + username + ' success!');
                     } else
-                      errorDialog(this.context,
-                          'Reset this account: ' + username + ' failed.' + '\nPlease try again!');
+                      errorDialog(
+                          this.context,
+                          'Reset this account: ' +
+                              username +
+                              ' failed.' +
+                              '\nPlease try again!');
                   }),
               new FlatButton(
                 child: new Text('Cancel', style: theme.cancelButtonStyle),
@@ -337,7 +362,8 @@ class _AccountScreenState extends State<AccountScreen> {
           appBar: new AppBar(
             title: new Text(
               'Add Account',
-              style: new TextStyle(color: theme.accentColor, fontFamily: 'Dosis'),
+              style:
+                  new TextStyle(color: theme.accentColor, fontFamily: 'Dosis'),
             ),
             iconTheme: new IconThemeData(color: theme.accentColor),
             centerTitle: true,
@@ -359,7 +385,8 @@ class _AccountScreenState extends State<AccountScreen> {
           appBar: new AppBar(
             title: new Text(
               'Edit Account',
-              style: new TextStyle(color: theme.accentColor, fontFamily: 'Dosis'),
+              style:
+                  new TextStyle(color: theme.accentColor, fontFamily: 'Dosis'),
             ),
             iconTheme: new IconThemeData(color: theme.accentColor),
             centerTitle: true,
@@ -381,7 +408,8 @@ class _AccountScreenState extends State<AccountScreen> {
           appBar: new AppBar(
             title: new Text(
               'Details Account',
-              style: new TextStyle(color: theme.accentColor, fontFamily: 'Dosis'),
+              style:
+                  new TextStyle(color: theme.accentColor, fontFamily: 'Dosis'),
             ),
             iconTheme: new IconThemeData(color: theme.accentColor),
             centerTitle: true,

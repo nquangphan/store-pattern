@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:order_app/Views/mainPage.view.dart';
 
 import '../Controllers/login.controller.dart';
 import 'login.view.dart';
@@ -17,11 +18,22 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Controller.instance.getServerIp(onLoadSuccess: () {
-      Navigator.of(context).push(
-        new MaterialPageRoute(builder: (context) {
-          return LoginScreen();
-        }),
-      );
+      Controller.instance.login('test', 'abc').then((value) {
+        Navigator.of(context).push(
+          new MaterialPageRoute(builder: (context) {
+            return new MainPage(
+              context: context,
+              account: Controller.instance.account,
+            );
+          }),
+        );
+      });
+
+      // Navigator.of(context).push(
+      //   new MaterialPageRoute(builder: (context) {
+      //     return LoginScreen();
+      //   }),
+      // );
     });
   }
 
