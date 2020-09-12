@@ -1,0 +1,14 @@
+BILL : 219
+Table: 3
+Date Checkin: 2020-09-02 20:22:11
+Date Checkout: 2020-09-02 20:22:32
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Trà sữa thái xanh: 2
+Cocacola: 1
+Trà đào: 1
+Trà sữa socola: 1
+=========================================================
+Total Price: 63000.0

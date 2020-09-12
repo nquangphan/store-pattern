@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:diacritic/diacritic.dart';
 import 'package:rxdart/rxdart.dart';
 import './../Models/home.model.dart' as home;
 import './../Models/history.model.dart' as historyModel;
@@ -49,10 +50,14 @@ class Controller {
       String selectedCategory, String keyword) async {
     List<Food> _foods = await filterFoods(selectedCategory);
     if (keyword.trim() == '') return _foods;
+    // return _foods
+    //     .where((_food) =>
+    //         _food.name.toLowerCase().indexOf(keyword.trim().toLowerCase()) !=
+    //         -1)
+    //     .toList();
     return _foods
-        .where((_food) =>
-            _food.name.toLowerCase().indexOf(keyword.trim().toLowerCase()) !=
-            -1)
+        .where((food) => removeDiacritics(food.name.toLowerCase())
+            .contains(removeDiacritics(keyword.toLowerCase())))
         .toList();
   }
 

@@ -1,0 +1,14 @@
+BILL : 184
+Table: 6
+Date Checkin: 2020-09-01 18:57:53
+Date Checkout: 2020-09-01 18:58:31
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Kem ly thập cẩm: 1
+Cà phê sữa (đá): 1
+Sinh tố bơ: 1
+Number one: 1
+=========================================================
+Total Price: 60000.0

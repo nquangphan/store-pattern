@@ -1,0 +1,17 @@
+BILL : 48
+Table: 4
+Date Checkin: 2020-08-23 08:36:43
+Date Checkout: 2020-08-23 08:37:32
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cacao (nóng): 1
+Cà phê sữa nguyên chất (Đá): 1
+Cà phê sữa (đá): 3
+Cà phê sữa (nóng): 1
+Cà phê phê đen (đá): 1
+Bạc xỉu (Đá): 1
+Kem dâu ly: 1
+=========================================================
+Total Price: 36000.0

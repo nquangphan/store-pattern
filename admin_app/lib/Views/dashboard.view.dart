@@ -15,15 +15,26 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   Future<List<Report>> reports = Controller.instance.reportsWeek;
   Future<Report> report = Controller.instance.reportToday;
   int currentI = 0;
-  TextStyle _itemStyle = TextStyle(color: theme.fontColor, fontFamily: 'Dosis', fontSize: 16.0);
+  TextStyle _itemStyle =
+      TextStyle(color: theme.fontColor, fontFamily: 'Dosis', fontSize: 16.0);
 
-  TextStyle _itemStyle2 =
-      TextStyle(color: theme.accentColor, fontFamily: 'Dosis', fontSize: 34.0, fontWeight: FontWeight.w600);
+  TextStyle _itemStyle2 = TextStyle(
+      color: theme.accentColor,
+      fontFamily: 'Dosis',
+      fontSize: 34.0,
+      fontWeight: FontWeight.w600);
 
-  TextStyle _itemStytle3 =
-      TextStyle(color: theme.accentColor, fontFamily: 'Dosis', fontWeight: FontWeight.w400, fontSize: 14.0);
+  TextStyle _itemStytle3 = TextStyle(
+      color: theme.accentColor,
+      fontFamily: 'Dosis',
+      fontWeight: FontWeight.w400,
+      fontSize: 14.0);
 
-  static final List<String> chartDropdownItems = ['Last 7 days', 'Months', 'Years'];
+  static final List<String> chartDropdownItems = [
+    '7 ngày gần đây',
+    'Tháng',
+    'Năm'
+  ];
   String totalMoneyToday = '';
   String totalMoney = '';
   String currentItem = chartDropdownItems[0];
@@ -42,14 +53,16 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text('Today', style: _itemStyle),
+                  Text('Hôm nay', style: _itemStyle),
                   new FutureBuilder(
                     future: report,
                     builder: (context, snapshot) {
                       if (snapshot.hasError) print(snapshot.error);
                       if (snapshot.hasData) {
                         Report rp = snapshot.data;
-                        totalMoneyToday = '\$' + _roundMoney(rp.totalPrice);
+                        totalMoneyToday =
+                            '\$' + NumberFormat("#,###").format(rp.totalPrice);
+                        // _roundMoney(rp.totalPrice);
                       }
                       return Text('$totalMoneyToday', style: _itemStyle2);
                     },
@@ -79,7 +92,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
               appBar: new AppBar(
                 title: new Text(
                   'Bill',
-                  style: new TextStyle(color: theme.accentColor, fontFamily: 'Dosis'),
+                  style: new TextStyle(
+                      color: theme.accentColor, fontFamily: 'Dosis'),
                 ),
                 iconTheme: new IconThemeData(color: theme.accentColor),
                 centerTitle: true,
@@ -108,7 +122,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      new Text('Revenue', style: _itemStyle),
+                      new Text('Doanh thu', style: _itemStyle),
                       new FutureBuilder(
                         future: reports,
                         builder: (context, snapshot) {
@@ -201,7 +215,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
       sum += rp[i].totalPrice;
     }
 
-    totalMoney = '\$' + _roundMoney(sum);
+    totalMoney = NumberFormat("#,###").format(sum);
   }
 
   void _reloadData(int id) {

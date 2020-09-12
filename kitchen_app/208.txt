@@ -1,0 +1,15 @@
+BILL : 208
+Table: 14
+Date Checkin: 2020-09-02 08:30:19
+Date Checkout: 2020-09-02 08:31:17
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+lipton nóng: 1
+Cà phê phê đen (đá): 1
+Yaua đá thạch: 1
+Trà dâu chanh dây: 1
+Cà phê sữa (đá): 1
+=========================================================
+Total Price: 61000.0

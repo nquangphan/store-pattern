@@ -1,0 +1,15 @@
+BILL : 65
+Table: 10
+Date Checkin: 2020-08-23 20:41:52
+Date Checkout: 2020-08-23 20:42:14
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Sinh tố bơ: 1
+Sinh tố mãng cầu: 1
+Yaua đá thạch: 1
+Trà sữa dâu: 1
+Kem dừa ly: 1
+=========================================================
+Total Price: 61000.0

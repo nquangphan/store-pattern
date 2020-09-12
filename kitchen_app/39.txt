@@ -1,0 +1,17 @@
+BILL : 39
+Table: 2
+Date Checkin: 2020-08-22 19:59:40
+Date Checkout: 2020-08-22 20:01:51
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Trà sữa thái xanh: 1
+Cà phê sữa (đá): 4
+Bò húc: 1
+Nước cam: 2
+Kem hũ: 1
+kẹo mút: 3
+Oishi: 4
+=========================================================
+Total Price: 98000.0

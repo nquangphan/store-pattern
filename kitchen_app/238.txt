@@ -1,0 +1,14 @@
+BILL : 238
+Table: 1
+Date Checkin: 2020-09-04 07:26:00
+Date Checkout: 2020-09-04 07:26:27
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cà phê phê đen (đá): 2
+Cà phê sữa (đá): 1
+Sinh tố mãng cầu: 1
+Trà chanh: 1
+=========================================================
+Total Price: 40000.0

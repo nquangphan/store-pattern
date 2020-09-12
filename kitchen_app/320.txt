@@ -1,0 +1,15 @@
+BILL : 320
+Table: 2
+Date Checkin: 2020-09-06 20:08:05
+Date Checkout: 2020-09-06 20:10:28
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Trà đào: 1
+Cà phê sữa (đá): 1
+Trà sữa thái xanh: 1
+Sinh tố dâu: 1
+Sâm dứa sữa: 1
+=========================================================
+Total Price: 67000.0

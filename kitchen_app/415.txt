@@ -1,0 +1,13 @@
+BILL : 415
+Table: 2
+Date Checkin: 2020-09-12 08:04:51
+Date Checkout: 2020-09-12 08:04:55
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cà phê sữa nguyên chất (nóng): 4
+Trà ô long: 1
+Cacao (Đá): 1
+=========================================================
+Total Price: 40000.0

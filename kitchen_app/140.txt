@@ -1,0 +1,16 @@
+BILL : 140
+Table: 1
+Date Checkin: 2020-08-29 20:03:31
+Date Checkout: 2020-08-29 20:03:44
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Yaua hương kiwi: 1
+Trà dâu chanh dây: 1
+Cà phê phê đen (đá): 1
+Sting chai: 1
+Nước chanh: 1
+Trà sữa thái xanh: 2
+=========================================================
+Total Price: 51000.0

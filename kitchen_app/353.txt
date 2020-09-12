@@ -1,0 +1,14 @@
+BILL : 353
+Table: 1
+Date Checkin: 2020-09-08 21:22:15
+Date Checkout: 2020-09-08 21:22:33
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Trà đào: 4
+Nước cam: 2
+Trà dâu chanh dây: 1
+Yaua đá thạch: 6
+=========================================================
+Total Price: 169000.0

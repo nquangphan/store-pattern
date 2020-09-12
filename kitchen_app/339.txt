@@ -1,0 +1,14 @@
+BILL : 339
+Table: 16
+Date Checkin: 2020-09-07 20:22:07
+Date Checkout: 2020-09-07 20:22:08
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Trà đào: 2
+Cà phê sữa (đá): 1
+Trà sữa thái xanh: 3
+Yến Nha đam chai: 1
+=========================================================
+Total Price: 24000.0

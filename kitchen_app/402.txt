@@ -1,0 +1,15 @@
+BILL : 402
+Table: 2
+Date Checkin: 2020-09-11 08:50:15
+Date Checkout: 2020-09-11 08:50:49
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Number one: 1
+Cacao (Đá): 1
+Bạc xỉu (Đá): 1
+Trà sữa thái xanh: 1
+Pepsi (lon): 1
+=========================================================
+Total Price: 63000.0

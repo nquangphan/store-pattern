@@ -1,0 +1,14 @@
+BILL : 265
+Table: 7
+Date Checkin: 2020-09-05 08:13:04
+Date Checkout: 2020-09-05 08:13:11
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Nước cam: 1
+Cà phê sữa nguyên chất (nóng): 6
+Trà dâu chanh dây: 2
+Trà trái cây Kiwi: 1
+=========================================================
+Total Price: 77000.0

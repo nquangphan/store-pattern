@@ -1,0 +1,15 @@
+BILL : 373
+Table: 2
+Date Checkin: 2020-09-09 19:29:07
+Date Checkout: 2020-09-09 19:29:23
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Sinh tố bơ: 1
+Sinh tố mãng cầu: 1
+Cà phê phê đen (đá): 1
+Cà phê sữa (đá): 1
+Oishi: 1
+=========================================================
+Total Price: 58000.0

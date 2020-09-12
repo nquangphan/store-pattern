@@ -1,0 +1,17 @@
+BILL : 307
+Table: 1
+Date Checkin: 2020-09-06 14:16:20
+Date Checkout: 2020-09-06 14:17:06
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Nước cam: 3
+Bò húc: 4
+Sting chai: 1
+Trà chanh: 1
+Bài: 4
+mì tôm pha: 1
+mì tôm (trứng): 1
+=========================================================
+Total Price: 200000.0

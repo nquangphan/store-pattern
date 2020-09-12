@@ -1,0 +1,17 @@
+BILL : 367
+Table: 1
+Date Checkin: 2020-09-09 13:03:32
+Date Checkout: 2020-09-09 13:04:06
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Nước cam: 1
+Bò húc: 3
+Nước khoáng: 2
+Trà chanh: 1
+Bài: 2
+Yaua hũ: 2
+thuốc saven: 1
+=========================================================
+Total Price: 93000.0

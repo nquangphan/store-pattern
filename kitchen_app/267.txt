@@ -1,0 +1,13 @@
+BILL : 267
+Table: 9
+Date Checkin: 2020-09-05 08:57:29
+Date Checkout: 2020-09-05 08:58:09
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Nước cam: 3
+mì tôm (trứng): 1
+Yaua sinh tố việt quất: 2
+=========================================================
+Total Price: 100000.0

@@ -1,0 +1,16 @@
+BILL : 206
+Table: 5
+Date Checkin: 2020-09-02 08:14:24
+Date Checkout: 2020-09-02 08:14:40
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Kem hũ: 1
+Sữa tươi: 1
+Cà phê phê đen (đá): 1
+Cà phê sữa (đá): 1
+Trà sữa thái xanh: 1
+Sinh tố dâu: 1
+=========================================================
+Total Price: 46000.0

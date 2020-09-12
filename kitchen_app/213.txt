@@ -1,0 +1,14 @@
+BILL : 213
+Table: 1
+Date Checkin: 2020-09-02 14:27:54
+Date Checkout: 2020-09-02 14:28:22
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cà phê sữa (đá): 1
+Cà phê sữa nguyên chất (Đá): 1
+Trà gừng nóng: 1
+Nước cam: 1
+=========================================================
+Total Price: 53000.0

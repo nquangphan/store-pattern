@@ -1,0 +1,16 @@
+BILL : 407
+Table: 2
+Date Checkin: 2020-09-11 19:10:42
+Date Checkout: 2020-09-11 19:10:49
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Sinh tố dâu: 1
+Number one: 1
+Trà sữa đào: 1
+Yaua hũ: 1
+Trà sữa dâu: 1
+Sinh tố mãng cầu: 1
+=========================================================
+Total Price: 30000.0

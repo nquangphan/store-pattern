@@ -111,7 +111,7 @@ class _AddFoodScreenState extends State<AddFoodScreen> {
             if (snapshot.hasData &&
                 snapshot.data != null &&
                 snapshot.data.length > 0) {
-              _category = snapshot.data[0];
+              // _category = snapshot.data[0];
               return _buildCategory(_itemStyle, snapshot.data);
             }
             return Center(child: CircularProgressIndicator());
@@ -195,6 +195,25 @@ class _AddFoodScreenState extends State<AddFoodScreen> {
   }
 
   void _createFood() async {
+    if (_category == null) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text('Thông báo'),
+            content: Text('Bạn phải chọn loại đồ uống.'),
+            actions: [
+              FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('OK'))
+            ],
+          );
+        },
+      );
+      return;
+    }
     showDialog(
         context: context,
         builder: (BuildContext context) {

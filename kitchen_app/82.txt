@@ -1,0 +1,15 @@
+BILL : 82
+Table: 10
+Date Checkin: 2020-08-25 19:43:05
+Date Checkout: 2020-08-25 19:43:20
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Kem ly thập cẩm: 1
+Cà phê sữa (đá): 1
+Trà dâu chanh dây: 2
+kẹo mút: 2
+Cà phê phê đen (đá): 2
+=========================================================
+Total Price: 48000.0

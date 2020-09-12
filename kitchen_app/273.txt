@@ -1,0 +1,13 @@
+BILL : 273
+Table: 12
+Date Checkin: 2020-09-05 19:30:00
+Date Checkout: 2020-09-05 19:30:10
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Sinh tố sampoche: 1
+Kem dâu ly: 2
+Cacao (nóng): 2
+=========================================================
+Total Price: 66000.0

@@ -1,0 +1,14 @@
+BILL : 193
+Table: 12
+Date Checkin: 2020-09-01 20:15:33
+Date Checkout: 2020-09-01 20:16:02
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Sinh tố bơ: 2
+Kem ly thập cẩm: 1
+Sữa nóng: 1
+Hạt dưa: 2
+=========================================================
+Total Price: 66000.0

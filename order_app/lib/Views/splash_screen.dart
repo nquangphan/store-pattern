@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:order_app/Controllers/home.controller.dart';
+import 'package:order_app/Controllers/menu.controller.dart' as Menu;
 import 'package:order_app/Utils/utils.dart';
 import 'package:order_app/Views/mainpage.view.dart';
 
@@ -17,13 +19,42 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Controller.instance.getServerIp(onLoadSuccess: () {
-      Navigator.of(context).push(
-        new MaterialPageRoute(builder: (context) {
-          return MainPage(
-            mcontext: widget.mContext,
-          );
-        }),
-      );
+      Menu.Controller.instance.foods().then((value) {
+        Navigator.of(context).pushAndRemoveUntil(new MaterialPageRoute(
+          builder: (context) {
+            return WillPopScope(
+              onWillPop: () async {
+                await showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: new Text('Thông báo'),
+                        content: new Text('Bạn có chắc chắn muốn thoát'),
+                        actions: <Widget>[
+                          new FlatButton(
+                            child: new Text('Ok'),
+                            onPressed: () {
+                              SystemNavigator.pop();
+                            },
+                          ),
+                          new FlatButton(
+                            child: new Text('Hủy'),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          )
+                        ],
+                      );
+                    });
+                return false;
+              },
+              child: MainPage(
+                mcontext: widget.mContext,
+              ),
+            );
+          },
+        ), (a) => false);
+      });
     });
   }
 

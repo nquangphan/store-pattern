@@ -14,17 +14,26 @@ class Controller {
     return Model.instance.deleteBill(id);
   }
 
-  Future<List<Food>> getFoodByBill(int idBill) => Model.instance.getFoodByBill(idBill);
+  Future<List<Food>> getFoodByBill(int idBill) =>
+      Model.instance.getFoodByBill(idBill);
 
-  Future<List<Bill>> searchFoods(String keyword, DateTime dateStart, DateTime dateEnd) async {
-    if (_bills == null) return null;
+  Future<List<Bill>> searchFoods(
+      String keyword, DateTime dateStart, DateTime dateEnd) async {
+    if (dateStart.compareTo(dateEnd) >= 0) {
+      dateEnd = dateStart.add(Duration(days: 1));
+    }
+    if (_bills == null) {
+      _bills = Model.instance.getBills();
+    }
     List<Bill> items = await _bills;
-    if (keyword.trim() == '') return items;
+    // if (keyword.trim() == '') return items;
     return items
         .where((item) =>
             item.nameTable.toUpperCase().indexOf(keyword.toUpperCase()) != -1 &&
-            ((item.dateCheckIn.compareTo(dateStart) >= 0 && item.dateCheckIn.compareTo(dateEnd) <= 0) ||
-                (item.dateCheckOut.compareTo(dateStart) >= 0 && item.dateCheckOut.compareTo(dateEnd) <= 0)))
+            ((item.dateCheckIn.compareTo(dateStart) >= 0 &&
+                    item.dateCheckIn.compareTo(dateEnd) <= 0) ||
+                (item.dateCheckOut.compareTo(dateStart) >= 0 &&
+                    item.dateCheckOut.compareTo(dateEnd) <= 0)))
         .toList();
   }
 

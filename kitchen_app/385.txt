@@ -1,0 +1,17 @@
+BILL : 385
+Table: 1
+Date Checkin: 2020-09-10 12:30:50
+Date Checkout: 2020-09-10 12:31:18
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Bò húc: 4
+Bài: 4
+Nước yến : 1
+Nước cam: 2
+mì tôm (trứng): 3
+Nước khoáng: 1
+thuốc saven: 1
+=========================================================
+Total Price: 97000.0

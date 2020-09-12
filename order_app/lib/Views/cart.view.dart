@@ -20,7 +20,7 @@ class CartScreen extends StatefulWidget {
   final Account account;
   final home.Table table;
   final BuildContext homeContext;
-  final Function(home.Table) sendBillToKitchen;
+  final Future<bool> Function(home.Table) sendBillToKitchen;
 
   @override
   _CartScreenState createState() => _CartScreenState();
@@ -49,84 +49,98 @@ class _CartScreenState extends State<CartScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: new FloatingActionButton(
-        onPressed: () {
-          _pushMenuScreen(widget.table);
-        },
-        child: new Icon(Icons.add_shopping_cart),
-        tooltip: 'Add To Cart',
-        backgroundColor: theme.fontColor,
-      ),
-      appBar: new AppBar(
-        title: new Text(
-          'Bàn • ' + widget.table.name,
-          style: new TextStyle(color: theme.accentColor, fontFamily: 'Arial'),
+    return WillPopScope(
+      onWillPop: () async {
+        await widget.sendBillToKitchen(widget.table);
+        return true;
+      },
+      child: Scaffold(
+        floatingActionButton: new FloatingActionButton(
+          onPressed: () {
+            _pushMenuScreen(widget.table);
+          },
+          child: Container(child: new Icon(Icons.add_shopping_cart)),
+          tooltip: 'Add To Cart',
+          backgroundColor: theme.fontColor,
         ),
-        iconTheme: new IconThemeData(color: theme.accentColor),
-        centerTitle: true,
-        actions: <Widget>[
-          new IconButton(
-            icon: new Icon(Icons.send),
-            color: theme.accentColor,
-            onPressed: () {
-              widget.sendBillToKitchen(widget.table);
-            },
-          )
-        ],
-      ),
-      body: widget.table.status == 1
-          ? FutureBuilder<List<menu.Food>>(
-              future: futureFoods,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.done &&
-                    snapshot.hasData) {
-                  return Container(
-                    child: Column(
-                      children: <Widget>[
-                        Expanded(child: _buildListFoods(context)),
-                        _buildControls(context),
-                      ],
-                    ),
-                  );
-                } else {
-                  return Center(child: CircularProgressIndicator());
-                }
-              })
-          : Container(
-              child: Column(
-                children: <Widget>[
-                  Expanded(child: _buildListFoods(context)),
-                  _buildControls(context),
-                ],
+        appBar: new AppBar(
+          title: new Text(
+            'Bàn • ' + widget.table.name,
+            style: new TextStyle(color: theme.accentColor, fontFamily: 'Arial'),
+          ),
+          iconTheme: new IconThemeData(color: theme.accentColor),
+          centerTitle: true,
+          actions: <Widget>[
+            new IconButton(
+              icon: new Icon(Icons.send),
+              color: theme.accentColor,
+              onPressed: () {
+                widget.sendBillToKitchen(widget.table);
+              },
+            )
+          ],
+        ),
+        body: widget.table.status == 1
+            ? FutureBuilder<List<menu.Food>>(
+                future: futureFoods,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done &&
+                      snapshot.hasData) {
+                    return Container(
+                      child: Column(
+                        children: <Widget>[
+                          Expanded(child: _buildListFoods(context)),
+                          _buildControls(context),
+                        ],
+                      ),
+                    );
+                  } else {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                })
+            : Container(
+                child: Column(
+                  children: <Widget>[
+                    Expanded(child: _buildListFoods(context)),
+                    _buildControls(context),
+                  ],
+                ),
               ),
-            ),
+      ),
     );
   }
 
   void _pushMenuScreen(home.Table table) {
     Navigator.of(context).push(
       new MaterialPageRoute(builder: (context) {
-        return new Scaffold(
-          floatingActionButton: new FloatingActionButton(
-            onPressed: () {
-              widget.sendBillToKitchen(table);
-            },
-            child: new Icon(Icons.save),
-            tooltip: 'Add To Cart',
-            backgroundColor: Colors.green,
-          ),
-          appBar: new AppBar(
-            title: new Text(
-              'Menu • ' + table.name,
-              style:
-                  new TextStyle(color: theme.accentColor, fontFamily: 'Arial'),
-              overflow: TextOverflow.ellipsis,
+        return WillPopScope(
+          onWillPop: () async {
+            await widget.sendBillToKitchen(table);
+            return true;
+          },
+          child: new Scaffold(
+            floatingActionButton: new FloatingActionButton(
+              onPressed: () async {
+                await widget.sendBillToKitchen(table).then((value) {
+                  Navigator.of(context).pop();
+                });
+              },
+              child: new Icon(Icons.save),
+              tooltip: 'Add To Cart',
+              backgroundColor: Colors.green,
             ),
-            iconTheme: new IconThemeData(color: theme.accentColor),
-            centerTitle: true,
+            appBar: new AppBar(
+              title: new Text(
+                'Menu • ' + table.name,
+                style: new TextStyle(
+                    color: theme.accentColor, fontFamily: 'Arial'),
+                overflow: TextOverflow.ellipsis,
+              ),
+              iconTheme: new IconThemeData(color: theme.accentColor),
+              centerTitle: true,
+            ),
+            body: new MenuScreen(table: table),
           ),
-          body: new MenuScreen(table: table),
         );
       }),
     ).then((value) {
@@ -336,7 +350,7 @@ class _CartScreenState extends State<CartScreen> {
           ),
           Divider(),
           Container(
-            margin: const EdgeInsets.only(top: 15.0),
+            margin: const EdgeInsets.only(top: 15.0, right: 150),
             child: SizedBox(
               width: double.infinity,
               child: RaisedButton(

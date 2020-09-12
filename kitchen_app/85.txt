@@ -1,0 +1,14 @@
+BILL : 85
+Table: 19
+Date Checkin: 2020-08-25 20:04:18
+Date Checkout: 2020-08-25 20:04:33
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Sinh tố bơ: 1
+Thuốc 3 số việt: 1
+Soda blue: 1
+Sting chai: 1
+=========================================================
+Total Price: 74000.0

@@ -1,0 +1,15 @@
+BILL : 222
+Table: 3
+Date Checkin: 2020-09-03 08:21:10
+Date Checkout: 2020-09-03 08:21:32
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cacao (Đá): 2
+Trà sữa thái xanh: 1
+Number one: 1
+Bạc xỉu (Đá): 1
+Cà phê sữa (đá): 1
+=========================================================
+Total Price: 53000.0

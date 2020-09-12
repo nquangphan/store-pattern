@@ -1,0 +1,14 @@
+BILL : 71
+Table: 3
+Date Checkin: 2020-08-24 19:24:12
+Date Checkout: 2020-08-24 19:24:39
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Trà dâu chanh dây: 1
+Yaua đá thạch: 1
+Yaua hũ: 1
+Cocktail: 1
+=========================================================
+Total Price: 52000.0

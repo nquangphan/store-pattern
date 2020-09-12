@@ -1,0 +1,15 @@
+BILL : 76
+Table: 2
+Date Checkin: 2020-08-24 19:51:30
+Date Checkout: 2020-08-24 19:51:45
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Sinh tố mãng cầu: 1
+Sinh tố bơ: 1
+Sinh tố dâu: 1
+Cà phê sữa (đá): 1
+Trà đào: 1
+=========================================================
+Total Price: 66000.0

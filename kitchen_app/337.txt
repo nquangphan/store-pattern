@@ -1,0 +1,14 @@
+BILL : 337
+Table: 3
+Date Checkin: 2020-09-07 20:12:54
+Date Checkout: 2020-09-07 20:13:12
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Sinh tố mãng cầu: 1
+Sinh tố bơ: 3
+Trà sữa thái xanh: 3
+Oishi: 1
+=========================================================
+Total Price: 113000.0

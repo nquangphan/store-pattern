@@ -1,0 +1,12 @@
+BILL : 33
+Table: 1
+Date Checkin: 2020-08-22 16:09:47
+Date Checkout: 2020-08-22 16:10:14
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cà phê nguyên chất (nóng): 3
+Yaua đá thạch: 2
+=========================================================
+Total Price: 54000.0

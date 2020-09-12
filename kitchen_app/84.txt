@@ -1,0 +1,17 @@
+BILL : 84
+Table: 15
+Date Checkin: 2020-08-25 19:52:35
+Date Checkout: 2020-08-25 19:54:04
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Sinh tố bơ: 1
+Sinh tố dâu: 1
+Kem ly thập cẩm: 1
+Trà sữa thái xanh: 1
+Sinh tố mãng cầu: 1
+Bò húc: 1
+Soda blue: 2
+=========================================================
+Total Price: 67000.0

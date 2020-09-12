@@ -1,0 +1,14 @@
+BILL : 278
+Table: 2
+Date Checkin: 2020-09-05 19:52:27
+Date Checkout: 2020-09-05 19:52:41
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Kem socola ly: 1
+Trà sữa socola: 2
+Cà phê sữa (đá): 1
+Trà sữa thái xanh: 2
+=========================================================
+Total Price: 56000.0

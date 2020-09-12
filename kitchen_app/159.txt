@@ -1,0 +1,19 @@
+BILL : 159
+Table: 10
+Date Checkin: 2020-08-30 07:57:44
+Date Checkout: 2020-08-30 07:58:51
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cà phê sữa (đá): 5
+Cà phê phê đen (đá): 1
+Sinh tố bơ: 1
+Trà xanh không độ: 1
+sữa đậu nành : 1
+Oishi: 3
+Nước cam: 1
+Bạc xỉu (Đá): 1
+Cacao (Đá): 1
+=========================================================
+Total Price: 76000.0

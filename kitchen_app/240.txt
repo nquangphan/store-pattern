@@ -1,0 +1,16 @@
+BILL : 240
+Table: 5
+Date Checkin: 2020-09-04 07:53:59
+Date Checkout: 2020-09-04 07:54:47
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+thuốc saven: 1
+Sinh tố bơ: 1
+Cà phê phê đen (đá): 1
+Hạt dưa: 1
+mì tôm pha: 1
+Oishi: 1
+=========================================================
+Total Price: 58000.0

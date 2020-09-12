@@ -1,0 +1,15 @@
+BILL : 183
+Table: 1
+Date Checkin: 2020-09-01 10:03:25
+Date Checkout: 2020-09-01 10:04:00
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cà phê sữa (đá): 1
+Number one: 1
+Trà sữa socola: 1
+Trà sữa dâu: 1
+Sữa tươi: 1
+=========================================================
+Total Price: 62000.0

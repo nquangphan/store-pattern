@@ -1,0 +1,15 @@
+BILL : 156
+Table: 5
+Date Checkin: 2020-08-30 07:43:50
+Date Checkout: 2020-08-30 07:45:27
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cà phê phê đen (đá): 2
+Cà phê sữa (đá): 2
+Trà xanh không độ: 1
+Bò húc: 1
+Chanh muối: 1
+=========================================================
+Total Price: 71000.0

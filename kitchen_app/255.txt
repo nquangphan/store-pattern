@@ -1,0 +1,12 @@
+BILL : 255
+Table: 4
+Date Checkin: 2020-09-04 20:11:13
+Date Checkout: 2020-09-04 20:11:20
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Yaua đá thạch: 2
+Yaua sinh tố việt quất: 2
+=========================================================
+Total Price: 58000.0

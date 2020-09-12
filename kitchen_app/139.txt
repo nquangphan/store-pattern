@@ -1,0 +1,13 @@
+BILL : 139
+Table: 10
+Date Checkin: 2020-08-29 19:49:05
+Date Checkout: 2020-08-29 19:49:27
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Yaua đá thạch: 3
+Soda blue: 1
+Kem dừa ly: 1
+=========================================================
+Total Price: 54000.0

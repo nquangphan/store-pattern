@@ -1,0 +1,17 @@
+BILL : 63
+Table: 14
+Date Checkin: 2020-08-23 20:45:14
+Date Checkout: 2020-08-23 20:45:20
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Bạc xỉu (Đá): 1
+Cà phê phê đen (đá): 1
+Cà phê sữa (đá): 1
+Thuốc Sài Gòn bạc: 2
+Oishi: 1
+Kem ly thập cẩm: 1
+Yaua đá thạch: 1
+=========================================================
+Total Price: 90000.0

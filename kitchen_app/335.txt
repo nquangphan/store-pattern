@@ -1,0 +1,14 @@
+BILL : 335
+Table: 12
+Date Checkin: 2020-09-07 19:41:09
+Date Checkout: 2020-09-07 19:42:08
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Trà gừng nóng: 1
+Sinh tố bơ: 3
+Soda dâu: 1
+Oishi: 1
+=========================================================
+Total Price: 78000.0

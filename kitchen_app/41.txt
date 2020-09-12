@@ -1,0 +1,15 @@
+BILL : 41
+Table: 1
+Date Checkin: 2020-08-22 20:55:11
+Date Checkout: 2020-08-22 20:55:37
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Sinh tố mãng cầu: 2
+Sinh tố dâu: 1
+Oishi: 2
+Cà phê sữa (nóng): 1
+Dr.Thanh chai: 1
+=========================================================
+Total Price: 70000.0

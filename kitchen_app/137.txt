@@ -1,0 +1,15 @@
+BILL : 137
+Table: 1
+Date Checkin: 2020-08-29 16:38:13
+Date Checkout: 2020-08-29 16:39:17
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Yaua đá thạch: 1
+Trà tắc: 1
+Đá me: 1
+Chanh dây: 1
+Trà dâu chanh dây: 1
+=========================================================
+Total Price: 36000.0

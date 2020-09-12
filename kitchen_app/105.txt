@@ -1,0 +1,16 @@
+BILL : 105
+Table: 1
+Date Checkin: 2020-08-27 11:03:29
+Date Checkout: 2020-08-27 11:36:52
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Sinh tố bơ: 2
+Bơ dằm: 1
+Sinh tố dâu: 1
+Kem hũ: 1
+Soda blue: 1
+Oishi: 2
+=========================================================
+Total Price: 102000.0

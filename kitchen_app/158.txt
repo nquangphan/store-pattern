@@ -1,0 +1,15 @@
+BILL : 158
+Table: 16
+Date Checkin: 2020-08-30 07:55:29
+Date Checkout: 2020-08-30 07:56:12
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Thuốc mèo: 1
+Cà phê sữa (đá): 1
+Cà phê sữa nguyên chất (Đá): 1
+Cà phê nguyên chất (đá): 1
+Yaua sinh tố dâu: 1
+=========================================================
+Total Price: 68000.0

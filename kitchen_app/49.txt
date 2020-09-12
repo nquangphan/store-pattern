@@ -1,0 +1,16 @@
+BILL : 49
+Table: 9
+Date Checkin: 2020-08-23 08:40:07
+Date Checkout: 2020-08-23 08:40:40
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cà phê sữa (đá): 2
+Nước cam: 1
+Bạc xỉu (Đá): 1
+Chanh dây: 1
+Cà phê phê đen (đá): 1
+lipton nóng: 1
+=========================================================
+Total Price: 75000.0

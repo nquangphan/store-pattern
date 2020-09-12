@@ -1,0 +1,14 @@
+BILL : 286
+Table: 18
+Date Checkin: 2020-09-05 20:57:48
+Date Checkout: 2020-09-05 20:58:56
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Revive chanh muối: 1
+Chanh muối: 1
+thuốc zed: 1
+Bơ dằm: 2
+=========================================================
+Total Price: 68000.0

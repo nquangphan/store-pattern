@@ -1,0 +1,17 @@
+BILL : 376
+Table: 22
+Date Checkin: 2020-09-09 19:42:36
+Date Checkout: 2020-09-09 19:43:14
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Bài: 2
+Cà phê sữa (đá): 1
+Sinh tố mãng cầu: 1
+Sinh tố bơ: 2
+Trà sữa thái xanh: 1
+Thuốc 3 số việt: 1
+Nước cam: 1
+=========================================================
+Total Price: 76000.0

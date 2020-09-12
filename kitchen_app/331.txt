@@ -1,0 +1,13 @@
+BILL : 331
+Table: 1
+Date Checkin: 2020-09-07 13:14:55
+Date Checkout: 2020-09-07 13:15:08
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Trà tắc: 2
+Sting chai: 1
+thuốc saven: 1
+=========================================================
+Total Price: 36000.0

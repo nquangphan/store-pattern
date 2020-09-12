@@ -1,0 +1,15 @@
+BILL : 332
+Table: 6
+Date Checkin: 2020-09-07 19:10:27
+Date Checkout: 2020-09-07 19:10:44
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Sting (lon): 1
+Cà phê phê đen (đá): 2
+Hạt dưa: 2
+Sinh tố mãng cầu: 1
+Cà phê sữa (đá): 1
+=========================================================
+Total Price: 22000.0

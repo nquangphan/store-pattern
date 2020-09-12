@@ -1,0 +1,15 @@
+BILL : 232
+Table: 5
+Date Checkin: 2020-09-03 20:21:12
+Date Checkout: 2020-09-03 20:21:24
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Sinh tố bơ: 5
+Sinh tố mãng cầu: 2
+Sting (lon): 1
+Hạt dưa: 1
+Oishi: 4
+=========================================================
+Total Price: 108000.0

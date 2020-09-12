@@ -1,0 +1,16 @@
+BILL : 317
+Table: 12
+Date Checkin: 2020-09-06 20:13:58
+Date Checkout: 2020-09-06 20:17:43
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Yaua đá thạch: 2
+Cà phê sữa (đá): 3
+Nước cam: 1
+Cacao (Đá): 1
+Cà phê phê đen (đá): 1
+Yaua hũ: 1
+=========================================================
+Total Price: 109000.0

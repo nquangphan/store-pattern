@@ -1,0 +1,24 @@
+BILL : 389
+Table: 12
+Date Checkin: 2020-09-10 19:24:23
+Date Checkout: 2020-09-10 19:27:35
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Bơ dằm: 1
+Sinh tố bơ: 1
+Trà đào: 1
+Cà phê sữa (đá): 1
+Bạc xỉu (nóng): 1
+Soda blue: 1
+Sinh tố mãng cầu: 1
+Trà sữa đào: 1
+Kem dừa ly: 1
+Trà dâu chanh dây: 1
+Trà trái cây Kiwi: 1
+Yaua đá thạch: 1
+Oishi: 1
+Chanh muối: 1
+=========================================================
+Total Price: 135000.0

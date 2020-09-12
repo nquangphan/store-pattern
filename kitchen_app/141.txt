@@ -1,0 +1,16 @@
+BILL : 141
+Table: 6
+Date Checkin: 2020-08-29 20:05:00
+Date Checkout: 2020-08-29 20:05:11
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Nước cam: 2
+Tắc xí muội: 1
+Bạc xỉu (Đá): 1
+Trà sữa thái xanh: 1
+Trà dâu chanh dây: 1
+Bơ dằm: 1
+=========================================================
+Total Price: 41000.0

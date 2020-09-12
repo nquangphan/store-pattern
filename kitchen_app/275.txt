@@ -1,0 +1,16 @@
+BILL : 275
+Table: 10
+Date Checkin: 2020-09-05 19:34:12
+Date Checkout: 2020-09-05 19:34:51
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cà phê phê đen (đá): 1
+Cà phê sữa (đá): 1
+Yaua đá thạch: 1
+thuốc zed: 1
+Cà phê đen (nóng): 1
+Kem ly thập cẩm: 1
+=========================================================
+Total Price: 60000.0

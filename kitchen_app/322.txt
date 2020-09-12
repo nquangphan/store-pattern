@@ -1,0 +1,13 @@
+BILL : 322
+Table: 3
+Date Checkin: 2020-09-06 20:17:50
+Date Checkout: 2020-09-06 20:17:56
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Sting (lon): 1
+Trà bí đao: 1
+Number one: 1
+=========================================================
+Total Price: 36000.0

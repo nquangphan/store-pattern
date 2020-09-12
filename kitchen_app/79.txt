@@ -1,0 +1,13 @@
+BILL : 79
+Table: 10
+Date Checkin: 2020-08-24 20:53:39
+Date Checkout: 2020-08-24 20:54:40
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Trà sữa thái xanh: 1
+Soda blue: 3
+Bài: 2
+=========================================================
+Total Price: 37000.0

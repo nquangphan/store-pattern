@@ -29,6 +29,7 @@ dependencies:
   test: 
   rxdart: ^0.22.6
   get_ip: ^0.4.0
+  diacritic: ^0.1.1
 
 dev_dependencies:
   flutter_test:

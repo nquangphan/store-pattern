@@ -1,0 +1,16 @@
+BILL : 86
+Table: 4
+Date Checkin: 2020-08-25 20:05:59
+Date Checkout: 2020-08-25 20:06:29
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Revive chanh muối: 1
+Trà xanh không độ: 1
+Trà sữa đào: 1
+Cà phê sữa (đá): 1
+Nước cam: 1
+thuốc lẻ (mèo): 6
+=========================================================
+Total Price: 49000.0

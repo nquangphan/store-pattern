@@ -1,0 +1,17 @@
+BILL : 259
+Table: 5
+Date Checkin: 2020-09-04 21:04:48
+Date Checkout: 2020-09-04 21:05:17
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Trà dâu chanh dây: 1
+Trà sữa thái xanh: 2
+Trà bí đao: 2
+Bò húc: 1
+Sinh tố dâu: 1
+Hạt dưa: 1
+Kem hũ: 2
+=========================================================
+Total Price: 41000.0

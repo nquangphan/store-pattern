@@ -1,0 +1,16 @@
+BILL : 138
+Table: 14
+Date Checkin: 2020-08-29 19:37:02
+Date Checkout: 2020-08-29 19:38:51
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Siro đá bào: 1
+Yaua đá thạch: 3
+Trà đào: 1
+Oishi: 4
+Nước cam: 1
+Kem dâu ly: 1
+=========================================================
+Total Price: 84000.0

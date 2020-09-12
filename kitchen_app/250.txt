@@ -1,0 +1,14 @@
+BILL : 250
+Table: 2
+Date Checkin: 2020-09-04 18:44:29
+Date Checkout: 2020-09-04 18:44:38
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cacao (Đá): 2
+Sting chai: 1
+Trà sữa thái xanh: 1
+Bạc xỉu (Đá): 1
+=========================================================
+Total Price: 40000.0

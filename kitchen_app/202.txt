@@ -1,0 +1,16 @@
+BILL : 202
+Table: 2
+Date Checkin: 2020-09-02 07:16:15
+Date Checkout: 2020-09-02 07:16:31
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Yến Nha đam chai: 1
+Sinh tố dâu: 1
+Cà phê sữa (đá): 3
+Cà phê phê đen (đá): 2
+Sữa Nutriboost: 1
+Yaua đá thạch: 1
+=========================================================
+Total Price: 65000.0

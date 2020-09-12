@@ -1,0 +1,18 @@
+BILL : 78
+Table: 1
+Date Checkin: 2020-08-24 20:22:32
+Date Checkout: 2020-08-24 20:23:45
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Sinh tố bơ: 3
+Yaua đá thạch: 1
+Yaua hũ: 1
+Trà dâu chanh dây: 1
+Cà phê phê đen (đá): 2
+Cà phê sữa (đá): 2
+247: 1
+Trà sữa thái xanh: 1
+=========================================================
+Total Price: 121000.0

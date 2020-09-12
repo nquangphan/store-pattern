@@ -1,0 +1,16 @@
+BILL : 409
+Table: 3
+Date Checkin: 2020-09-11 19:40:18
+Date Checkout: 2020-09-11 19:40:24
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Soda blue: 3
+Bài: 1
+Sữa Nutriboost: 1
+thuốc lẻ (mèo): 10
+Trà sữa thái xanh: 0
+Bạc xỉu (Đá): 0
+=========================================================
+Total Price: 34000.0

@@ -1,0 +1,12 @@
+BILL : 190
+Table: 13
+Date Checkin: 2020-09-01 19:50:49
+Date Checkout: 2020-09-01 19:50:57
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Kem socola ly: 1
+Yaua hương dâu: 1
+=========================================================
+Total Price: 32000.0

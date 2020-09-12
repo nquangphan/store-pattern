@@ -1,0 +1,16 @@
+BILL : 336
+Table: 17
+Date Checkin: 2020-09-07 20:01:55
+Date Checkout: 2020-09-07 20:02:02
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Yaua đá thạch: 2
+Dr.Thanh chai: 2
+Thuốc 3 số việt: 1
+Trà sữa thái xanh: 1
+Lipton sữa: 1
+Bài: 2
+=========================================================
+Total Price: 50000.0

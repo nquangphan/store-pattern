@@ -1,0 +1,16 @@
+BILL : 411
+Table: 1
+Date Checkin: 2020-09-12 06:49:32
+Date Checkout: 2020-09-12 06:50:04
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cà phê đen (nóng): 2
+Cà phê sữa (đá): 2
+Yaua đá thạch: 1
+Sữa Nutriboost: 2
+Cà phê sữa (nóng): 1
+kẹo mút: 2
+=========================================================
+Total Price: 68000.0

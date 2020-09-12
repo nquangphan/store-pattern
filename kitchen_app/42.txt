@@ -1,0 +1,16 @@
+BILL : 42
+Table: 9
+Date Checkin: 2020-08-22 21:19:08
+Date Checkout: 2020-08-22 21:19:33
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Trà dâu chanh dây: 1
+Cocacola: 1
+Cà phê sữa (đá): 1
+Cà phê phê đen (đá): 2
+Bơ dằm: 1
+kẹo mút: 2
+=========================================================
+Total Price: 69000.0

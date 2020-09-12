@@ -1,0 +1,18 @@
+BILL : 285
+Table: 5
+Date Checkin: 2020-09-05 20:52:15
+Date Checkout: 2020-09-05 20:52:41
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Kem hũ: 1
+Yaua sinh tố việt quất: 1
+Cacao (nóng): 1
+Trà đào: 1
+Nước cam: 1
+kẹo mút: 2
+Mirinda soda kem : 1
+Oishi: 1
+=========================================================
+Total Price: 71500.0

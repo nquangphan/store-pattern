@@ -1,0 +1,15 @@
+BILL : 348
+Table: 19
+Date Checkin: 2020-09-08 19:52:04
+Date Checkout: 2020-09-08 19:52:19
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Sữa tươi: 2
+Yaua sinh tố việt quất: 1
+Bài: 2
+Trà chanh: 1
+Yaua đá thạch: 1
+=========================================================
+Total Price: 61000.0

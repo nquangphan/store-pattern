@@ -1,0 +1,14 @@
+BILL : 152
+Table: 1
+Date Checkin: 2020-08-30 06:39:06
+Date Checkout: 2020-08-30 06:39:47
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cà phê sữa nguyên chất (nóng): 2
+Yaua sinh tố việt quất: 7
+Yaua đá thạch: 2
+Cà phê phê đen (đá): 1
+=========================================================
+Total Price: 177000.0

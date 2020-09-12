@@ -15,7 +15,7 @@ class BillScreen extends StatefulWidget {
 }
 
 class _BillScreenState extends State<BillScreen> {
-  Future<List<Bill>> bills = Controller.instance.bills;
+  Future<List<Bill>> bills;
   TextEditingController _keywordController = new TextEditingController();
   var format = DateFormat('MM/dd/yyyy \nhh:mm:ss');
   static var formatDate = DateFormat.yMd();
@@ -28,6 +28,12 @@ class _BillScreenState extends State<BillScreen> {
     fontFamily: 'Dosis',
     fontSize: 16.0,
   );
+  @override
+  void initState() {
+    super.initState();
+    bills = Controller.instance.searchFoods(
+        '', formatDate.parse(txbDayStart), formatDate.parse(txbDayEnd));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,54 +65,124 @@ class _BillScreenState extends State<BillScreen> {
                   onSubmitted: null,
                   style: _itemStyle,
                   decoration: InputDecoration.collapsed(
-                    hintText: 'Enter your table...',
+                    hintText: 'Nhập số bàn...',
                     hintStyle: _itemStyle,
                   ))),
-          new Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              new Text('$txbDayStart', style: _itemStyleDay),
-              new Text(
-                '-',
-                style: _itemStyleDay,
-              ),
-              new Text(
-                '$txbDayEnd',
-                style: _itemStyleDay,
-              ),
-              new IconButton(
-                icon: new Icon(
-                  Icons.edit,
-                  color: Colors.orangeAccent,
-                  size: 19.0,
+          GestureDetector(
+            onTap: () {
+              _selectDate();
+            },
+            child: new Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                new Text('$txbDayStart', style: _itemStyleDay),
+                new Text(
+                  '-',
+                  style: _itemStyleDay,
                 ),
-                onPressed: () {
-                  _selectDate();
-                },
-              )
-            ],
+                new Text(
+                  '$txbDayEnd',
+                  style: _itemStyleDay,
+                ),
+                new IconButton(
+                  icon: new Icon(
+                    Icons.edit,
+                    color: Colors.orangeAccent,
+                    size: 19.0,
+                  ),
+                  onPressed: () {
+                    _selectDate();
+                  },
+                )
+              ],
+            ),
           )
         ],
       ),
     );
 
-    Widget table = new FutureBuilder<List<Bill>>(
-      future: bills,
-      builder: (context, snapshot) {
-        if (snapshot.hasError) print(snapshot.error);
-        if (snapshot.hasData) {
-          return _buildTable(snapshot.data);
-        }
-        return Center(child: CircularProgressIndicator());
-      },
-    );
+    TextStyle _boldStyle = TextStyle(fontWeight: FontWeight.bold);
 
-    return Container(
-      child: Column(
-        children: <Widget>[controls, table],
-      ),
-    );
+    return FutureBuilder<List<Bill>>(
+        future: bills,
+        builder: (context, billsSnapshot) {
+          return billsSnapshot.hasData
+              ? Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      controls,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                                'Tổng số bàn: ' +
+                                    billsSnapshot?.data?.length.toString(),
+                                style: _boldStyle),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                                'Tổng tiền: ' +
+                                    _getTotalMoney(billsSnapshot.data),
+                                style: _boldStyle),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                                'Buổi sáng: ' +
+                                    _getMorningTotalMoney(billsSnapshot.data),
+                                style: _boldStyle.merge(TextStyle(color: Colors.blue))),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                                'Buổi chiều: ' +
+                                    _getAfternoonTotalMoney(billsSnapshot.data),
+                                style: _boldStyle.merge(TextStyle(color: Colors.blue))),
+                          ),
+                        ],
+                      ),
+                      _buildTable(billsSnapshot.data)
+                    ],
+                  ),
+                )
+              : Container();
+        });
+  }
+
+  _getMorningTotalMoney(List<Bill> listBills) {
+    double totalMoney = 0;
+    listBills.forEach((element) {
+      if (element.status == 'Paid' && element.dateCheckIn.hour < 12)
+        totalMoney += element.totalPrice;
+    });
+    return NumberFormat("#,###").format(totalMoney);
+  }
+
+  _getAfternoonTotalMoney(List<Bill> listBills) {
+    double totalMoney = 0;
+    listBills.forEach((element) {
+      if (element.status == 'Paid' && element.dateCheckIn.hour >= 12)
+        totalMoney += element.totalPrice;
+    });
+    return NumberFormat("#,###").format(totalMoney);
+  }
+
+  String _getTotalMoney(List<Bill> listBills) {
+    double totalMoney = 0;
+    listBills.forEach((element) {
+      if (element.status == 'Paid') totalMoney += element.totalPrice;
+    });
+    return NumberFormat("#,###").format(totalMoney);
   }
 
   List<TableRow> _buildListRow(List<Bill> foods) {
@@ -122,36 +198,37 @@ class _BillScreenState extends State<BillScreen> {
       child: Container(
           width: double.infinity,
           padding: const EdgeInsets.all(7.0),
-          child: new ListView(
-            shrinkWrap: true,
+          child: new SingleChildScrollView(
             scrollDirection: Axis.vertical,
-            children: <Widget>[
-              new Table(
-                  defaultColumnWidth: FlexColumnWidth(2.0),
-                  columnWidths: MediaQuery.of(context).orientation ==
-                          Orientation.landscape
-                      ? {
-                          0: FlexColumnWidth(0.5),
-                          1: FlexColumnWidth(0.5),
-                          2: FlexColumnWidth(1.3),
-                          3: FlexColumnWidth(1.8),
-                          4: FlexColumnWidth(0.9),
-                          5: FlexColumnWidth(1.0),
-                          6: FlexColumnWidth(1.0),
-                          7: FlexColumnWidth(0.9),
-                          8: FlexColumnWidth(1.7),
-                        }
-                      : {
-                          0: FlexColumnWidth(0.5),
-                          1: FlexColumnWidth(0.8),
-                          2: FlexColumnWidth(1.5),
-                          3: FlexColumnWidth(1.5),
-                          4: FlexColumnWidth(1.0),
-                        },
-                  border:
-                      TableBorder.all(width: 1.0, color: theme.fontColorLight),
-                  children: _buildListRow(foods)),
-            ],
+            child: Column(
+              children: <Widget>[
+                new Table(
+                    defaultColumnWidth: FlexColumnWidth(2.0),
+                    columnWidths: MediaQuery.of(context).orientation ==
+                            Orientation.landscape
+                        ? {
+                            0: FlexColumnWidth(0.5),
+                            1: FlexColumnWidth(0.5),
+                            2: FlexColumnWidth(1.3),
+                            3: FlexColumnWidth(1.8),
+                            4: FlexColumnWidth(0.9),
+                            5: FlexColumnWidth(1.0),
+                            6: FlexColumnWidth(1.0),
+                            7: FlexColumnWidth(0.9),
+                            8: FlexColumnWidth(1.7),
+                          }
+                        : {
+                            0: FlexColumnWidth(0.5),
+                            1: FlexColumnWidth(0.8),
+                            2: FlexColumnWidth(1.5),
+                            3: FlexColumnWidth(1.5),
+                            4: FlexColumnWidth(1.0),
+                          },
+                    border: TableBorder.all(
+                        width: 1.0, color: theme.fontColorLight),
+                    children: _buildListRow(foods)),
+              ],
+            ),
           )),
     );
   }
@@ -420,7 +497,7 @@ class _BillScreenState extends State<BillScreen> {
     DateTime pickedStart = await showDatePicker(
       context: context,
       initialDate: formatDate.parse(txbDayStart),
-      firstDate: new DateTime(1975),
+      firstDate: new DateTime(2019),
       lastDate: DateTime.now(),
     );
     if (pickedStart != null) {
@@ -445,8 +522,8 @@ class _BillScreenState extends State<BillScreen> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: new Text('Confirm', style: theme.titleStyle),
-            content: new Text('Do you want to delete this bill: ${bill.id}?',
+            title: new Text('Xác nhận', style: theme.titleStyle),
+            content: new Text('Bạn có muốn xóa hóa đơn này: ${bill.id}?',
                 style: theme.contentStyle),
             actions: <Widget>[
               new FlatButton(

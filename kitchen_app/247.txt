@@ -1,0 +1,21 @@
+BILL : 247
+Table: 1
+Date Checkin: 2020-09-04 12:06:18
+Date Checkout: 2020-09-04 12:06:45
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Bò húc: 2
+Bài: 4
+sting sữa: 1
+Sting chai: 1
+Trà chanh: 1
+Nước khoáng: 2
+Yaua hũ: 1
+thuốc saven: 1
+mì tôm pha: 1
+Nước cam: 2
+Thuốc mèo: 1
+=========================================================
+Total Price: 89000.0

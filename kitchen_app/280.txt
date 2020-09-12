@@ -1,0 +1,16 @@
+BILL : 280
+Table: 19
+Date Checkin: 2020-09-05 20:04:12
+Date Checkout: 2020-09-05 20:04:39
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Kem dâu ly: 1
+Trà sữa thái xanh: 1
+Cacao (nóng): 2
+Sinh tố mãng cầu: 1
+Sinh tố dâu: 1
+Yaua đá thạch: 1
+=========================================================
+Total Price: 103000.0

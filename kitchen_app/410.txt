@@ -1,0 +1,14 @@
+BILL : 410
+Table: 10
+Date Checkin: 2020-09-11 19:43:20
+Date Checkout: 2020-09-11 19:44:49
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cà phê phê đen (đá): 2
+Sinh tố dâu: 3
+Trà gừng nóng: 1
+Trà sữa thái xanh: 1
+=========================================================
+Total Price: 99000.0

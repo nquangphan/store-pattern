@@ -1,0 +1,14 @@
+BILL : 204
+Table: 8
+Date Checkin: 2020-09-02 07:47:29
+Date Checkout: 2020-09-02 07:47:37
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cà phê phê đen (đá): 1
+Dr.Thanh chai: 2
+thuốc lẻ (mèo): 2
+lipton nóng: 1
+=========================================================
+Total Price: 26000.0

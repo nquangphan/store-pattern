@@ -1,0 +1,15 @@
+BILL : 388
+Table: 2
+Date Checkin: 2020-09-10 19:23:14
+Date Checkout: 2020-09-10 19:23:25
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Nước khoáng: 1
+Trà sữa thái xanh: 5
+Bài: 1
+Cà phê sữa (đá): 1
+Sting (lon): 1
+=========================================================
+Total Price: 56000.0

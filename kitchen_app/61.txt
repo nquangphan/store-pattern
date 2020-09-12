@@ -1,0 +1,20 @@
+BILL : 61
+Table: 2
+Date Checkin: 2020-08-23 20:02:50
+Date Checkout: 2020-08-23 20:05:02
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Bạc xỉu (Đá): 2
+Soda blue: 1
+Sinh tố bơ: 2
+Cacao (nóng): 1
+Cacao (Đá): 1
+Nước cam: 1
+Yaua đá thạch: 1
+Kem ly thập cẩm: 4
+Dr.Thanh chai: 1
+thuốc lẻ (mèo): 1
+=========================================================
+Total Price: 97000.0

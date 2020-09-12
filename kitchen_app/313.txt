@@ -1,0 +1,13 @@
+BILL : 313
+Table: 3
+Date Checkin: 2020-09-06 16:18:11
+Date Checkout: 2020-09-06 16:18:26
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cà phê phê đen (đá): 1
+Sting chai: 1
+thuốc saven: 1
+=========================================================
+Total Price: 35000.0
