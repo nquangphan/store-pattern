@@ -8,23 +8,23 @@ import 'package:rxdart/rxdart.dart';
 import './../Models/home.model.dart';
 import 'dart:async';
 
-class Controller {
-  BehaviorSubject<List<Table>> _tableListController =
-      BehaviorSubject<List<Table>>.seeded(null);
+class HomeController {
+  BehaviorSubject<List<AppTable>> _tableListController =
+      BehaviorSubject<List<AppTable>>.seeded(null);
 
-  Stream<List<Table>> get tableListStream => _tableListController.stream;
+  Stream<List<AppTable>> get tableListStream => _tableListController.stream;
 
   BehaviorSubject<bool> _isLoading = BehaviorSubject<bool>.seeded(null);
 
   Stream<bool> get isLoading => _isLoading.stream;
 
-  static Controller _instance;
+  static HomeController _instance;
   static bool isLoadAppSuccess = true;
 
   bool isStopTimer = false;
 
-  static Controller get instance {
-    if (_instance == null) _instance = new Controller();
+  static HomeController get instance {
+    if (_instance == null) _instance = new HomeController();
     return _instance;
   }
 
@@ -48,13 +48,13 @@ class Controller {
     });
   }
 
-  List<Table> getTables() {
-    List<Table> _tables;
+  List<AppTable> getTables() {
+    List<AppTable> _tables;
     if (_tables == null) {
-      Model.instance.tables.then((value) {
+      HomeModel.instance.tables.then((value) {
         _tables = value;
         if (_tableListController.isClosed) {
-          _tableListController = BehaviorSubject<List<Table>>.seeded(null);
+          _tableListController = BehaviorSubject<List<AppTable>>.seeded(null);
         }
         _tableListController.sink.add(_tables);
       });
@@ -64,6 +64,10 @@ class Controller {
   }
 
   void getServerIp({Function onLoadSuccess}) {
+      MySqlConnection.instance.serverURL =
+        'http://http://10.1.32.163/:8090/bluecoffee/index.php';
+        onLoadSuccess();
+    return;
     var DESTINATION_ADDRESS = InternetAddress("255.255.255.255");
     _isLoading.sink.add(true);
     String ipAddress = '';

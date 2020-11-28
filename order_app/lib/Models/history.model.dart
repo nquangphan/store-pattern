@@ -1,14 +1,16 @@
+import 'package:user_repository/user_repository.dart';
+
 import './../Constants/queries.dart' as queries;
 import './connectServer.dart';
-import './home.model.dart' as home;
-import './login.model.dart' as login;
-import './menu.model.dart' as menu;
+import './home.model.dart' ;
+import './login.model.dart' ;
+import './menu.model.dart' ;
 
-class Model {
-  static Model _instance;
+class HistoryModel {
+  static HistoryModel _instance;
 
-  static Model get instance {
-    if (_instance == null) _instance = new Model();
+  static HistoryModel get instance {
+    if (_instance == null) _instance = new HistoryModel();
     return _instance;
   }
 
@@ -22,7 +24,7 @@ class Model {
     return MySqlConnection.instance.executeNoneQuery(queries.DELETE_BILL, parameter: [id]);
   }
 
-  Future<List<menu.Food>> getBillDetailByBill(int idBill) async {
+  Future<List<Food>> getBillDetailByBill(int idBill) async {
     Future<List> futureFoods =
         MySqlConnection.instance.executeQuery(queries.GET_BILLDETAIL_BY_BILL, parameter: [idBill]);
     return parseFood(futureFoods);
@@ -38,11 +40,11 @@ class Model {
     return futureBills;
   }
 
-  Future<List<menu.Food>> parseFood(Future<List> foods) async {
-    List<menu.Food> futureFoods = [];
+  Future<List<Food>> parseFood(Future<List> foods) async {
+    List<Food> futureFoods = [];
     await foods.then((values) {
       values.forEach((value) {
-        futureFoods.add(new menu.Food.fromJson(value));
+        futureFoods.add(new Food.fromJson(value));
       });
     });
     return futureFoods;
@@ -51,11 +53,11 @@ class Model {
 
 class BillPlus {
   int id;
-  home.Table table;
+  AppTable table;
   DateTime dateCheckOut;
   double discount;
   double totalPrice;
-  login.Account account;
+  Account account;
 
   BillPlus({this.id, this.table, this.dateCheckOut, this.discount, this.totalPrice, this.account});
 
@@ -65,11 +67,11 @@ class BillPlus {
     this.discount = double.parse(json['Discount']);
     this.totalPrice = double.parse(json['TotalPrice']);
 
-    this.table = new home.Table.noneParametter();
+    this.table = new AppTable.noneParametter();
     this.table.id = int.parse(json['IDTable']);
     this.table.name = json['Name'];
-    this.table.addFoods(Model.instance.getBillDetailByBill(this.id));
+    this.table.addFoods(HistoryModel.instance.getBillDetailByBill(this.id));
 
-    this.account = new login.Account.fromJson(json);
+    this.account = new Account.fromJson(json);
   }
 }

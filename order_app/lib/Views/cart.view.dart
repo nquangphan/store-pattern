@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intl/intl.dart';
+import 'package:order_app/Constants/theme.dart';
 import 'package:order_app/Views/menu.view.dart';
+import 'package:user_repository/user_repository.dart';
 
 import './../Constants/dialog.dart';
-import './../Constants/theme.dart' as theme;
 import './../Controllers/cart.controller.dart';
-import './../Controllers/history.controller.dart' as historyController;
-import './../Models/home.model.dart' as home;
-import './../Models/login.model.dart';
-import './../Models/menu.model.dart' as menu;
-import './../Controllers/menu.controller.dart' as menuController;
+import './../Controllers/history.controller.dart';
+import './../Models/home.model.dart' ;
+import './../Models/menu.model.dart' ;
+import './../Controllers/menu.controller.dart' ;
 
 class CartScreen extends StatefulWidget {
   CartScreen(
-      {key, this.table, this.homeContext, this.account, this.sendBillToKitchen})
+      {key, this.table, this.homeContext, this.account})
       : super(key: key);
 
   final Account account;
-  final home.Table table;
+  final AppTable table;
   final BuildContext homeContext;
-  final Function(home.Table) sendBillToKitchen;
 
   @override
   _CartScreenState createState() => _CartScreenState();
@@ -30,7 +29,7 @@ class _CartScreenState extends State<CartScreen> {
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
   double _discount;
   TextEditingController _textController = TextEditingController();
-  Future<List<menu.Food>> futureFoods;
+  Future<List<Food>> futureFoods;
   @override
   void initState() {
     _discount = 0.0;
@@ -38,7 +37,7 @@ class _CartScreenState extends State<CartScreen> {
     super.initState();
     if (widget.table.status == 1) {
       futureFoods =
-          menuController.Controller.instance.getListFoodByTable(widget.table);
+          MenuController.instance.getListFoodByTable(widget.table);
     }
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     var android = AndroidInitializationSettings('app_icon');
@@ -56,27 +55,27 @@ class _CartScreenState extends State<CartScreen> {
         },
         child: new Icon(Icons.add_shopping_cart),
         tooltip: 'Add To Cart',
-        backgroundColor: theme.fontColor,
+        backgroundColor: fontColor,
       ),
       appBar: new AppBar(
         title: new Text(
           'Bàn • ' + widget.table.name,
-          style: new TextStyle(color: theme.accentColor, fontFamily: 'Arial'),
+          style: new TextStyle(color: accentColor, fontFamily: 'Arial'),
         ),
-        iconTheme: new IconThemeData(color: theme.accentColor),
+        iconTheme: new IconThemeData(color: accentColor),
         centerTitle: true,
         actions: <Widget>[
           new IconButton(
             icon: new Icon(Icons.send),
-            color: theme.accentColor,
+            color: accentColor,
             onPressed: () {
-              widget.sendBillToKitchen(widget.table);
+              _sendBillToKitchen(widget.table);
             },
           )
         ],
       ),
       body: widget.table.status == 1
-          ? FutureBuilder<List<menu.Food>>(
+          ? FutureBuilder<List<Food>>(
               future: futureFoods,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done &&
@@ -104,13 +103,151 @@ class _CartScreenState extends State<CartScreen> {
     );
   }
 
-  void _pushMenuScreen(home.Table table) {
+  
+  void _sendBillToKitchen(AppTable table) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: new Text('Xác nhận', style: titleStyle),
+            content: new Text(
+                'Bạn chắc chắn muốn gửi ' + table.name + ' tới pha chế?',
+                style: contentStyle),
+            actions: <Widget>[
+              new FlatButton(
+                child: new Text('Ok', style: okButtonStyle),
+                onPressed: () async {
+                  Navigator.of(context).pop();
+                  CartController.instance.isSend = false;
+                  if (await CartController.instance.hasBillOfTable(table.id)) {
+                    // exists bill
+                    int idBill = await CartController.instance
+                        .getIdBillByTable(table.id);
+                    if (await CartController.instance.updateBill(
+                        idBill,
+                        table.id,
+                        table.dateCheckIn,
+                        DateTime.parse(new DateFormat('yyyy-MM-dd HH:mm:ss.SSS')
+                            .format(DateTime.now())),
+                        0,
+                        table.getTotalPrice(),
+                        0,
+                        widget.account.username)) {
+                      for (var food in table.foods) {
+                        if (await CartController.instance
+                            .hasBillDetailOfBill(idBill, food.id)) {
+                          // exists billdetail
+                          if (await CartController.instance.updateBillDetail(
+                                  idBill, food.id, food.quantity) ==
+                              false) {
+                            _sendFailed(table.name);
+                            return;
+                          }
+                        } else {
+                          // not exists billdetail
+                          if (await CartController.instance.insertBillDetail(
+                                  idBill, food.id, food.quantity) ==
+                              false) {
+                            _sendFailed(table.name);
+                            return;
+                          }
+                        }
+                      }
+                      CartController.instance.isSend = true;
+                      _sendSuccess(table.name);
+                    } else
+                      _sendFailed(table.name);
+                  } else {
+                    // not exists bill
+                    if (await CartController.instance.insertBill(
+                        table.id,
+                        table.dateCheckIn,
+                        DateTime.parse(new DateFormat('yyyy-MM-dd HH:mm:ss.SSS')
+                            .format(DateTime.now())),
+                        0,
+                        table.getTotalPrice(),
+                        0,
+                        widget.account.username)) {
+                      int idBill = await CartController.instance.getIdBillMax();
+
+                      for (var food in table.foods) {
+                        if (await CartController.instance.insertBillDetail(
+                                idBill, food.id, food.quantity) ==
+                            false) {
+                          _sendFailed(table.name);
+                          return;
+                        }
+                      }
+                      CartController.instance.isSend = true;
+                      _sendSuccess(table.name);
+                    } else
+                      _sendFailed(table.name);
+                  }
+                },
+              ),
+              new FlatButton(
+                child: new Text('Hủy', style: cancelButtonStyle),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
+  }
+
+  
+  _sendSuccess(String tablename) {
+    String message = 'Gửi ' + tablename + ' tới pha chế thành công.';
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: new Text('Thông báo', style: titleStyle),
+            content: new Text(message, style: contentStyle),
+            actions: <Widget>[
+              new FlatButton(
+                child: new Text('Ok', style: okButtonStyle),
+                onPressed: () async {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
+  }
+
+  _sendFailed(String tableName) {
+    String message = 'Gửi ' +
+        tableName +
+        ' tới pha chế không thành công.\nVui lòng thử lại!';
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: new Text('Lỗi', style: errorTitleStyle),
+            content: new Text(message, style: contentStyle),
+            actions: <Widget>[
+              new FlatButton(
+                child: new Text('Ok', style: okButtonStyle),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
+  }
+
+  void _pushMenuScreen(AppTable table) {
     Navigator.of(context).push(
       new MaterialPageRoute(builder: (context) {
         return new Scaffold(
           floatingActionButton: new FloatingActionButton(
             onPressed: () {
-              widget.sendBillToKitchen(table);
+              _sendBillToKitchen(table);
             },
             child: new Icon(Icons.save),
             tooltip: 'Add To Cart',
@@ -120,10 +257,10 @@ class _CartScreenState extends State<CartScreen> {
             title: new Text(
               'Menu • ' + table.name,
               style:
-                  new TextStyle(color: theme.accentColor, fontFamily: 'Arial'),
+                  new TextStyle(color: accentColor, fontFamily: 'Arial'),
               overflow: TextOverflow.ellipsis,
             ),
-            iconTheme: new IconThemeData(color: theme.accentColor),
+            iconTheme: new IconThemeData(color: accentColor),
             centerTitle: true,
           ),
           body: new MenuScreen(table: table),
@@ -132,7 +269,7 @@ class _CartScreenState extends State<CartScreen> {
     ).then((value) {
       setState(() {
         if (widget.table.status == 1) {
-          futureFoods = menuController.Controller.instance
+          futureFoods = MenuController.instance
               .getListFoodByTable(widget.table);
         }
       });
@@ -148,12 +285,12 @@ class _CartScreenState extends State<CartScreen> {
     );
   }
 
-  Widget _buildFood(BuildContext context, menu.Food food) {
+  Widget _buildFood(BuildContext context, Food food) {
     return Container(
         padding: EdgeInsets.zero,
         margin: EdgeInsets.zero,
         child: Card(
-          color: theme.primaryColor,
+          color: primaryColor,
           margin: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -174,14 +311,14 @@ class _CartScreenState extends State<CartScreen> {
                       food.name,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
-                          color: theme.fontColor,
+                          color: fontColor,
                           fontFamily: 'Arial',
                           fontSize: 20.0),
                     ),
                     Text(
                       NumberFormat("#,###").format(food.price) + ' vnđ',
                       style: const TextStyle(
-                          color: theme.fontColor,
+                          color: fontColor,
                           fontFamily: 'Arial',
                           fontSize: 14.0,
                           fontWeight: FontWeight.bold),
@@ -251,7 +388,7 @@ class _CartScreenState extends State<CartScreen> {
 
   Widget _buildControls(BuildContext context) {
     TextStyle _itemStyle = TextStyle(
-        color: theme.fontColor,
+        color: fontColor,
         fontFamily: 'Arial',
         fontSize: 16.0,
         fontWeight: FontWeight.w500);
@@ -265,8 +402,8 @@ class _CartScreenState extends State<CartScreen> {
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5.0),
-          border: Border.all(color: theme.fontColorLight.withOpacity(0.2)),
-          color: theme.primaryColor),
+          border: Border.all(color: fontColorLight.withOpacity(0.2)),
+          color: primaryColor),
       margin: EdgeInsets.only(top: 2.0, bottom: 7.0, left: 7.0, right: 7.0),
       padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 8.0),
       child: Column(
@@ -365,16 +502,16 @@ class _CartScreenState extends State<CartScreen> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('Lỗi', style: theme.errorTitleStyle),
+            title: Text('Lỗi', style: errorTitleStyle),
             content: Text(
                 'Không thể thanh toán bàn ' +
                     widget.table.name +
                     '!' +
                     '\nPhải chọn đồ uống mới được thanh toán.',
-                style: theme.contentStyle),
+                style: contentStyle),
             actions: <Widget>[
               FlatButton(
-                child: Text('Ok', style: theme.okButtonStyle),
+                child: Text('Ok', style: okButtonStyle),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
@@ -389,24 +526,24 @@ class _CartScreenState extends State<CartScreen> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('Xác nhận', style: theme.titleStyle),
+            title: Text('Xác nhận', style: titleStyle),
             content: Text(
                 'Bạn có muốn thanh toán bàn ' + widget.table.name + '?',
-                style: theme.contentStyle),
+                style: contentStyle),
             actions: <Widget>[
               FlatButton(
-                child: Text('Ok', style: theme.okButtonStyle),
+                child: Text('Ok', style: okButtonStyle),
                 onPressed: () async {
                   Navigator.of(context).pop();
 
-                  home.Table table = home.Table(widget.table);
+                  AppTable table = AppTable(widget.table);
 
                   if (table.status == 1) {
                     // exists bill
                     Navigator.of(cartContext).pop();
                     int idBill =
-                        await Controller.instance.getIdBillByTable(table.id);
-                    if (await Controller.instance.updateBill(
+                        await CartController.instance.getIdBillByTable(table.id);
+                    if (await CartController.instance.updateBill(
                         idBill,
                         table.id,
                         table.dateCheckIn,
@@ -416,7 +553,7 @@ class _CartScreenState extends State<CartScreen> {
                         table.getTotalPrice(),
                         1,
                         widget.account.username)) {
-                      historyController.Controller.instance.addBill(
+                      HistoryController.instance.addBill(
                           idBill,
                           table,
                           DateTime.parse(DateFormat('yyyy-MM-dd HH:mm:ss.SSS')
@@ -424,7 +561,7 @@ class _CartScreenState extends State<CartScreen> {
                           _discount,
                           table.getTotalPrice(),
                           widget.account);
-                      Controller.instance
+                      CartController.instance
                           .findPrinterAndPrintTicket(widget.table);
                       // widget.table.status = -1;
                       // widget.table.foods.clear();
@@ -441,7 +578,7 @@ class _CartScreenState extends State<CartScreen> {
                 },
               ),
               FlatButton(
-                child: Text('Hủy', style: theme.cancelButtonStyle),
+                child: Text('Hủy', style: cancelButtonStyle),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },

@@ -1,12 +1,12 @@
 import './../Constants/queries.dart' as queries;
 import './connectServer.dart';
 
-class Model {
-  static Model _instance;
+class ProfileModel {
+  static ProfileModel _instance;
 
-  static Model get instance {
+  static ProfileModel get instance {
     if (_instance == null) {
-      _instance = new Model();
+      _instance = new ProfileModel();
     }
     return _instance;
   }

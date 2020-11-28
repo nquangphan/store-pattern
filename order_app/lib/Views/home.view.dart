@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:user_repository/user_repository.dart';
 
-import './../Constants/dialog.dart';
 import './../Constants/theme.dart' as theme;
 import './../Controllers/cart.controller.dart' as cartController;
 import './../Controllers/home.controller.dart';
 import './../Models/home.model.dart' as home;
-import './../Models/login.model.dart';
 import './cart.view.dart';
-import './menu.view.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({key, this.account}) : super(key: key);
@@ -22,19 +20,19 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  home.Table _selectedTable;
+  home.AppTable _selectedTable;
 
   @override
   void initState() {
     super.initState();
-    Controller.instance.getTables();
-    Controller.instance.startBackgroundTask();
+    HomeController.instance.getTables();
+    HomeController.instance.startBackgroundTask();
   }
 
   @override
   void dispose() {
-    Controller.instance.stopBackgroundTask();
-    Controller.instance.closeStream();
+    HomeController.instance.stopBackgroundTask();
+    HomeController.instance.closeStream();
     super.dispose();
   }
 
@@ -45,8 +43,8 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Container(
           width: MediaQuery.of(context).size.width,
           margin: EdgeInsets.all(5.0),
-          child: StreamBuilder<List<home.Table>>(
-              stream: Controller.instance.tableListStream,
+          child: StreamBuilder<List<home.AppTable>>(
+              stream: HomeController.instance.tableListStream,
               builder: (context, snapshot) {
                 if (snapshot.hasData && snapshot.data != null) {
                   return Wrap(
@@ -67,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildTable(BuildContext context, home.Table table) {
+  Widget _buildTable(BuildContext context, home.AppTable table) {
     return new GestureDetector(
       onTap: () {
         setState(() {
@@ -113,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void _pushCartScreen(home.Table table, BuildContext menuContext) {
+  void _pushCartScreen(home.AppTable table, BuildContext menuContext) {
     Navigator.of(context).push(
       new MaterialPageRoute(builder: (context) {
         return new Scaffold(
@@ -121,7 +119,6 @@ class _HomeScreenState extends State<HomeScreen> {
             table: table,
             homeContext: context,
             account: widget.account,
-            sendBillToKitchen: _sendBillToKitchen,
           ),
         );
       }),
@@ -172,7 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
         });
   }
 
-  void _sendBillToKitchen(home.Table table) {
+  void _sendBillToKitchen(home.AppTable table) {
     showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -186,13 +183,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: new Text('Ok', style: theme.okButtonStyle),
                 onPressed: () async {
                   Navigator.of(context).pop();
-                  cartController.Controller.instance.isSend = false;
-                  if (await cartController.Controller.instance
+                  cartController.CartController.instance.isSend = false;
+                  if (await cartController.CartController.instance
                       .hasBillOfTable(table.id)) {
                     // exists bill
-                    int idBill = await cartController.Controller.instance
+                    int idBill = await cartController.CartController.instance
                         .getIdBillByTable(table.id);
-                    if (await cartController.Controller.instance.updateBill(
+                    if (await cartController.CartController.instance.updateBill(
                         idBill,
                         table.id,
                         table.dateCheckIn,
@@ -203,10 +200,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         0,
                         widget.account.username)) {
                       for (var food in table.foods) {
-                        if (await cartController.Controller.instance
+                        if (await cartController.CartController.instance
                             .hasBillDetailOfBill(idBill, food.id)) {
                           // exists billdetail
-                          if (await cartController.Controller.instance
+                          if (await cartController.CartController.instance
                                   .updateBillDetail(
                                       idBill, food.id, food.quantity) ==
                               false) {
@@ -215,7 +212,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           }
                         } else {
                           // not exists billdetail
-                          if (await cartController.Controller.instance
+                          if (await cartController.CartController.instance
                                   .insertBillDetail(
                                       idBill, food.id, food.quantity) ==
                               false) {
@@ -224,13 +221,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           }
                         }
                       }
-                      cartController.Controller.instance.isSend = true;
+                      cartController.CartController.instance.isSend = true;
                       _sendSuccess(table.name);
                     } else
                       _sendFailed(table.name);
                   } else {
                     // not exists bill
-                    if (await cartController.Controller.instance.insertBill(
+                    if (await cartController.CartController.instance.insertBill(
                         table.id,
                         table.dateCheckIn,
                         DateTime.parse(new DateFormat('yyyy-MM-dd HH:mm:ss.SSS')
@@ -239,11 +236,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         table.getTotalPrice(),
                         0,
                         widget.account.username)) {
-                      int idBill = await cartController.Controller.instance
+                      int idBill = await cartController.CartController.instance
                           .getIdBillMax();
 
                       for (var food in table.foods) {
-                        if (await cartController.Controller.instance
+                        if (await cartController.CartController.instance
                                 .insertBillDetail(
                                     idBill, food.id, food.quantity) ==
                             false) {
@@ -251,7 +248,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           return;
                         }
                       }
-                      cartController.Controller.instance.isSend = true;
+                      cartController.CartController.instance.isSend = true;
                       _sendSuccess(table.name);
                     } else
                       _sendFailed(table.name);

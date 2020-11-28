@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:user_repository/user_repository.dart';
 
 import './../Constants/theme.dart';
 import './../Models/login.model.dart';
@@ -195,7 +196,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<Account>(
-      future: Model.instance.login('test'),
+      future: LoginModel.instance.login('test'),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           account = snapshot.data;

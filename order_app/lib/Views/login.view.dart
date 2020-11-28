@@ -96,12 +96,12 @@ class _LoginScreenState extends State<LoginScreen> {
             setState(() {
               _load = true;
             });
-            if (await Controller.instance.login(_username.trim(), _password.trim())) {
+            if (await LoginController.instance.login(_username.trim(), _password.trim())) {
               Navigator.of(context).push(
                 new MaterialPageRoute(builder: (context) {
                   return new MainPage(
                     mcontext: context,
-                    account: Controller.instance.account,
+                    account: LoginController.instance.account,
                   );
                 }),
               );

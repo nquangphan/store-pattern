@@ -2,42 +2,42 @@ import './../Constants/queries.dart' as queries;
 import './connectServer.dart';
 import './menu.model.dart' as menu;
 
-class Model {
-  static Model _instance;
+class HomeModel {
+  static HomeModel _instance;
 
-  static Model get instance {
-    if (_instance == null) _instance = new Model();
+  static HomeModel get instance {
+    if (_instance == null) _instance = new HomeModel();
     getTables();
     return _instance;
   }
 
-  Future<List<Table>> get tables => getTables();
+  Future<List<AppTable>> get tables => getTables();
 
-  static Future<List<Table>> getTables() async {
+  static Future<List<AppTable>> getTables() async {
     Future<List> futureTables =
         MySqlConnection.instance.executeQuery(queries.GET_TABLES);
     return parse(futureTables);
   }
 
-  static Future<List<Table>> parse(Future<List> tables) async {
-    List<Table> futureTables = [];
+  static Future<List<AppTable>> parse(Future<List> tables) async {
+    List<AppTable> futureTables = [];
     await tables.then((values) {
       values.forEach((value) {
-        futureTables.add(new Table.fromJson(value));
+        futureTables.add(new AppTable.fromJson(value));
       });
     });
     return futureTables;
   }
 }
 
-class Table {
+class AppTable {
   int id;
   String name;
   int status;
   List<menu.Food> _foods;
   DateTime dateCheckIn;
 
-  Table.noneParametter() {
+  AppTable.noneParametter() {
     this.id = -1;
     this.name = '';
     this.status = -1;
@@ -45,7 +45,7 @@ class Table {
     this.dateCheckIn = DateTime.now();
   }
 
-  Table(Table clone) {
+  AppTable(AppTable clone) {
     this.id = clone.id;
     this.name = clone.name;
     this.status = clone.status;
@@ -53,7 +53,7 @@ class Table {
     this.dateCheckIn = clone.dateCheckIn;
   }
 
-  Table.fromJson(Map<String, dynamic> json) {
+  AppTable.fromJson(Map<String, dynamic> json) {
     this.id = int.parse(json['ID']);
     this.name = json['Name'];
     this.status = int.parse(json['Status']);

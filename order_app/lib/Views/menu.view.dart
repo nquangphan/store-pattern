@@ -9,7 +9,7 @@ import './../Models/menu.model.dart' as menu;
 class MenuScreen extends StatefulWidget {
   MenuScreen({key, this.table}) : super(key: key);
 
-  final home.Table table;
+  final home.AppTable table;
 
   @override
   _MenuScreenState createState() => _MenuScreenState();
@@ -17,7 +17,7 @@ class MenuScreen extends StatefulWidget {
 
 class _MenuScreenState extends State<MenuScreen> {
   Future<List<menu.FoodCategory>> futureCategories =
-      Controller.instance.foodCategories;
+      MenuController.instance.foodCategories;
   Future<List<menu.Food>> futureFoods;
 
   String _currentCategory;
@@ -28,7 +28,7 @@ class _MenuScreenState extends State<MenuScreen> {
   @override
   void initState() {
     _currentCategory = 'All';
-    futureFoods = Controller.instance.getListFoodByTable(widget.table);
+    futureFoods = MenuController.instance.getListFoodByTable(widget.table);
     super.initState();
   }
 
@@ -221,7 +221,7 @@ class _MenuScreenState extends State<MenuScreen> {
                         controller: _textController,
                         onChanged: (keyword) {
                           setState(() {
-                            futureFoods = Controller.instance
+                            futureFoods = MenuController.instance
                                 .searchFoods(_selectedCategory, keyword);
                           });
                         },
@@ -283,7 +283,7 @@ class _MenuScreenState extends State<MenuScreen> {
           _selectedCategory = selectedCategory;
           setState(() {
             _currentCategory = selectedCategory;
-            futureFoods = Controller.instance.filterFoods(selectedCategory);
+            futureFoods = MenuController.instance.filterFoods(selectedCategory);
 
             // clear keyword
             _textController.text = '';

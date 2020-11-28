@@ -10,13 +10,13 @@ import 'package:order_app/Models/table_model.dart';
 
 import './../Models/cart.model.dart';
 
-class Controller {
+class CartController {
   bool isSend = false;
 
-  static Controller _instance;
+  static CartController _instance;
 
-  static Controller get instance {
-    if (_instance == null) _instance = new Controller();
+  static CartController get instance {
+    if (_instance == null) _instance = new CartController();
     return _instance;
   }
 
@@ -28,7 +28,7 @@ class Controller {
       double totalPrice,
       int status,
       String username) {
-    return Model.instance.insertBill(idTable, dateCheckIn, dateCheckOut,
+    return CartModel.instance.insertBill(idTable, dateCheckIn, dateCheckOut,
         discount, totalPrice, status, username);
   }
 
@@ -41,35 +41,35 @@ class Controller {
       double totalPrice,
       int status,
       String username) {
-    return Model.instance.updateBill(id, idTable, dateCheckIn, dateCheckOut,
+    return CartModel.instance.updateBill(id, idTable, dateCheckIn, dateCheckOut,
         discount, totalPrice, status, username);
   }
 
   Future<int> getIdBillMax() {
-    return Model.instance.getIdBillMax();
+    return CartModel.instance.getIdBillMax();
   }
 
   Future<bool> hasBillOfTable(int idTable) {
-    return Model.instance.hasBillOfTable(idTable);
+    return CartModel.instance.hasBillOfTable(idTable);
   }
 
   Future<int> getIdBillByTable(int idTable) {
-    return Model.instance.getIdBillByTable(idTable);
+    return CartModel.instance.getIdBillByTable(idTable);
   }
 
   Future<bool> insertBillDetail(int idBill, int idFood, int quantity) {
-    return Model.instance.insertBillDetail(idBill, idFood, quantity);
+    return CartModel.instance.insertBillDetail(idBill, idFood, quantity);
   }
 
   Future<bool> updateBillDetail(int idBill, int idFood, int quantity) {
-    return Model.instance.updateBillDetail(idBill, idFood, quantity);
+    return CartModel.instance.updateBillDetail(idBill, idFood, quantity);
   }
 
   Future<bool> hasBillDetailOfBill(int idBill, int idFood) {
-    return Model.instance.hasBillDetailOfBill(idBill, idFood);
+    return CartModel.instance.hasBillDetailOfBill(idBill, idFood);
   }
 
-  void findPrinterAndPrintTicket(HomeModel.Table table) {
+  void findPrinterAndPrintTicket(HomeModel.AppTable table) {
     var DESTINATION_ADDRESS = InternetAddress("255.255.255.255");
     String ipAddress = '';
     GetIp.ipAddress.then((value) {
@@ -97,7 +97,7 @@ class Controller {
     });
   }
 
-  TableModel getTableForPrinter(HomeModel.Table table) {
+  TableModel getTableForPrinter(HomeModel.AppTable table) {
     TableModel tableForPrinter = TableModel();
 
     tableForPrinter.id = table.id.toString();

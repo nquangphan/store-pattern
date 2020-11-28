@@ -8,11 +8,11 @@ import 'package:path_provider/path_provider.dart';
 import './../Constants/queries.dart';
 import './connectServer.dart';
 
-class Model {
-  static Model _instance;
+class MenuModel {
+  static MenuModel _instance;
 
-  static Model get instance {
-    if (_instance == null) _instance = new Model();
+  static MenuModel get instance {
+    if (_instance == null) _instance = new MenuModel();
     return _instance;
   }
 
