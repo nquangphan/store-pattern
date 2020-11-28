@@ -132,14 +132,14 @@ class _BillScreenState extends State<BillScreen> {
                           Orientation.landscape
                       ? {
                           0: FlexColumnWidth(0.5),
-                          1: FlexColumnWidth(1.0),
+                          1: FlexColumnWidth(0.8),
                           2: FlexColumnWidth(1.3),
-                          3: FlexColumnWidth(1.3),
+                          3: FlexColumnWidth(1.7),
                           4: FlexColumnWidth(0.9),
                           5: FlexColumnWidth(1.0),
                           6: FlexColumnWidth(1.0),
                           7: FlexColumnWidth(0.9),
-                          8: FlexColumnWidth(1.7),
+                          8: FlexColumnWidth(1.4),
                         }
                       : {
                           0: FlexColumnWidth(0.5),
@@ -316,8 +316,8 @@ class _BillScreenState extends State<BillScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             new Text(
-              '\$${bill.totalPrice}',
-              style: theme.contentTable,
+              '${NumberFormat("#,###").format(bill.totalPrice)}',
+              style: theme.contentTable.merge(TextStyle(color: Colors.blue)),
               overflow: TextOverflow.ellipsis,
             ),
           ],

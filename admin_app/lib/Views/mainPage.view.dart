@@ -82,13 +82,13 @@ class _MainPageState extends State<MainPage> {
               size: 19.0,
             ),
             title: new Text(
-              'Bill',
+              'Hóa đơn',
               style: new TextStyle(fontFamily: 'Dosis', color: fontColor, fontSize: 16.0),
             ),
             onTap: () {
               setState(() {
                 this._screenNumber = 1;
-                this._screenName = 'BILL';
+                this._screenName = 'Hóa đơn';
               });
               Navigator.pop(context);
             },
@@ -100,13 +100,13 @@ class _MainPageState extends State<MainPage> {
               size: 19.0,
             ),
             title: new Text(
-              'Food',
+              'Menu',
               style: new TextStyle(fontFamily: 'Dosis', color: fontColor, fontSize: 16.0),
             ),
             onTap: () {
               setState(() {
                 this._screenNumber = 2;
-                this._screenName = 'FOOD';
+                this._screenName = 'MENU';
               });
               Navigator.pop(context);
             },
@@ -118,13 +118,13 @@ class _MainPageState extends State<MainPage> {
               size: 19.0,
             ),
             title: new Text(
-              'Food Category',
+              'Phân loại đồ uống',
               style: new TextStyle(fontFamily: 'Dosis', color: fontColor, fontSize: 16.0),
             ),
             onTap: () {
               setState(() {
                 this._screenNumber = 3;
-                this._screenName = 'FOOD CATEGORY';
+                this._screenName = 'PHÂN LOẠI ĐỒ UỐNG';
               });
               Navigator.pop(context);
             },
@@ -136,13 +136,13 @@ class _MainPageState extends State<MainPage> {
               size: 19.0,
             ),
             title: new Text(
-              'Table',
+              'Bàn',
               style: new TextStyle(fontFamily: 'Dosis', color: fontColor, fontSize: 16.0),
             ),
             onTap: () {
               setState(() {
                 this._screenNumber = 4;
-                this._screenName = 'TABLE';
+                this._screenName = 'BÀN';
               });
               Navigator.pop(context);
             },
@@ -154,13 +154,13 @@ class _MainPageState extends State<MainPage> {
               size: 19.0,
             ),
             title: new Text(
-              'Account',
+              'Tài khoản',
               style: new TextStyle(fontFamily: 'Dosis', color: fontColor, fontSize: 16.0),
             ),
             onTap: () {
               setState(() {
                 this._screenNumber = 5;
-                this._screenName = 'ACCOUNT';
+                this._screenName = 'TÀI KHOẢN';
               });
               Navigator.pop(context);
             },

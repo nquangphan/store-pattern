@@ -7,6 +7,7 @@ import './../Models/food.model.dart' as food;
 import './addFood.view.dart';
 import './editFood.view.dart';
 import './foodDetail.view.dart';
+import 'package:intl/intl.dart';
 
 class FoodScreen extends StatefulWidget {
   _FoodScreenState createState() => _FoodScreenState();
@@ -221,9 +222,8 @@ class _FoodScreenState extends State<FoodScreen> {
         child: new Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            new Text(
-              '\$' + food.price.toString(),
-              style: theme.contentTable,
+            new Text( '${NumberFormat("#,###").format(food.price)}',
+              style: theme.contentTable.merge(TextStyle(color: Colors.blue)),
               overflow: TextOverflow.ellipsis,
             ),
           ],

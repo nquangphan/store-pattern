@@ -14,8 +14,8 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController _usernameController = new TextEditingController();
   TextEditingController _passwordController = new TextEditingController();
 
-  String _username = '';
-  String _password = '';
+  String _username = 'tvc12';
+  String _password = 'tvc12';
 
   bool _load = false;
 
