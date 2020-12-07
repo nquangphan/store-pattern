@@ -20,11 +20,13 @@ class Controller {
     return _foods;
   }
 
-  Future<bool> insertFood(String name, double price, int idCategory, String image) {
+  Future<bool> insertFood(
+      String name, double price, int idCategory, String image) {
     return Model.instance.insertFood(name, price, idCategory, image);
   }
 
-  Future<bool> updateFood(int id, String name, double price, int idCategory, String image) {
+  Future<bool> updateFood(
+      int id, String name, double price, int idCategory, String image) {
     return Model.instance.updateFood(id, name, price, idCategory, image);
   }
 
@@ -35,22 +37,28 @@ class Controller {
   Future<List<Food>> searchFoods(String keyword) async {
     List<Food> items = await foods;
     if (keyword.trim() == '') return items;
-    return items.where((item) => item.name.toUpperCase().indexOf(keyword.toUpperCase()) != -1).toList();
+    return items
+        .where((item) =>
+            item.name.toUpperCase().indexOf(keyword.toUpperCase()) != -1)
+        .toList();
   }
 
   Future<File> getImage() async {
-    return await ImagePicker.pickImage(source: ImageSource.gallery);
+    final picker = ImagePicker();
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+    return File(pickedFile.path);
   }
 
-  void insertFoodToLocal(
-      String _name, int _idCategory, String _category, double _price, String _image) async {
+  void insertFoodToLocal(String _name, int _idCategory, String _category,
+      double _price, String _image) async {
     int idMax = await Model.instance.getIDMax();
-    Food food = new Food(idMax, _name, _idCategory, _category, _price, base64.decode(_image));
+    Food food = new Food(
+        idMax, _name, _idCategory, _category, _price, base64.decode(_image));
     (await foods).add(food);
   }
 
-  void updateFoodToLocal(
-      int _id, String _name, int _idCategory, String _category, double _price, String _image) async {
+  void updateFoodToLocal(int _id, String _name, int _idCategory,
+      String _category, double _price, String _image) async {
     int index = await findIndex(_id);
     (await foods)[index].name = _name;
     (await foods)[index].idCategory = _idCategory;
