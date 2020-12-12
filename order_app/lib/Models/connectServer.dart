@@ -33,11 +33,12 @@ class MySqlConnection {
     if (parameter != null) {
       query = _addParameter(query, parameter);
     }
-
+    print('=========REQUEST: $serverURL   $query');
     http.Response response = await http.post(
       serverURL,
       body: {ID_EXECUTEQUERY: query},
     );
+    print('===========RESPONSE: ${response.body} CODE: ${response.statusCode}');
     if (response.statusCode == 200) return json.decode(response.body);
     return null;
   }

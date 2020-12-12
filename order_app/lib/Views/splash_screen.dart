@@ -28,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
         });
       });
       Menu.Controller.instance.foods().then((value) {
-        SchedulerBinding.instance.addPostFrameCallback((_) {
+        // SchedulerBinding.instance.addPostFrameCallback((_) {
           Navigator.of(context).pushAndRemoveUntil(new MaterialPageRoute(
             builder: (context) {
               return WillPopScope(
@@ -63,7 +63,7 @@ class _SplashScreenState extends State<SplashScreen> {
               );
             },
           ), (a) => false);
-        });
+        // });
       });
     });
   }
