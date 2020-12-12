@@ -1,11 +1,9 @@
 import 'dart:typed_data';
 
 import 'package:diacritic/diacritic.dart';
-import 'package:rxdart/rxdart.dart';
 import './../Models/home.model.dart' as home;
 import './../Models/history.model.dart' as historyModel;
 import './../Models/menu.model.dart';
-import 'package:order_app/Models/menu.model.dart' as MenuModel;
 import 'package:order_app/Models/cart.model.dart' as CartModel;
 
 class Controller {
