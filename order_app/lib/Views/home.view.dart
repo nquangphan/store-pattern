@@ -121,224 +121,104 @@ class _HomeScreenState extends State<HomeScreen> {
             table: table,
             homeContext: context,
             account: widget.account,
-            sendBillToKitchen: _sendBillToKitchen,
           ),
         );
       }),
     );
   }
 
-  Future<void> _sendSuccess(String tablename) {
-    return Future.value(true);
-    // String message = 'Gửi ' + tablename + ' tới pha chế thành công.';
-    // return showDialog(
-    //     context: context,
-    //     builder: (BuildContext context) {
-    //       return AlertDialog(
-    //         title: new Text('Thông báo', style: theme.titleStyle),
-    //         content: new Text(message, style: theme.contentStyle),
-    //         actions: <Widget>[
-    //           new FlatButton(
-    //             child: new Text('Ok', style: theme.okButtonStyle),
-    //             onPressed: () async {
-    //               Navigator.of(context).pop();
-    //             },
-    //           )
-    //         ],
-    //       );
-    //     });
-  }
+  // showDialog(
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return AlertDialog(
+  //         title: new Text('Xác nhận', style: theme.titleStyle),
+  //         content: new Text(
+  //             'Bạn chắc chắn muốn gửi ' + table.name + ' tới pha chế?',
+  //             style: theme.contentStyle),
+  //         actions: <Widget>[
+  //           new FlatButton(
+  //             child: new Text('Ok', style: theme.okButtonStyle),
+  //             onPressed: () async {
+  //               Navigator.of(context).pop();
+  //               cartController.Controller.instance.isSend = false;
+  //               if (await cartController.Controller.instance
+  //                   .hasBillOfTable(table.id)) {
+  //                 // exists bill
+  //                 int idBill = await cartController.Controller.instance
+  //                     .getIdBillByTable(table.id);
+  //                 if (await cartController.Controller.instance.updateBill(
+  //                     idBill,
+  //                     table.id,
+  //                     table.dateCheckIn,
+  //                     DateTime.parse(new DateFormat('yyyy-MM-dd HH:mm:ss.SSS')
+  //                         .format(DateTime.now())),
+  //                     0,
+  //                     table.getTotalPrice(),
+  //                     0,
+  //                     widget.account.username)) {
+  //                   for (var food in table.foods) {
+  //                     if (await cartController.Controller.instance
+  //                         .hasBillDetailOfBill(idBill, food.id)) {
+  //                       // exists billdetail
+  //                       if (await cartController.Controller.instance
+  //                               .updateBillDetail(
+  //                                   idBill, food.id, food.quantity) ==
+  //                           false) {
+  //                         _sendFailed(table.name);
+  //                         return;
+  //                       }
+  //                     } else {
+  //                       // not exists billdetail
+  //                       if (await cartController.Controller.instance
+  //                               .insertBillDetail(
+  //                                   idBill, food.id, food.quantity) ==
+  //                           false) {
+  //                         _sendFailed(table.name);
+  //                         return;
+  //                       }
+  //                     }
+  //                   }
+  //                   cartController.Controller.instance.isSend = true;
+  //                   _sendSuccess(table.name);
+  //                 } else
+  //                   _sendFailed(table.name);
+  //               } else {
+  //                 // not exists bill
+  //                 if (await cartController.Controller.instance.insertBill(
+  //                     table.id,
+  //                     table.dateCheckIn,
+  //                     DateTime.parse(new DateFormat('yyyy-MM-dd HH:mm:ss.SSS')
+  //                         .format(DateTime.now())),
+  //                     0,
+  //                     table.getTotalPrice(),
+  //                     0,
+  //                     widget.account.username)) {
+  //                   int idBill = await cartController.Controller.instance
+  //                       .getIdBillMax();
 
-  Future<void> _sendFailed(String tableName) {
-    String message = 'Gửi ' +
-        tableName +
-        ' tới pha chế không thành công.\nVui lòng thử lại!';
-    return showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: new Text('Lỗi', style: theme.errorTitleStyle),
-            content: new Text(message, style: theme.contentStyle),
-            actions: <Widget>[
-              new FlatButton(
-                child: new Text('Ok', style: theme.okButtonStyle),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              )
-            ],
-          );
-        });
-  }
-
- static Future<bool> _sendBillToKitchen(home.Table table) async {
-    {
-      if (table.foods == null || table.foods.length == 0) return false;
-      // Navigator.of(context).pop();
-      cartController.Controller.instance.isSend = false;
-      if (await cartController.Controller.instance.hasBillOfTable(table.id)) {
-        // exists bill
-        int idBill =
-            await cartController.Controller.instance.getIdBillByTable(table.id);
-        if (await cartController.Controller.instance.updateBill(
-            idBill,
-            table.id,
-            table.dateCheckIn,
-            DateTime.parse(new DateFormat('yyyy-MM-dd HH:mm:ss.SSS')
-                .format(DateTime.now())),
-            0,
-            table.getTotalPrice(),
-            0,
-            widget.account.username)) {
-          for (var food in table.foods) {
-            if (await cartController.Controller.instance
-                .hasBillDetailOfBill(idBill, food.id)) {
-              // exists billdetail
-              if (await cartController.Controller.instance
-                      .updateBillDetail(idBill, food.id, food.quantity) ==
-                  false) {
-                await _sendFailed(table.name);
-                return false;
-              }
-            } else {
-              // not exists billdetail
-              if (await cartController.Controller.instance
-                      .insertBillDetail(idBill, food.id, food.quantity) ==
-                  false) {
-                await _sendFailed(table.name);
-                return false;
-              }
-            }
-          }
-          cartController.Controller.instance.isSend = true;
-          await _sendSuccess(table.name);
-          return true;
-        } else
-          await _sendFailed(table.name);
-        return false;
-      } else {
-        // not exists bill
-        if (await cartController.Controller.instance.insertBill(
-            table.id,
-            table.dateCheckIn,
-            DateTime.parse(new DateFormat('yyyy-MM-dd HH:mm:ss.SSS')
-                .format(DateTime.now())),
-            0,
-            table.getTotalPrice(),
-            0,
-            widget.account.username)) {
-          int idBill = await cartController.Controller.instance.getIdBillMax();
-
-          for (var food in table.foods) {
-            if (await cartController.Controller.instance
-                    .insertBillDetail(idBill, food.id, food.quantity) ==
-                false) {
-              await _sendFailed(table.name);
-              return false;
-            }
-          }
-          cartController.Controller.instance.isSend = true;
-          await _sendSuccess(table.name);
-          return true;
-        } else
-          await _sendFailed(table.name);
-        return false;
-      }
-    }
-
-    // showDialog(
-    //     context: context,
-    //     builder: (BuildContext context) {
-    //       return AlertDialog(
-    //         title: new Text('Xác nhận', style: theme.titleStyle),
-    //         content: new Text(
-    //             'Bạn chắc chắn muốn gửi ' + table.name + ' tới pha chế?',
-    //             style: theme.contentStyle),
-    //         actions: <Widget>[
-    //           new FlatButton(
-    //             child: new Text('Ok', style: theme.okButtonStyle),
-    //             onPressed: () async {
-    //               Navigator.of(context).pop();
-    //               cartController.Controller.instance.isSend = false;
-    //               if (await cartController.Controller.instance
-    //                   .hasBillOfTable(table.id)) {
-    //                 // exists bill
-    //                 int idBill = await cartController.Controller.instance
-    //                     .getIdBillByTable(table.id);
-    //                 if (await cartController.Controller.instance.updateBill(
-    //                     idBill,
-    //                     table.id,
-    //                     table.dateCheckIn,
-    //                     DateTime.parse(new DateFormat('yyyy-MM-dd HH:mm:ss.SSS')
-    //                         .format(DateTime.now())),
-    //                     0,
-    //                     table.getTotalPrice(),
-    //                     0,
-    //                     widget.account.username)) {
-    //                   for (var food in table.foods) {
-    //                     if (await cartController.Controller.instance
-    //                         .hasBillDetailOfBill(idBill, food.id)) {
-    //                       // exists billdetail
-    //                       if (await cartController.Controller.instance
-    //                               .updateBillDetail(
-    //                                   idBill, food.id, food.quantity) ==
-    //                           false) {
-    //                         _sendFailed(table.name);
-    //                         return;
-    //                       }
-    //                     } else {
-    //                       // not exists billdetail
-    //                       if (await cartController.Controller.instance
-    //                               .insertBillDetail(
-    //                                   idBill, food.id, food.quantity) ==
-    //                           false) {
-    //                         _sendFailed(table.name);
-    //                         return;
-    //                       }
-    //                     }
-    //                   }
-    //                   cartController.Controller.instance.isSend = true;
-    //                   _sendSuccess(table.name);
-    //                 } else
-    //                   _sendFailed(table.name);
-    //               } else {
-    //                 // not exists bill
-    //                 if (await cartController.Controller.instance.insertBill(
-    //                     table.id,
-    //                     table.dateCheckIn,
-    //                     DateTime.parse(new DateFormat('yyyy-MM-dd HH:mm:ss.SSS')
-    //                         .format(DateTime.now())),
-    //                     0,
-    //                     table.getTotalPrice(),
-    //                     0,
-    //                     widget.account.username)) {
-    //                   int idBill = await cartController.Controller.instance
-    //                       .getIdBillMax();
-
-    //                   for (var food in table.foods) {
-    //                     if (await cartController.Controller.instance
-    //                             .insertBillDetail(
-    //                                 idBill, food.id, food.quantity) ==
-    //                         false) {
-    //                       _sendFailed(table.name);
-    //                       return;
-    //                     }
-    //                   }
-    //                   cartController.Controller.instance.isSend = true;
-    //                   _sendSuccess(table.name);
-    //                 } else
-    //                   _sendFailed(table.name);
-    //               }
-    //             },
-    //           ),
-    //           new FlatButton(
-    //             child: new Text('Hủy', style: theme.cancelButtonStyle),
-    //             onPressed: () {
-    //               Navigator.of(context).pop();
-    //             },
-    //           )
-    //         ],
-    //       );
-    //     });
-  }
+  //                   for (var food in table.foods) {
+  //                     if (await cartController.Controller.instance
+  //                             .insertBillDetail(
+  //                                 idBill, food.id, food.quantity) ==
+  //                         false) {
+  //                       _sendFailed(table.name);
+  //                       return;
+  //                     }
+  //                   }
+  //                   cartController.Controller.instance.isSend = true;
+  //                   _sendSuccess(table.name);
+  //                 } else
+  //                   _sendFailed(table.name);
+  //               }
+  //             },
+  //           ),
+  //           new FlatButton(
+  //             child: new Text('Hủy', style: theme.cancelButtonStyle),
+  //             onPressed: () {
+  //               Navigator.of(context).pop();
+  //             },
+  //           )
+  //         ],
+  //       );
+  //     });
 }

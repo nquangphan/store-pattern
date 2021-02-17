@@ -155,4 +155,14 @@ class Table {
 
     return totalPrice;
   }
+
+  int getNumOfDrink() {
+    int numOfDrink = 0;
+
+    for (var food in foods) {
+      numOfDrink += food.quantity;
+    }
+
+    return numOfDrink;
+  }
 }

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:order_app/Controllers/cart.controller.dart';
+import 'package:order_app/Views/home.view.dart';
 
 import './../Constants/theme.dart' as theme;
 import './../Models/history.model.dart' as history;
 import './../Models/menu.model.dart' as menu;
+import './../Models/home.model.dart' as home;
 
 class InvoiceScreen extends StatefulWidget {
   InvoiceScreen({key, this.bill}) : super(key: key);
@@ -23,8 +25,8 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
           _buildHeader(),
           _buildBody(),
           _buildFooter(),
-          Divider(),
-          _buildPrintBuildButton()
+          _buildPrintBuildButton,
+          _buildReOrderButton
         ],
       ),
     );
@@ -41,9 +43,9 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
       fontFamily: 'Arial',
       fontSize: 16.0,
       fontWeight: FontWeight.w500);
-  _buildPrintBuildButton() {
-    Container(
-      margin: const EdgeInsets.only(top: 15.0, right: 150),
+  Widget get _buildPrintBuildButton {
+    return Container(
+      margin: const EdgeInsets.only(right: 8, left: 8),
       child: SizedBox(
         width: double.infinity,
         child: RaisedButton(
@@ -55,6 +57,54 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
           ),
           onPressed: () {
             if (widget.bill.table.foods.length > 0) _printBill(context);
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget get _buildReOrderButton {
+    return Container(
+      margin: const EdgeInsets.only(right: 8, left: 8),
+      child: SizedBox(
+        width: double.infinity,
+        child: RaisedButton(
+          color: Colors.blueAccent,
+          child: Text(
+            'Order lại',
+            style: _itemStyle.merge(
+                TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+          ),
+          onPressed: () {
+            home.Table _currentTable;
+            home.Model.instance.tables.then((value) {
+              _currentTable = value.firstWhere(
+                (element) => element.id == widget.bill.table.id,
+                orElse: () => null,
+              );
+
+              if (_currentTable != null && _currentTable.status != 1) {
+                Controller.sendBillToKitchen(widget.bill.table, context);
+              } else {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: new Text('Lỗi', style: theme.errorTitleStyle),
+                        content: new Text('Số bàn này đã tồn tại.',
+                            style: theme.contentStyle),
+                        actions: <Widget>[
+                          new FlatButton(
+                            child: new Text('Ok', style: theme.okButtonStyle),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          )
+                        ],
+                      );
+                    });
+              }
+            });
           },
         ),
       ),
@@ -210,36 +260,36 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
           border: Border.all(color: theme.fontColorLight.withOpacity(0.2)),
           color: theme.primaryColor),
       margin: EdgeInsets.only(top: 2.0, bottom: 7.0, left: 7.0, right: 7.0),
-      padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 8.0),
+      padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 8.0, bottom: 8),
       child: new Column(
         children: <Widget>[
           new Row(
             children: <Widget>[
               new Text(
-                'Tạm tính: ',
+                'Số ly: ',
                 style: _itemStyle,
               ),
               new Expanded(child: Container()),
               new Text(
-                '\$' + widget.bill.totalPrice.toStringAsFixed(2),
-                style: _itemStyle,
+                widget.bill.table.getNumOfDrink().toString(),
+                style: _itemStyle.merge(TextStyle(color: Colors.blue)),
               )
             ],
           ),
           new Divider(),
-          new Row(
-            children: <Widget>[
-              new Text(
-                'Giảm giá: ',
-                style: _itemStyle,
-              ),
-              new Expanded(child: Container()),
-              new Text(
-                widget.bill.discount.toString() + '%',
-                style: _itemStyle,
-              )
-            ],
-          ),
+          // new Row(
+          //   children: <Widget>[
+          //     new Text(
+          //       'Giảm giá: ',
+          //       style: _itemStyle,
+          //     ),
+          //     new Expanded(child: Container()),
+          //     new Text(
+          //       widget.bill.discount.toString() + '%',
+          //       style: _itemStyle,
+          //     )
+          //   ],
+          // ),
           new Divider(),
           new Row(
             children: <Widget>[
@@ -249,8 +299,8 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
               ),
               new Expanded(child: Container()),
               new Text(
-                NumberFormat("#,###").format((widget.bill.totalPrice *
-                        (1 - widget.bill.discount / 100))) +
+                NumberFormat("#,###")
+                        .format(widget.bill.table.getTotalPrice()) +
                     ' vnđ',
                 style: _itemStyle2,
               )

@@ -13,14 +13,12 @@ import './../Models/menu.model.dart' as menu;
 import './../Controllers/menu.controller.dart' as menuController;
 
 class CartScreen extends StatefulWidget {
-  CartScreen(
-      {key, this.table, this.homeContext, this.account, this.sendBillToKitchen})
+  CartScreen({key, this.table, this.homeContext, this.account})
       : super(key: key);
 
   final Account account;
   final home.Table table;
   final BuildContext homeContext;
-  final Future<bool> Function(home.Table) sendBillToKitchen;
 
   @override
   _CartScreenState createState() => _CartScreenState();
@@ -31,6 +29,7 @@ class _CartScreenState extends State<CartScreen> {
   double _discount;
   TextEditingController _textController = TextEditingController();
   Future<List<menu.Food>> futureFoods;
+
   @override
   void initState() {
     _discount = 0.0;
@@ -51,7 +50,7 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        await widget.sendBillToKitchen(widget.table);
+        await Controller.sendBillToKitchen(widget.table, context);
         return true;
       },
       child: Scaffold(
@@ -75,7 +74,7 @@ class _CartScreenState extends State<CartScreen> {
               icon: new Icon(Icons.send),
               color: theme.accentColor,
               onPressed: () {
-                widget.sendBillToKitchen(widget.table);
+                Controller.sendBillToKitchen(widget.table, context);
               },
             )
           ],
@@ -115,13 +114,14 @@ class _CartScreenState extends State<CartScreen> {
       new MaterialPageRoute(builder: (context) {
         return WillPopScope(
           onWillPop: () async {
-            await widget.sendBillToKitchen(table);
+            await Controller.sendBillToKitchen(table, context);
             return true;
           },
           child: new Scaffold(
             floatingActionButton: new FloatingActionButton(
               onPressed: () async {
-                await widget.sendBillToKitchen(table).then((value) {
+                await Controller.sendBillToKitchen(table, context)
+                    .then((value) {
                   Navigator.of(context).pop();
                 });
               },
@@ -308,7 +308,7 @@ class _CartScreenState extends State<CartScreen> {
               ),
               Expanded(child: Container()),
               Text(
-                '${widget.table.foods.length}',
+                '${widget.table.getNumOfDrink()}',
                 style: _itemStyle.merge(TextStyle(color: Colors.blue)),
               ),
             ],

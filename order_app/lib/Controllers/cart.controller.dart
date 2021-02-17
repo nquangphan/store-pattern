@@ -2,14 +2,17 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:flutter/material.dart';
 import 'package:get_ip/get_ip.dart';
+import 'package:intl/intl.dart';
 import 'package:order_app/Models/connectServer.dart';
 import 'package:order_app/Models/drink_model.dart';
 import 'package:order_app/Models/home.model.dart' as HomeModel;
 import 'package:order_app/Models/order_item.dart';
 import 'package:order_app/Models/table_model.dart';
-
+import './../Models/home.model.dart' as home;
 import './../Models/cart.model.dart';
+import './../Constants/theme.dart' as theme;
 
 class Controller {
   bool isSend = false;
@@ -135,5 +138,124 @@ class Controller {
       pos += 2;
     }
     return bdata.buffer.asUint8List();
+  }
+
+  static Future<void> _sendFailed(String tableName, BuildContext context) {
+    String message = 'Gửi ' +
+        tableName +
+        ' tới pha chế không thành công.\nVui lòng thử lại!';
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: new Text('Lỗi', style: theme.errorTitleStyle),
+            content: new Text(message, style: theme.contentStyle),
+            actions: <Widget>[
+              new FlatButton(
+                child: new Text('Ok', style: theme.okButtonStyle),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
+  }
+
+  static Future<void> _sendSuccess(String tablename, BuildContext context) {
+    return Future.value(true);
+    // String message = 'Gửi ' + tablename + ' tới pha chế thành công.';
+    // return showDialog(
+    //     context: context,
+    //     builder: (BuildContext context) {
+    //       return AlertDialog(
+    //         title: new Text('Thông báo', style: theme.titleStyle),
+    //         content: new Text(message, style: theme.contentStyle),
+    //         actions: <Widget>[
+    //           new FlatButton(
+    //             child: new Text('Ok', style: theme.okButtonStyle),
+    //             onPressed: () async {
+    //               Navigator.of(context).pop();
+    //             },
+    //           )
+    //         ],
+    //       );
+    //     });
+  }
+
+  static Future<bool> sendBillToKitchen(
+      home.Table table, BuildContext context) async {
+    {
+      if (table.foods == null || table.foods.length == 0) return false;
+      // Navigator.of(context).pop();
+      Controller.instance.isSend = false;
+      if (await Controller.instance.hasBillOfTable(table.id)) {
+        // exists bill
+        int idBill = await Controller.instance.getIdBillByTable(table.id);
+        if (await Controller.instance.updateBill(
+            idBill,
+            table.id,
+            table.dateCheckIn,
+            DateTime.parse(new DateFormat('yyyy-MM-dd HH:mm:ss.SSS')
+                .format(DateTime.now())),
+            0,
+            table.getTotalPrice(),
+            0,
+            'test')) {
+          for (var food in table.foods) {
+            if (await Controller.instance
+                .hasBillDetailOfBill(idBill, food.id)) {
+              // exists billdetail
+              if (await Controller.instance
+                      .updateBillDetail(idBill, food.id, food.quantity) ==
+                  false) {
+                await _sendFailed(table.name, context);
+                return false;
+              }
+            } else {
+              // not exists billdetail
+              if (await Controller.instance
+                      .insertBillDetail(idBill, food.id, food.quantity) ==
+                  false) {
+                await _sendFailed(table.name, context);
+                return false;
+              }
+            }
+          }
+          Controller.instance.isSend = true;
+          await _sendSuccess(table.name, context);
+          return true;
+        } else
+          await _sendFailed(table.name, context);
+        return false;
+      } else {
+        // not exists bill
+        if (await Controller.instance.insertBill(
+            table.id,
+            table.dateCheckIn,
+            DateTime.parse(new DateFormat('yyyy-MM-dd HH:mm:ss.SSS')
+                .format(DateTime.now())),
+            0,
+            table.getTotalPrice(),
+            0,
+            'test')) {
+          int idBill = await Controller.instance.getIdBillMax();
+
+          for (var food in table.foods) {
+            if (await Controller.instance
+                    .insertBillDetail(idBill, food.id, food.quantity) ==
+                false) {
+              await _sendFailed(table.name, context);
+              return false;
+            }
+          }
+          Controller.instance.isSend = true;
+          await _sendSuccess(table.name, context);
+          return true;
+        } else
+          await _sendFailed(table.name, context);
+        return false;
+      }
+    }
   }
 }

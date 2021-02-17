@@ -43,7 +43,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
               return new ListView.builder(
                   itemExtent: 80.0,
                   itemCount: snapshot.data.length,
-                  itemBuilder: (_, index) => _buildTable(context, snapshot.data[index]));
+                  itemBuilder: (_, index) =>
+                      _buildTable(context, snapshot.data[index]));
             }
             return Center(child: CircularProgressIndicator());
           },
@@ -63,13 +64,18 @@ class _HistoryScreenState extends State<HistoryScreen> {
               new Text(
                 bill.table.name,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(color: theme.accentColor, fontFamily: 'Arial', fontSize: 20.0),
+                style: const TextStyle(
+                    color: theme.accentColor,
+                    fontFamily: 'Arial',
+                    fontSize: 20.0),
               ),
               new Expanded(child: new Container()),
               new Text(
                 timeago.format(bill.dateCheckOut,
                     locale: 'en',
-                    clock: DateTime.parse(new DateFormat('yyyy-MM-dd HH:mm:ss.SSS').format(DateTime.now()))),
+                    clock: DateTime.parse(
+                        new DateFormat('yyyy-MM-dd HH:mm:ss.SSS')
+                            .format(DateTime.now()))),
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                     color: theme.fontColorLight,
@@ -89,7 +95,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
               ),
               new Expanded(child: new Container()),
               new Text(
-                NumberFormat("#,###").format((bill.totalPrice * (1 - bill.discount / 100))) + ' vnđ',
+                NumberFormat("#,###").format(bill.table.getTotalPrice()) +
+                    ' vnđ',
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                     color: Colors.redAccent,
@@ -123,7 +130,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
           appBar: new AppBar(
             title: new Text(
               'Thông tin hóa đơn',
-              style: new TextStyle(color: theme.accentColor, fontFamily: 'Arial'),
+              style:
+                  new TextStyle(color: theme.accentColor, fontFamily: 'Arial'),
             ),
             iconTheme: new IconThemeData(color: theme.accentColor),
             centerTitle: true,
@@ -149,14 +157,19 @@ class _HistoryScreenState extends State<HistoryScreen> {
     });
   }
 
-  void _deleteInvoice(BuildContext invoiceContext, history.BillPlus bill) async {
+  void _deleteInvoice(
+      BuildContext invoiceContext, history.BillPlus bill) async {
     showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
             title: new Text('Xác nhận', style: theme.titleStyle),
             content: new Text(
-                'Bạn có muốn xóa hóa đơn #' + bill.id.toString() + ' • ' + bill.table.name + '?',
+                'Bạn có muốn xóa hóa đơn #' +
+                    bill.id.toString() +
+                    ' • ' +
+                    bill.table.name +
+                    '?',
                 style: theme.contentStyle),
             actions: <Widget>[
               new FlatButton(
@@ -199,12 +212,16 @@ class _HistoryScreenState extends State<HistoryScreen> {
         'your channel id', 'your channel name', 'your channel description',
         importance: Importance.Max, priority: Priority.High);
     var iOSPlatformChannelSpecifics = new IOSNotificationDetails();
-    var platformChannelSpecifics =
-        new NotificationDetails(androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
+    var platformChannelSpecifics = new NotificationDetails(
+        androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
     await flutterLocalNotificationsPlugin.show(
         0,
         'Thông báo',
-        'Xóa hóa đơn #' + bill.id.toString() + ' • ' + bill.table.name + ' thành công!!!',
+        'Xóa hóa đơn #' +
+            bill.id.toString() +
+            ' • ' +
+            bill.table.name +
+            ' thành công!!!',
         platformChannelSpecifics,
         payload: 'item x');
   }
