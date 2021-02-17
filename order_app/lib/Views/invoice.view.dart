@@ -84,7 +84,8 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
               );
 
               if (_currentTable != null && _currentTable.status != 1) {
-                Controller.sendBillToKitchen(widget.bill.table, context);
+                Controller.sendBillToKitchen(widget.bill.table, context)
+                    .then((value) => Navigator.of(context).pop());
               } else {
                 showDialog(
                     context: context,
