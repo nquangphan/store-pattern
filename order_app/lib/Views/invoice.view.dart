@@ -84,6 +84,9 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
               );
 
               if (_currentTable != null && _currentTable.status != 1) {
+                if (widget.bill.table.dateCheckIn == null) {
+                  widget.bill.table.dateCheckIn = DateTime.now();
+                }
                 Controller.sendBillToKitchen(widget.bill.table, context)
                     .then((value) => Navigator.of(context).pop());
               } else {
