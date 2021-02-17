@@ -1,0 +1,23 @@
+BILL : 2893
+Table: 12
+Date Checkin: 2021-02-09 20:07:51
+Date Checkout: 2021-02-09 20:08:12
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Siro đá bào: 1
+Siro đá bào: 1
+Siro đá bào: 1
+Siro đá bào: 1
+Siro đá bào: 1
+Siro đá bào: 1
+Siro đá bào: 1
+Cà phê sữa (đá): 2
+Cà phê sữa (đá): 2
+Cà phê sữa (đá): 2
+Cà phê sữa (đá): 2
+Siro sữa đá bào: 2
+sting sữa: 2
+=========================================================
+Total Price: 84000.0

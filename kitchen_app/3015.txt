@@ -1,0 +1,14 @@
+BILL : 3015
+Table: 25
+Date Checkin: 2021-02-14 20:14:42
+Date Checkout: 2021-02-14 20:14:58
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Nước cam: 1
+Sinh tố bơ: 3
+Trà đào: 1
+Trà sữa truyền thống: 1
+=========================================================
+Total Price: 20000.0

@@ -1,0 +1,16 @@
+BILL : 3088
+Table: 1
+Date Checkin: 2021-02-16 19:15:02
+Date Checkout: 2021-02-16 19:17:55
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Trà sữa thái xanh: 2
+Sữa tươi đào: 1
+Pepsi (lon): 1
+Sinh tố bơ: 1
+Sting chai: 1
+Trà trái cây Kiwi: 1
+=========================================================
+Total Price: 124000.0

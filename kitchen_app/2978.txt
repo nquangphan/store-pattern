@@ -1,0 +1,21 @@
+BILL : 2978
+Table: 10
+Date Checkin: 2021-02-14 07:37:21
+Date Checkout: 2021-02-14 07:37:53
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Trà chanh: 1
+Cà phê sữa (đá): 5
+Trà dâu chanh dây: 1
+Cacao (Đá): 3
+Cà phê phê đen (đá): 1
+Kem ly thập cẩm: 2
+Kem hũ: 1
+Trà sữa thái xanh: 1
+Trà đào: 1
+Cacao (nóng): 2
+Kem socola ly: 1
+=========================================================
+Total Price: 63000.0

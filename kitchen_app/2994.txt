@@ -1,0 +1,17 @@
+BILL : 2994
+Table: 10
+Date Checkin: 2021-02-14 12:42:37
+Date Checkout: 2021-02-14 12:44:01
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Nước chanh: 2
+Nước cam: 1
+Bò húc: 1
+Sinh tố mãng cầu: 1
+Thuốc 3 số việt: 1
+Bài: 2
+Hạt dưa: 7
+=========================================================
+Total Price: 127000.0

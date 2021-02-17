@@ -1,0 +1,15 @@
+BILL : 3070
+Table: 2
+Date Checkin: 2021-02-16 07:40:24
+Date Checkout: 2021-02-16 07:40:36
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cà phê phê đen (đá): 1
+Cà phê sữa (đá): 1
+Trà gừng nóng: 1
+thuốc jed: 1
+Sinh tố sampoche: 1
+=========================================================
+Total Price: 43000.0

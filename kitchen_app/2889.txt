@@ -1,0 +1,14 @@
+BILL : 2889
+Table: 2
+Date Checkin: 2021-02-09 18:51:44
+Date Checkout: 2021-02-09 18:51:49
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Chanh dây: 1
+Sting (lon): 1
+Sinh tố dâu: 1
+Number one: 2
+=========================================================
+Total Price: 12000.0

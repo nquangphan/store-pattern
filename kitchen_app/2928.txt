@@ -1,0 +1,18 @@
+BILL : 2928
+Table: 2
+Date Checkin: 2021-02-10 19:28:50
+Date Checkout: 2021-02-10 19:31:43
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Bò húc: 2
+thuốc jed: 1
+Sinh tố mãng cầu: 1
+Trà đào: 1
+Trà trái cây Kiwi: 1
+Bạc xỉu (Đá): 1
+Sting chai: 1
+Oishi: 7
+=========================================================
+Total Price: 114000.0

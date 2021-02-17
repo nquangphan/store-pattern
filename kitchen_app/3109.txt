@@ -1,0 +1,12 @@
+BILL : 3109
+Table: 17
+Date Checkin: 2021-02-17 08:49:35
+Date Checkout: 2021-02-17 08:49:37
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Sinh tố dâu: 1
+Sinh tố sampoche: 1
+=========================================================
+Total Price: 40000.0

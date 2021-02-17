@@ -1,0 +1,21 @@
+BILL : 3095
+Table: 8
+Date Checkin: 2021-02-16 20:16:33
+Date Checkout: 2021-02-16 20:17:31
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Trà sữa socola: 2
+Trà đào: 1
+Kem ly thập cẩm: 1
+Bạc xỉu (Đá): 1
+Cà phê sữa (nóng): 2
+Trà sữa socola: 2
+Trà đào: 1
+Kem ly thập cẩm: 1
+Bạc xỉu (Đá): 1
+Cà phê sữa (nóng): 2
+Sinh tố bơ: 2
+=========================================================
+Total Price: 249000.0

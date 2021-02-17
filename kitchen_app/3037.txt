@@ -1,0 +1,18 @@
+BILL : 3037
+Table: 13
+Date Checkin: 2021-02-15 08:49:38
+Date Checkout: 2021-02-15 08:50:53
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Nước cam: 1
+Trà đào: 1
+Cà phê sữa (đá): 1
+Kem môn ly: 1
+Trà sữa dâu: 1
+Kem hũ: 1
+Mãng cầu dầm: 1
+Cam không đá: 1
+=========================================================
+Total Price: 80000.0

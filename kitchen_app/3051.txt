@@ -1,0 +1,13 @@
+BILL : 3051
+Table: 6
+Date Checkin: 2021-02-15 19:33:41
+Date Checkout: 2021-02-15 19:34:05
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Sinh tố dâu: 1
+Sinh tố sampoche: 1
+Yaua hương dâu: 1
+=========================================================
+Total Price: 63000.0

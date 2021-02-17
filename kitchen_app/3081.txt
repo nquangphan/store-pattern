@@ -1,0 +1,16 @@
+BILL : 3081
+Table: 14
+Date Checkin: 2021-02-16 10:46:10
+Date Checkout: 2021-02-16 10:46:32
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Kem ly thập cẩm: 3
+Cà phê sữa (đá): 1
+Cà phê phê đen (đá): 2
+Sinh tố bơ: 1
+Oishi: 2
+kẹo mút: 2
+=========================================================
+Total Price: 134000.0

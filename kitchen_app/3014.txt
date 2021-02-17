@@ -1,0 +1,17 @@
+BILL : 3014
+Table: 3
+Date Checkin: 2021-02-14 20:11:28
+Date Checkout: 2021-02-14 20:12:22
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Yaua đá thạch: 1
+Cà phê sữa (đá): 1
+Kem sầu riêng ly: 2
+Kem dâu ly: 1
+Sinh tố sampoche: 2
+Trà sữa socola: 3
+Thuốc mèo: 1
+=========================================================
+Total Price: 168000.0

@@ -1,0 +1,19 @@
+BILL : 2966
+Table: 4
+Date Checkin: 2021-02-13 20:14:14
+Date Checkout: 2021-02-13 20:14:46
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cà phê sữa (đá): 1
+Trà sữa socola: 1
+Trà đào: 1
+Sting (lon): 1
+Sting (lon): 1
+Sinh tố sampoche: 1
+Cacao (nóng): 1
+Bò húc: 1
+Bài: 1
+=========================================================
+Total Price: 48000.0

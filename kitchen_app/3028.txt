@@ -1,0 +1,14 @@
+BILL : 3028
+Table: 4
+Date Checkin: 2021-02-15 08:00:05
+Date Checkout: 2021-02-15 08:00:16
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cà phê sữa (đá): 1
+Sinh tố mãng cầu: 1
+Yến Nha đam chai: 1
+thuốc jed: 1
+=========================================================
+Total Price: 54000.0

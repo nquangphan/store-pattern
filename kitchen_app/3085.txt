@@ -1,0 +1,15 @@
+BILL : 3085
+Table: 3
+Date Checkin: 2021-02-16 15:15:20
+Date Checkout: 2021-02-16 15:15:26
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Trà xanh không độ: 1
+Trà sữa truyền thống: 1
+Bài: 1
+Sting (lon): 1
+Yaua đá thạch: 2
+=========================================================
+Total Price: 33000.0

@@ -1,0 +1,17 @@
+BILL : 3025
+Table: 3
+Date Checkin: 2021-02-14 21:22:07
+Date Checkout: 2021-02-14 21:24:47
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+olong tea: 2
+Trà trái cây Kiwi: 2
+Bơ dằm: 1
+Sinh tố dâu: 1
+Bò húc: 1
+trà vải: 1
+Yaua đá thạch: 1
+=========================================================
+Total Price: 174000.0

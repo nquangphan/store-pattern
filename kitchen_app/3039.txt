@@ -1,0 +1,15 @@
+BILL : 3039
+Table: 1
+Date Checkin: 2021-02-15 09:15:02
+Date Checkout: 2021-02-15 09:15:23
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cam không đá: 1
+Cà phê sữa nguyên chất (Đá): 7
+Nước cam: 2
+Sinh tố mãng cầu: 2
+Cà phê phê đen (đá): 1
+=========================================================
+Total Price: 128000.0

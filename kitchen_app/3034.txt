@@ -1,0 +1,16 @@
+BILL : 3034
+Table: 22
+Date Checkin: 2021-02-15 08:33:02
+Date Checkout: 2021-02-15 08:33:03
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cà phê sữa (đá): 4
+Cà phê sữa (nóng): 1
+Trà gừng nóng: 1
+Sinh tố bơ: 1
+Chanh nóng: 1
+Bạc xỉu (Đá): 1
+=========================================================
+Total Price: 30000.0

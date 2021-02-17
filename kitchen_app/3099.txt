@@ -1,0 +1,15 @@
+BILL : 3099
+Table: 16
+Date Checkin: 2021-02-16 20:58:35
+Date Checkout: 2021-02-16 20:58:45
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cà phê sữa (đá): 3
+Sting (lon): 2
+Trà trái cây Kiwi: 1
+Bạc xỉu (Đá): 2
+Bơ dằm: 1
+=========================================================
+Total Price: 75000.0

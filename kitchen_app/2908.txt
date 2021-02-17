@@ -1,0 +1,58 @@
+BILL : 2908
+Table: 12
+Date Checkin: 2021-02-09 20:07:51
+Date Checkout: 2021-02-09 20:08:11
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Siro đá bào: 1
+Siro đá bào: 1
+Siro đá bào: 1
+Siro đá bào: 1
+Siro đá bào: 1
+Siro đá bào: 1
+Siro đá bào: 1
+Siro đá bào: 1
+Siro đá bào: 1
+Siro đá bào: 1
+Siro đá bào: 1
+Siro đá bào: 1
+Siro đá bào: 1
+Siro đá bào: 1
+Siro đá bào: 1
+Cà phê sữa (đá): 1
+Siro đá bào: 1
+Cà phê sữa (đá): 1
+Cà phê sữa (đá): 1
+Cà phê sữa (đá): 1
+Cà phê sữa (đá): 1
+Cà phê sữa (đá): 1
+Cà phê sữa (đá): 1
+Cà phê sữa (đá): 1
+Cà phê sữa (đá): 1
+Cà phê sữa (đá): 1
+Cà phê sữa (đá): 1
+Cà phê sữa (đá): 1
+Cà phê sữa (đá): 1
+Cà phê sữa (đá): 1
+Cà phê sữa (đá): 1
+Cacao (Đá): 1
+Cà phê sữa (đá): 1
+Cacao (Đá): 1
+Cacao (Đá): 1
+Cacao (Đá): 1
+Cacao (Đá): 1
+Cacao (Đá): 1
+Cacao (Đá): 1
+Cacao (Đá): 1
+Cacao (Đá): 1
+Cacao (Đá): 1
+Cacao (Đá): 1
+Cacao (Đá): 1
+Cacao (Đá): 1
+Cacao (Đá): 1
+Cacao (Đá): 1
+Cacao (Đá): 1
+=========================================================
+Total Price: 38000.0

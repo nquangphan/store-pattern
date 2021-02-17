@@ -1,0 +1,17 @@
+BILL : 3007
+Table: 15
+Date Checkin: 2021-02-14 19:50:52
+Date Checkout: 2021-02-14 19:51:14
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Mãng cầu dầm: 3
+Sinh tố sampoche: 1
+Sinh tố bơ: 2
+Trà sữa thái xanh: 1
+Cà phê phê đen (đá): 1
+Cà phê sữa (đá): 1
+thuốc jed: 1
+=========================================================
+Total Price: 112000.0

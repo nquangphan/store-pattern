@@ -1,0 +1,17 @@
+BILL : 2981
+Table: 23
+Date Checkin: 2021-02-14 08:20:10
+Date Checkout: 2021-02-14 08:21:15
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cà phê phê đen (đá): 1
+Cà phê sữa (đá): 1
+Bạc xỉu (nóng): 1
+Trà chanh: 1
+Hạt dưa: 1
+Sữa Nutriboost: 1
+Sinh tố sampoche: 3
+=========================================================
+Total Price: 63000.0

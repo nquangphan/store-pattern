@@ -1,0 +1,22 @@
+BILL : 2892
+Table: 7
+Date Checkin: 2021-02-09 20:05:36
+Date Checkout: 2021-02-09 20:06:01
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Soda blue: 2
+Soda blue: 2
+Trà đào: 1
+Trà đào: 1
+Sting chai: 1
+Sting chai: 1
+Bài: 1
+Bài: 1
+Trà chanh: 1
+Trà sữa thái xanh: 1
+Kem socola ly: 1
+Yaua hương dâu: 1
+=========================================================
+Total Price: 58000.0

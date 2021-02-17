@@ -1,0 +1,17 @@
+BILL : 3080
+Table: 11
+Date Checkin: 2021-02-16 10:45:21
+Date Checkout: 2021-02-16 10:45:56
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cà phê phê đen (đá): 1
+Cacao (Đá): 1
+Cà phê sữa (đá): 2
+Kem ly thập cẩm: 1
+Trà sữa truyền thống: 2
+Sâm dứa sữa: 1
+Bạc xỉu (Đá): 1
+=========================================================
+Total Price: 147000.0

@@ -1,0 +1,13 @@
+BILL : 2955
+Table: 2
+Date Checkin: 2021-02-11 21:12:36
+Date Checkout: 2021-02-11 21:13:33
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cà phê sữa (đá): 3
+Sinh tố dâu: 1
+Trà sữa truyền thống: 1
+=========================================================
+Total Price: 86000.0

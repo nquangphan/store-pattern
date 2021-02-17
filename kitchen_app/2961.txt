@@ -1,0 +1,15 @@
+BILL : 2961
+Table: 17
+Date Checkin: 2021-02-13 19:44:48
+Date Checkout: 2021-02-13 19:45:38
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Trà đào: 2
+Cacao (nóng): 1
+Bò húc: 1
+Dr.Thanh chai: 1
+Oishi: 2
+=========================================================
+Total Price: 64000.0

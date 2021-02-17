@@ -1,0 +1,16 @@
+BILL : 3057
+Table: 15
+Date Checkin: 2021-02-15 19:50:03
+Date Checkout: 2021-02-15 19:51:47
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Yaua sinh tố việt quất: 1
+Yaua sinh tố dâu: 1
+Yaua sinh tố đào: 1
+Trà gừng nóng: 1
+Cà phê phê đen (đá): 1
+Trà đào: 1
+=========================================================
+Total Price: 60000.0

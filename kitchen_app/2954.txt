@@ -1,0 +1,13 @@
+BILL : 2954
+Table: 1
+Date Checkin: 2021-02-11 21:06:21
+Date Checkout: 2021-02-11 21:06:22
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Kem dừa ly: 1
+Kem ly thập cẩm: 1
+Nước khoáng: 1
+=========================================================
+Total Price: 42000.0

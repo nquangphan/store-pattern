@@ -1,0 +1,19 @@
+BILL : 2937
+Table: 15
+Date Checkin: 2021-02-10 20:23:12
+Date Checkout: 2021-02-10 20:23:37
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cà phê sữa (đá): 1
+Trà đào: 3
+Trà chanh: 1
+Kem môn ly: 1
+Sinh tố mãng cầu: 1
+Yaua sinh tố việt quất: 1
+cam vắt mật ong: 1
+Kem ly thập cẩm: 2
+đĩa đựng bánh kem: 5
+=========================================================
+Total Price: 86000.0

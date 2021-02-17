@@ -1,0 +1,14 @@
+BILL : 2894
+Table: 12
+Date Checkin: 2021-02-09 20:07:51
+Date Checkout: 2021-02-09 20:08:10
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cà phê sữa (đá): 2
+Siro sữa đá bào: 2
+Sữa Nutriboost: 2
+Sữa tươi: 2
+=========================================================
+Total Price: 38000.0

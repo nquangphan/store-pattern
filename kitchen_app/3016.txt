@@ -1,0 +1,18 @@
+BILL : 3016
+Table: 22
+Date Checkin: 2021-02-14 20:27:16
+Date Checkout: 2021-02-14 20:28:38
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Trà trái cây Kiwi: 1
+Trà sữa thái xanh: 4
+Soda bạc hà: 1
+Kem socola ly: 1
+Trà sữa truyền thống: 2
+Trà tắc: 1
+Cà phê sữa (đá): 1
+Kem ly thập cẩm: 2
+=========================================================
+Total Price: 180000.0

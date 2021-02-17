@@ -1,0 +1,14 @@
+BILL : 3008
+Table: 16
+Date Checkin: 2021-02-14 19:59:14
+Date Checkout: 2021-02-14 19:59:19
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cà phê phê đen (đá): 1
+Trà sữa thái xanh: 1
+Cà phê sữa (đá): 3
+Cocacola: 1
+=========================================================
+Total Price: 31000.0

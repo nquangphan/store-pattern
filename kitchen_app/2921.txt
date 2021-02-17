@@ -1,0 +1,15 @@
+BILL : 2921
+Table: 3
+Date Checkin: 2021-02-10 09:39:53
+Date Checkout: 2021-02-10 09:40:18
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Sinh tố dâu: 1
+Trà sữa truyền thống: 2
+Hạt dưa: 1
+Trà đào thạch: 1
+Number one: 1
+=========================================================
+Total Price: 55000.0

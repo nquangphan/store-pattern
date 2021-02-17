@@ -1,0 +1,14 @@
+BILL : 2970
+Table: 20
+Date Checkin: 2021-02-13 20:44:14
+Date Checkout: 2021-02-13 20:44:26
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Sinh tố sampoche: 1
+Trà sữa socola: 3
+Trà sữa dâu: 1
+Sinh tố bơ: 3
+=========================================================
+Total Price: 95000.0

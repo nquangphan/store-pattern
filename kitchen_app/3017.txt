@@ -1,0 +1,14 @@
+BILL : 3017
+Table: 8
+Date Checkin: 2021-02-14 20:31:32
+Date Checkout: 2021-02-14 20:32:45
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Sinh tố bơ: 3
+Sinh tố mãng cầu: 1
+Sinh tố dâu: 1
+Trà chanh: 1
+=========================================================
+Total Price: 92000.0

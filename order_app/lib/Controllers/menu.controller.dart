@@ -1,6 +1,11 @@
 import 'dart:typed_data';
 
 import 'package:diacritic/diacritic.dart';
+import '../Constants/queries.dart';
+import '../Constants/queries.dart';
+import '../Constants/queries.dart';
+import '../Utils/utils.dart';
+import '../Utils/utils.dart';
 import './../Models/home.model.dart' as home;
 import './../Models/history.model.dart' as historyModel;
 import './../Models/menu.model.dart';
@@ -62,8 +67,8 @@ class Controller {
   Future<List<Food>> _foods;
   Future<Map<int, Uint8List>> _images;
 
-  Future<List<Food>> foods() {
-    if (_foods == null) {
+  Future<List<Food>> foods({force = false}) {
+    if (_foods == null || force == true) {
       _images = _syncMySqlWithFile();
       _foods = _combineFoodsImages(_images, Model.instance.foods);
     }
@@ -76,7 +81,17 @@ class Controller {
 
   Future<Uint8List> _getImageByID(int id) => Model.instance.getImageById(id);
 
-  void _combine(Food food, Uint8List image) => food.image = image;
+  void _combine(Food food, Uint8List image) {
+    food.image = image;
+    print('_____________' +
+        Application.prefs.getBool(ENABLE_BONUS_PRICE).toString());
+    print('_____________' + Application.prefs.getInt(BONUS_PRICE).toString());
+    if (Application.prefs.getBool(ENABLE_BONUS_PRICE) &&
+        Application.prefs.getInt(BONUS_PRICE) > 0 &&
+        food.idFoodCategory != 4) {
+      food.price += Application.prefs.getInt(BONUS_PRICE);
+    }
+  }
 
   Future<void> _saveFile(int id, Uint8List image) async =>
       Model.instance.saveImage(id, image);

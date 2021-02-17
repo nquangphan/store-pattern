@@ -1,0 +1,13 @@
+BILL : 3058
+Table: 5
+Date Checkin: 2021-02-15 19:57:06
+Date Checkout: 2021-02-15 19:57:18
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Trà đào: 2
+Trà sữa thái xanh: 1
+Trà dâu chanh dây: 1
+=========================================================
+Total Price: 66000.0

@@ -1,0 +1,14 @@
+BILL : 2939
+Table: 21
+Date Checkin: 2021-02-10 20:46:10
+Date Checkout: 2021-02-10 21:01:57
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Yaua sinh tố việt quất: 1
+Trà đào: 1
+Sting chai: 1
+Nước chanh: 1
+=========================================================
+Total Price: 53000.0

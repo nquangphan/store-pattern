@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:order_app/Views/setting_view.dart';
 
+import '../Constants/queries.dart';
+import '../Controllers/cart.controller.dart';
+import '../Utils/utils.dart';
 import './../Constants/theme.dart';
 import './../Models/login.model.dart';
 import './history.view.dart';
@@ -187,6 +191,8 @@ class _MainPageState extends State<MainPage> {
         return new ProfileScreen(
           account: account,
         );
+      case 3:
+        return SettingScreen();
       default:
         return null;
     }

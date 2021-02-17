@@ -1,0 +1,16 @@
+BILL : 2964
+Table: 1
+Date Checkin: 2021-02-13 20:07:32
+Date Checkout: 2021-02-13 20:08:02
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Bạc xỉu (Đá): 1
+Yaua đá thạch: 1
+Trà sữa thái xanh: 1
+Trà tắc: 1
+Trà chanh: 1
+Nước cam: 1
+=========================================================
+Total Price: 48000.0

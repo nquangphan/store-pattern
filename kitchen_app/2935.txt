@@ -1,0 +1,16 @@
+BILL : 2935
+Table: 8
+Date Checkin: 2021-02-10 20:08:49
+Date Checkout: 2021-02-10 20:09:10
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Trà đào: 1
+Trà chanh: 1
+Trà sữa thái xanh: 1
+Kem socola ly: 1
+Yaua hương dâu: 1
+Yaua đá thạch: 3
+=========================================================
+Total Price: 71000.0

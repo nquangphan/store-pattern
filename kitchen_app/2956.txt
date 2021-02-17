@@ -1,0 +1,14 @@
+BILL : 2956
+Table: 9
+Date Checkin: 2021-02-11 21:16:07
+Date Checkout: 2021-02-11 21:16:08
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Trà gừng nóng: 2
+Cà phê phê đen (đá): 1
+Kem socola ly: 1
+Trà đào thạch: 1
+=========================================================
+Total Price: 30000.0

@@ -171,7 +171,7 @@ class _HomeScreenState extends State<HomeScreen> {
         });
   }
 
-  Future<bool> _sendBillToKitchen(home.Table table) async {
+ static Future<bool> _sendBillToKitchen(home.Table table) async {
     {
       if (table.foods == null || table.foods.length == 0) return false;
       // Navigator.of(context).pop();

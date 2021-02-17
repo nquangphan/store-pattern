@@ -1,0 +1,16 @@
+BILL : 2943
+Table: 5
+Date Checkin: 2021-02-11 19:45:07
+Date Checkout: 2021-02-11 19:45:12
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Nước cam: 2
+thuốc jed: 1
+Number one: 1
+Cà phê sữa (đá): 1
+Cà phê sữa (nóng): 1
+Bò húc: 1
+=========================================================
+Total Price: 35000.0

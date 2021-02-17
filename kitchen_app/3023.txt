@@ -1,0 +1,16 @@
+BILL : 3023
+Table: 15
+Date Checkin: 2021-02-14 20:55:58
+Date Checkout: 2021-02-14 20:56:19
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cà phê sữa (đá): 4
+Cà phê phê đen (đá): 1
+Cacao (nóng): 1
+Sinh tố sampoche: 1
+Bài: 1
+7-up (lon): 1
+=========================================================
+Total Price: 43000.0

@@ -1,0 +1,17 @@
+BILL : 3000
+Table: 2
+Date Checkin: 2021-02-14 17:05:40
+Date Checkout: 2021-02-14 17:05:54
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Number one: 1
+Trà sữa truyền thống: 1
+Bò húc: 2
+Yaua đá thạch: 1
+Sữa Nutriboost: 1
+Oishi: 1
+kẹo mút: 1
+=========================================================
+Total Price: 33000.0

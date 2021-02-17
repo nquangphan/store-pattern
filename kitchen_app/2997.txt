@@ -1,0 +1,12 @@
+BILL : 2997
+Table: 3
+Date Checkin: 2021-02-14 15:33:50
+Date Checkout: 2021-02-14 15:33:59
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Kem ly thập cẩm: 1
+Sinh tố sampoche: 1
+=========================================================
+Total Price: 44000.0

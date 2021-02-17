@@ -1,0 +1,25 @@
+BILL : 3009
+Table: 13
+Date Checkin: 2021-02-14 19:56:31
+Date Checkout: 2021-02-14 20:00:09
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Kem socola ly: 3
+Yaua đá thạch: 2
+Cà phê sữa (đá): 4
+Trà đào: 2
+Kem ly thập cẩm: 2
+Yaua sinh tố việt quất: 5
+Cà phê phê đen (đá): 1
+lipton nóng: 2
+Kem dâu ly: 1
+Kem môn ly: 1
+Bơ dằm: 1
+Sinh tố mãng cầu: 2
+Sinh tố sampoche: 1
+Cacao (nóng): 2
+Trà sữa dâu: 1
+=========================================================
+Total Price: 462000.0

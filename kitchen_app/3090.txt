@@ -1,0 +1,15 @@
+BILL : 3090
+Table: 20
+Date Checkin: 2021-02-16 19:41:56
+Date Checkout: 2021-02-16 19:41:57
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cà phê sữa (đá): 2
+Hạt dưa: 2
+Cam không đá: 1
+Thuốc 3 số việt: 1
+Cocacola: 1
+=========================================================
+Total Price: 30000.0

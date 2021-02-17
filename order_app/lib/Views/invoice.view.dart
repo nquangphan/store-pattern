@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:order_app/Controllers/cart.controller.dart';
 
 import './../Constants/theme.dart' as theme;
 import './../Models/history.model.dart' as history;
@@ -18,7 +19,44 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
   Widget build(BuildContext context) {
     return Container(
       child: new Column(
-        children: <Widget>[_buildHeader(), _buildBody(), _buildFooter()],
+        children: <Widget>[
+          _buildHeader(),
+          _buildBody(),
+          _buildFooter(),
+          Divider(),
+          _buildPrintBuildButton()
+        ],
+      ),
+    );
+  }
+
+  Future<void> _printBill(BuildContext context) async {
+    Controller.instance.findPrinterAndPrintTicket(widget.bill.table);
+    // widget.table.status = -1;
+    // widget.table.foods.clear();
+  }
+
+  TextStyle _itemStyle = TextStyle(
+      color: theme.fontColor,
+      fontFamily: 'Arial',
+      fontSize: 16.0,
+      fontWeight: FontWeight.w500);
+  _buildPrintBuildButton() {
+    Container(
+      margin: const EdgeInsets.only(top: 15.0, right: 150),
+      child: SizedBox(
+        width: double.infinity,
+        child: RaisedButton(
+          color: Colors.blueAccent,
+          child: Text(
+            'In hóa đơn',
+            style: _itemStyle.merge(
+                TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+          ),
+          onPressed: () {
+            if (widget.bill.table.foods.length > 0) _printBill(context);
+          },
+        ),
       ),
     );
   }
@@ -71,9 +109,13 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                 ],
               ),
               new Text(
-                new DateFormat('yyyy-MM-dd HH:mm:ss').format(widget.bill.dateCheckOut),
+                new DateFormat('yyyy-MM-dd HH:mm:ss')
+                    .format(widget.bill.dateCheckOut),
                 style: new TextStyle(
-                    color: theme.fontColor, fontFamily: 'Arial', fontSize: 15.0, fontWeight: FontWeight.w500),
+                    color: theme.fontColor,
+                    fontFamily: 'Arial',
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.w500),
               )
             ],
           ),
@@ -92,7 +134,8 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
         child: new ListView.builder(
             itemExtent: 60.0,
             itemCount: widget.bill.table.foods.length,
-            itemBuilder: (_, index) => _buildFood(widget.bill.table.foods[index])),
+            itemBuilder: (_, index) =>
+                _buildFood(widget.bill.table.foods[index])),
       ),
     );
   }
@@ -110,7 +153,10 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
               new Text(
                 food.name,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(color: theme.accentColor, fontFamily: 'Arial', fontSize: 18.0),
+                style: const TextStyle(
+                    color: theme.accentColor,
+                    fontFamily: 'Arial',
+                    fontSize: 18.0),
               ),
               new Expanded(child: new Container()),
               new Text(
@@ -147,10 +193,16 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
 
   Widget _buildFooter() {
     TextStyle _itemStyle = new TextStyle(
-        color: theme.fontColor, fontFamily: 'Arial', fontSize: 16.0, fontWeight: FontWeight.w500);
+        color: theme.fontColor,
+        fontFamily: 'Arial',
+        fontSize: 16.0,
+        fontWeight: FontWeight.w500);
 
     TextStyle _itemStyle2 = new TextStyle(
-        color: Colors.redAccent, fontFamily: 'Arial', fontSize: 16.0, fontWeight: FontWeight.w500);
+        color: Colors.redAccent,
+        fontFamily: 'Arial',
+        fontSize: 16.0,
+        fontWeight: FontWeight.w500);
 
     return new Container(
       decoration: new BoxDecoration(
@@ -197,7 +249,9 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
               ),
               new Expanded(child: Container()),
               new Text(
-                NumberFormat("#,###").format((widget.bill.totalPrice * (1 - widget.bill.discount / 100))) + ' vnđ',
+                NumberFormat("#,###").format((widget.bill.totalPrice *
+                        (1 - widget.bill.discount / 100))) +
+                    ' vnđ',
                 style: _itemStyle2,
               )
             ],

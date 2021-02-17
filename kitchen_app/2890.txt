@@ -1,0 +1,16 @@
+BILL : 2890
+Table: 1
+Date Checkin: 2021-02-09 19:56:15
+Date Checkout: 2021-02-09 19:57:17
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Number one: 1
+Sting chai: 2
+Bạc xỉu (Đá): 1
+Yaua hương kiwi: 1
+Bò húc: 1
+thuốc jed: 1
+=========================================================
+Total Price: 12000.0

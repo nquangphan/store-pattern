@@ -285,49 +285,31 @@ class _CartScreenState extends State<CartScreen> {
       padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 8.0),
       child: Column(
         children: <Widget>[
-          Row(
-            children: <Widget>[
-              Text(
-                'Tạm tính: ',
-                style: _itemStyle,
-              ),
-              Expanded(child: Container()),
-              Text(
-                NumberFormat("#,###").format(widget.table.getTotalPrice()) +
-                    ' vnđ',
-                style: _itemStyle,
-              )
-            ],
-          ),
+          // Row(
+          //   children: <Widget>[
+          //     Text(
+          //       'Tạm tính: ',
+          //       style: _itemStyle,
+          //     ),
+          //     Expanded(child: Container()),
+          //     Text(
+          //       NumberFormat("#,###").format(widget.table.getTotalPrice()) +
+          //           ' vnđ',
+          //       style: _itemStyle,
+          //     )
+          //   ],
+          // ),
           Divider(),
           Row(
             children: <Widget>[
               Text(
-                'Giảm giá: ',
+                'Số ly: ',
                 style: _itemStyle,
               ),
               Expanded(child: Container()),
-              Container(
-                width: 35.0,
-                alignment: Alignment(1.0, 0.0),
-                child: TextField(
-                    controller: _textController,
-                    style: _itemStyle,
-                    keyboardType: TextInputType.number,
-                    onChanged: (value) {
-                      if (double.parse(value) > 100 ||
-                          double.parse(value) < 0) {
-                        _textController.clear();
-                        value = '0.0';
-                      }
-
-                      setState(() {
-                        _discount = double.parse(value);
-                      });
-                    },
-                    onSubmitted: null,
-                    decoration: InputDecoration.collapsed(
-                        hintText: '0%', hintStyle: _itemStyle)),
+              Text(
+                '${widget.table.foods.length}',
+                style: _itemStyle.merge(TextStyle(color: Colors.blue)),
               ),
             ],
           ),

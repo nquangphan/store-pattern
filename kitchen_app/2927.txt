@@ -1,0 +1,14 @@
+BILL : 2927
+Table: 5
+Date Checkin: 2021-02-10 19:27:07
+Date Checkout: 2021-02-10 19:27:59
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Number one: 1
+Bò húc: 4
+thuốc jed: 1
+Hạt dưa: 1
+=========================================================
+Total Price: 56000.0

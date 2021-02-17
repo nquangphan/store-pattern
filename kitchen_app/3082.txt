@@ -1,0 +1,13 @@
+BILL : 3082
+Table: 2
+Date Checkin: 2021-02-16 11:34:59
+Date Checkout: 2021-02-16 11:35:00
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Sting (lon): 2
+sữa đậu nành : 1
+Yaua sinh tố việt quất: 2
+=========================================================
+Total Price: 30000.0

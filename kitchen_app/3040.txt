@@ -1,0 +1,15 @@
+BILL : 3040
+Table: 13
+Date Checkin: 2021-02-15 09:20:33
+Date Checkout: 2021-02-15 09:20:49
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Trà sữa thái xanh: 1
+Yaua đá thạch: 2
+Cà phê sữa (đá): 1
+Trà sữa đào: 2
+Trà đào: 1
+=========================================================
+Total Price: 66000.0

@@ -1,0 +1,17 @@
+BILL : 3026
+Table: 1
+Date Checkin: 2021-02-15 06:53:47
+Date Checkout: 2021-02-15 06:54:33
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cà phê sữa nguyên chất (nóng): 6
+Cà phê phê đen (đá): 1
+Sinh tố mãng cầu: 1
+Sinh tố dâu: 1
+Yaua hũ: 1
+Yaua sinh tố việt quất: 2
+Bạc xỉu (nóng): 1
+=========================================================
+Total Price: 215000.0

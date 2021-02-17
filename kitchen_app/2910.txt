@@ -1,0 +1,18 @@
+BILL : 2910
+Table: 3
+Date Checkin: 2021-02-09 20:48:40
+Date Checkout: 2021-02-09 21:13:09
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cocktail: 1
+Lipton sữa: 1
+Yaua sinh tố việt quất: 1
+Sinh tố sampoche: 1
+Chanh dây: 1
+Nước cam: 1
+Trà sữa truyền thống: 1
+Oishi: 6
+=========================================================
+Total Price: 110000.0

@@ -1,0 +1,15 @@
+BILL : 3083
+Table: 2
+Date Checkin: 2021-02-16 12:53:58
+Date Checkout: 2021-02-16 12:54:01
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Bạc xỉu (Đá): 1
+Sting (lon): 2
+Cocacola: 1
+Thuốc 3 số việt: 1
+Trà ô long: 1
+=========================================================
+Total Price: 15000.0

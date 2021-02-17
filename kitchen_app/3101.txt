@@ -1,0 +1,14 @@
+BILL : 3101
+Table: 11
+Date Checkin: 2021-02-16 21:12:35
+Date Checkout: 2021-02-16 21:13:50
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cam không đá: 1
+Trà đào: 2
+Kem ly thập cẩm: 3
+Trà sữa socola: 1
+=========================================================
+Total Price: 137000.0

@@ -1,0 +1,18 @@
+BILL : 3098
+Table: 7
+Date Checkin: 2021-02-16 20:57:10
+Date Checkout: 2021-02-16 20:58:14
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Trà đào: 2
+Soda blue: 1
+Sữa tươi đào: 1
+Siro đá bào: 1
+Cà phê sữa (đá): 1
+Trà chanh: 1
+Trà sữa dâu: 1
+Soda kiwi: 1
+=========================================================
+Total Price: 155000.0

@@ -1,0 +1,15 @@
+BILL : 2971
+Table: 16
+Date Checkin: 2021-02-13 20:54:45
+Date Checkout: 2021-02-13 20:54:45
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Chanh nóng: 1
+Cacao (nóng): 1
+Yaua hương kiwi: 1
+Bạc xỉu (Đá): 1
+Sting (lon): 1
+=========================================================
+Total Price: 15000.0

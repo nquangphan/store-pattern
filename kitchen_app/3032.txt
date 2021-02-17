@@ -1,0 +1,12 @@
+BILL : 3032
+Table: 13
+Date Checkin: 2021-02-15 08:30:51
+Date Checkout: 2021-02-15 08:31:02
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Nước khoáng: 1
+Yaua sinh tố việt quất: 1
+=========================================================
+Total Price: 30000.0

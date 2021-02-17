@@ -1,0 +1,13 @@
+BILL : 3108
+Table: 8
+Date Checkin: 2021-02-17 08:31:23
+Date Checkout: 2021-02-17 08:31:24
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Sinh tố dâu: 1
+Yaua hương blue: 1
+Hạt dưa: 2
+=========================================================
+Total Price: 20000.0

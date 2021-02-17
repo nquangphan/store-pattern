@@ -1,0 +1,21 @@
+BILL : 3078
+Table: 7
+Date Checkin: 2021-02-16 10:12:54
+Date Checkout: 2021-02-16 10:14:05
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Cà phê phê đen (đá): 2
+Trà chanh: 1
+Cam không đá: 1
+Sinh tố bơ: 2
+Cà phê sữa (đá): 2
+Nước cam: 2
+Sinh tố sampoche: 1
+Sinh tố dâu: 1
+Hạt dưa: 2
+olong tea: 1
+kẹo mút: 2
+=========================================================
+Total Price: 89000.0

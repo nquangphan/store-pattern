@@ -1,0 +1,14 @@
+BILL : 2891
+Table: 7
+Date Checkin: 2021-02-09 20:59:40
+Date Checkout: 2021-02-09 21:02:42
+Staff: test
+Discount: 0.0
+=========================================================
+Bill Detail:
+Soda blue: 2
+Trà đào: 1
+Sting chai: 1
+Number one: 1
+=========================================================
+Total Price: 60000.0
