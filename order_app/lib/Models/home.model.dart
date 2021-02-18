@@ -120,7 +120,7 @@ class Table {
       }
     }
 
-    if (foods.length == 0) {
+    if (getNumOfDrink() < 1) {
       this.status = -1;
     }
   }
@@ -131,7 +131,7 @@ class Table {
       foods[index].quantity = 0;
     }
 
-    if (foods.length == 0) {
+    if (getNumOfDrink() < 1) {
       this.status = -1;
     }
   }

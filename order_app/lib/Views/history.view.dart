@@ -95,8 +95,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
               ),
               new Expanded(child: new Container()),
               new Text(
-                NumberFormat("#,###").format(bill.table.getTotalPrice()) +
-                    ' vnđ',
+                NumberFormat("#,###").format(bill.totalPrice) + ' vnđ',
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                     color: Colors.redAccent,

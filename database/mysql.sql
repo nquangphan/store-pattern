@@ -282,8 +282,9 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `USP_GetBillDetailByBill` (IN `id` I
     FROM BILLINFO A, BILL B, FOOD C
     WHERE A.IDBill = B.ID and C.ID = A.IDFood and B.ID = `id`$$
 
+DELIMITER $$
 DROP PROCEDURE IF EXISTS `USP_GetBills`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `USP_GetBills` (IN `currentDate` DATETIME)  SELECT A.*, B.ID as IDTable, B.Name, C.*
+CREATE DEFINER=`root`@`localhost` PROCEDURE `USP_GetBills` (IN `currentDate` DATETIME)  SELECT A.*, B.ID as IDTable, B.Name, C.ID as IDAccount, C.Username, C.DisplayName, C.Sex, C.IDCard, C.Address, C.PhoneNumber, C.BirthDay, C.IDAccountType, C.IDImage
     FROM BILL AS A, `TABLE` AS B, ACCOUNT as C
     WHERE A.IDTable = B.ID AND YEAR(A.DateCheckOut) = YEAR(currentDate) and MONTH(A.DateCheckOut) = MONTH(currentDate) and DAY(A.DateCheckOut) = DAY(currentDate) and A.Status = 1 and C.Username = A.Username
     ORDER BY A.DateCheckOut DESC$$
@@ -589,6 +590,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `USP_UpdateAccType` (IN `_ID` INT, I
     where `ID`=_ID;
 END$$
 
+
+
 DROP PROCEDURE IF EXISTS `USP_UpdateBill`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `USP_UpdateBill` (IN `_ID` INT(11), IN `_IDTable` INT(11), IN `_DateCheckIn` DATETIME, IN `_DateCheckOut` DATETIME, IN `_Discount` DOUBLE, `_TotalPrice` INT, IN `_Status` INT, `_Username` VARCHAR(32))  BEGIN
         IF(_DateCheckIn IS NULL) THEN
@@ -615,20 +618,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `USP_UpdateBill` (IN `_ID` INT(11), 
         BILL.Username = _Username
     WHERE
         BILL.ID = _ID ;
-    END IF ; IF _TotalPrice = 0 THEN
-UPDATE
-    `TABLE`
-SET
-    `Status` = -1
-WHERE
-    `ID` = _IDTable ;
-UPDATE
-    BILL
-SET
-    BILL.Status = 1
-WHERE
-    BILL.ID = _ID ;
-END IF ; IF _Status = 1 THEN
+    END IF ;IF _Status = 1 THEN
 UPDATE
     `TABLE`
 SET
@@ -642,6 +632,22 @@ SET
 WHERE
     `ID` = _IDTable ;
 END IF ;
+
+ IF _TotalPrice = 0 THEN
+UPDATE
+    `TABLE`
+SET
+    `Status` = -1
+WHERE
+    `ID` = _IDTable ;
+UPDATE
+    BILL
+SET
+    BILL.Status = 1
+WHERE
+    BILL.ID = _ID ;
+END IF ; 
+
 END$$
 
 DROP PROCEDURE IF EXISTS `USP_UpdateBillInfo`$$

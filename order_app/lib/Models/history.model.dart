@@ -34,6 +34,7 @@ class Model {
       values.forEach((value) {
         futureBills.add(new BillPlus.fromJson(value));
       });
+      
     });
     return futureBills;
   }

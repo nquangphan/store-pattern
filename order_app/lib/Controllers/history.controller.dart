@@ -13,7 +13,7 @@ class Controller {
   Future<List<history.BillPlus>> _bills;
 
   Future<List<history.BillPlus>> get bills {
-    if (_bills == null) _bills = history.Model.instance.getListBill();
+    _bills = history.Model.instance.getListBill();
     return _bills;
   }
 
@@ -31,8 +31,8 @@ class Controller {
     return -1;
   }
 
-  void addBill(int id, home.Table table, DateTime dateCheckout, double discount, double totalPrice,
-      login.Account account) async {
+  void addBill(int id, home.Table table, DateTime dateCheckout, double discount,
+      double totalPrice, login.Account account) async {
     history.BillPlus bill = new history.BillPlus(
         id: id,
         table: table,
